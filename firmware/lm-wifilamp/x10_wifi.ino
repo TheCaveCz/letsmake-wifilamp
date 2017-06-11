@@ -35,18 +35,22 @@ void wifiReadConfig() {
     cfg.close();
   } else {
     logInfo("Unable to open wifi config");
-    wifiConfig.connected = false;
-    wifiConfig.ssid = "";
-    wifiConfig.pass = "";
+    wifiResetConfig();
   }
 
   logValue(" connected: ", wifiConfig.connected);
   logValue(" ssid: ", wifiConfig.ssid);
   logValue(" pass: ", wifiConfig.pass);
-
 }
 
-bool wifiSetSsid(const String& ssid, const String& pass) {
+void wifiResetConfig() {
+  wifiConfig.connected = false;
+  wifiConfig.ssid = "";
+  wifiConfig.pass = "";
+  wifiWriteConfig();
+}
+
+bool wifiWriteConfig() {
   logInfo("Writing WiFi config");
   File cfg = SPIFFS.open(WIFI_CONF_FILE, "w");
   if (!cfg) {
@@ -54,19 +58,23 @@ bool wifiSetSsid(const String& ssid, const String& pass) {
     return false;
   }
 
-  wifiConfig.ssid = ssid;
-  wifiConfig.pass = pass;
-  wifiConfig.connected = 1;
-
-  cfg.write('1');
+  cfg.write(wifiConfig.connected ? '1' : '0');
   cfg.write('\n');
-  cfg.print(ssid);
+  cfg.print(wifiConfig.ssid);
   cfg.write('\n');
-  cfg.print(pass);
+  cfg.print(wifiConfig.pass);
   cfg.write('\n');
 
   cfg.close();
   return true;
+}
+
+bool wifiSetSsid(const String& ssid, const String& pass) {
+  wifiConfig.ssid = ssid;
+  wifiConfig.pass = pass;
+  wifiConfig.connected = 1;
+
+  return wifiWriteConfig();
 }
 
 void wifiConnectSta() {

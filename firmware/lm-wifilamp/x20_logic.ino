@@ -79,11 +79,12 @@ void logicUpdatePixels(const uint16_t time) {
 
 void logicResetConfig() {
   logicConfig.adminPass = "wifilamp";
-  logicConfig.colorR = 255;
-  logicConfig.colorG = 255;
-  logicConfig.colorB = 255;
-  logicConfig.on = true;
+  logicColorR = logicConfig.colorR = 255;
+  logicColorG = logicConfig.colorG = 255;
+  logicColorB = logicConfig.colorB = 255;
+  logicOn = logicConfig.on = true;
   logicConfig.defaultTurnOnSpeed = 1000;
+  logicWriteConfig();
 }
 
 void logicReadConfig() {
