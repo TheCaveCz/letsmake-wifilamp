@@ -9,7 +9,6 @@ void otaSetup() {
 
   ArduinoOTA.onStart([]() {
     pixelsSet(0, 0, 0);
-    pixelTask.disable();
   });
   //  ArduinoOTA.onError([](ota_error_t error) {
   //    DBGPV("OTA update error: ", error);

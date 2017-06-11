@@ -34,13 +34,12 @@ void setup() {
 
   otaSetup();
   serverSetup();
-
-  pixelTask.enable();
-  logicButtonTask.enable();
 }
 
 void loop() {
   ArduinoOTA.handle();
   server.handleClient();
-  scheduler.execute();
+  
+  pixelsTask();
+  logicButtonTask();
 }

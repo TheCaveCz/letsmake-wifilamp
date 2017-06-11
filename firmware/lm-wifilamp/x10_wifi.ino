@@ -6,16 +6,6 @@ struct WifiConfig {
   uint8_t apMode;
 } wifiConfig;
 
-#define WIFI_CONNECT_DELAY 500
-#define WIFI_CONNECT_COUNTER 30
-
-#define WIFI_ENTER_AP_DELAY 20
-#define WIFI_ENTER_AP_COUNTER 200
-
-#define WIFI_AP_PREFIX "WiFi-Lamp-"
-#define WIFI_AP_PASSWORD "wifilamp"
-
-#define WIFI_CONF_FILE "/conf/wifi.txt"
 
 /*
     WL_IDLE_STATUS      = 0,

@@ -1,4 +1,3 @@
-Task pixelTask(25, TASK_FOREVER, &pixelTaskCb, &scheduler);
 
 uint16_t pixelsCurrentG;
 uint16_t pixelsCurrentR;
@@ -16,6 +15,8 @@ uint16_t pixelsDeltaSteps;
 
 uint8_t pixelsBuffer[PIXELS_BYTE_COUNT];
 
+uint32_t pixelsTaskTime;
+
 #ifdef ESP8266
 // ESP8266 show() is external to enforce ICACHE_RAM_ATTR execution
 extern "C" void ICACHE_RAM_ATTR espShow(uint8_t pin, uint8_t *pixels, uint32_t numBytes);
@@ -31,9 +32,14 @@ void pixelsSetup() {
   digitalWrite(PIXELS_PIN, LOW);
 
   pixelsSet(0, 0, 0);
+  pixelsTaskTime = 0;
 }
 
-void pixelTaskCb() {
+void pixelsTask() {
+  uint32_t now = millis();
+  if (now - pixelsTaskTime < PIXELS_TASK_INTERVAL) return;
+  pixelsTaskTime = now;
+
   if (pixelsDeltaSteps) {
     pixelsDeltaSteps--;
     if (pixelsDeltaSteps) {
@@ -52,7 +58,7 @@ void pixelTaskCb() {
 }
 
 void pixelsAnimate(uint8_t r, uint8_t g, uint8_t b, uint16_t lenMillis = 0) {
-  pixelsDeltaSteps = lenMillis / pixelTask.getInterval();
+  pixelsDeltaSteps = lenMillis / PIXELS_TASK_INTERVAL;
 
   pixelsTargetR = r;
   pixelsTargetG = g;

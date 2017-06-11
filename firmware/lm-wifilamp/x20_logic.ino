@@ -1,4 +1,3 @@
-Task logicButtonTask(100, TASK_FOREVER, &logicButtonTaskCb, &scheduler);
 
 struct LogicConfig {
   String adminPass;
@@ -14,8 +13,9 @@ uint8_t logicColorG;
 uint8_t logicColorB;
 bool logicOn;
 
-#define LOGIC_CONF_FILE "/conf/logic.txt"
-#define LOGIC_BUTTON_LOCKUP_TIME 2000
+uint32_t logicButtonTaskTime;
+uint32_t logicButtonTaskInterval;
+
 
 
 uint8_t logicButtonCounter;
@@ -28,15 +28,23 @@ void logicSetup() {
   logicColorG = logicConfig.colorG;
   logicColorB = logicConfig.colorB;
   logicOn = logicConfig.on;
+  logicButtonTaskTime = 0;
+  logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
 }
 
-void logicButtonTaskCb() {
+void logicButtonTask() {
+  uint32_t now = millis();
+  if (now - logicButtonTaskTime < logicButtonTaskInterval) return;
+  logicButtonTaskTime = now;
+  logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
+
+  
   logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
   if (logicButtonCounter >= 3) {
     logInfo("Button trigger");
     logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
     logicButtonCounter = 0;
-    logicButtonTask.delay(LOGIC_BUTTON_LOCKUP_TIME);
+    logicButtonTaskInterval = LOGIC_BUTTON_LOCKUP_TIME;
   }
 }
 
