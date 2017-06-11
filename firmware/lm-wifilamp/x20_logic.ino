@@ -38,7 +38,7 @@ void logicButtonTask() {
   logicButtonTaskTime = now;
   logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
 
-  
+
   logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
   if (logicButtonCounter >= 3) {
     logInfo("Button trigger");

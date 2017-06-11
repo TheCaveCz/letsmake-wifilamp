@@ -1,11 +1,10 @@
-void otaSetup() {
 
+void otaSetup() {
   String ssid = WIFI_AP_PREFIX;
   ssid += ESP.getChipId();
   ArduinoOTA.setHostname(ssid.c_str());
 
-  // No authentication by default
-  //ArduinoOTA.setPassword("pass");
+  ArduinoOTA.setPassword(logicConfig.adminPass.c_str());
 
   ArduinoOTA.onStart([]() {
     pixelsSet(0, 0, 0);

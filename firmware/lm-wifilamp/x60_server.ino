@@ -16,10 +16,10 @@ void serverSetup() {
   server.on("/api/on", HTTP_POST, serverApiSetOn);
   server.on("/api/wifi", HTTP_POST, serverApiSetWifi);
   server.on("/api/password", HTTP_POST, serverApiSetPassword);
-  
+
   server.on("/api/defaults", HTTP_POST, serverApiSetDefaults);
   server.on("/api/defaults", HTTP_GET, serverApiGetDefaults);
-  
+
   server.on("/api/reboot", HTTP_POST, serverApiReboot);
 
   server.begin();
