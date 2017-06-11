@@ -1,10 +1,4 @@
 
-#define logRaw(msg) logBuffer.print(msg);Serial.print(msg);
-#define logLine() logRaw('\n')
-#define logHeader() logRaw(millis());logRaw(" | ");
-#define logInfo(msg) logHeader();logRaw(F(msg));logLine()
-#define logValue(msg,val) logHeader();logRaw(F(msg));logRaw(val);logLine()
-
 class LogBuffer : public Print {
   public:
     LogBuffer(uint16_t capacity) {
@@ -77,5 +71,16 @@ class LogBuffer : public Print {
     uint16_t _length;
 };
 
+
+#if LOG_ENABLED
 LogBuffer logBuffer(4096);
+#define logRaw(msg) logBuffer.print(msg);Serial.print(msg);
+#else
+#define logRaw(msg)
+#endif
+
+#define logLine() logRaw('\n')
+#define logHeader() logRaw(millis());logRaw(" | ");
+#define logInfo(msg) logHeader();logRaw(F(msg));logLine()
+#define logValue(msg,val) logHeader();logRaw(F(msg));logRaw(val);logLine()
 

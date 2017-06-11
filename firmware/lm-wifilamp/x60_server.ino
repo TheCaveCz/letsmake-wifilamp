@@ -7,9 +7,12 @@ void serverSetup() {
   server.on("/", []() {
     serverSendFile("/web/index.html");
   });
+
+#if LOG_ENABLED
   server.on("/log", HTTP_GET, []() {
     logBuffer.dumpTo(&server);
   });
+#endif
 
   server.on("/api/status", HTTP_GET, serverApiStatus);
   server.on("/api/color", HTTP_POST, serverApiSetColor);
