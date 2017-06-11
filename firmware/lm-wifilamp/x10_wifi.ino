@@ -40,7 +40,6 @@ void wifiReadConfig() {
 
   logValue(" connected: ", wifiConfig.connected);
   logValue(" ssid: ", wifiConfig.ssid);
-  logValue(" pass: ", wifiConfig.pass);
 }
 
 void wifiResetConfig() {

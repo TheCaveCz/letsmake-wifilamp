@@ -103,7 +103,6 @@ void logicReadConfig() {
     logicResetConfig();
   }
 
-  logValue(" pass: ", logicConfig.adminPass);
   logValue(" colorR: ", logicConfig.colorR);
   logValue(" colorG: ", logicConfig.colorG);
   logValue(" colorB: ", logicConfig.colorB);
