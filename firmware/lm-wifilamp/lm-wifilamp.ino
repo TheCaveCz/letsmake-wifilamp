@@ -1,3 +1,4 @@
+#include <FS.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
@@ -10,10 +11,7 @@
 #define PIXELS_COUNT 15
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 
-
-#define CFG_SSID ""
-#define CFG_PWD ""
-
+#define BUTTON_PIN D5
 
 #define CFG_HOSTNAME "lm-wifilamp"
 

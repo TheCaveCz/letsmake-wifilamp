@@ -15,7 +15,7 @@ static inline uint32_t _getCycleCount(void) {
 }
 
 void ICACHE_RAM_ATTR espShow(
- uint8_t pin, uint8_t *pixels, uint32_t numBytes) {
+  uint8_t pin, uint8_t *pixels, uint32_t numBytes) {
 
 #define CYCLES_800_T0H  (F_CPU / 2500000) // 0.4us
 #define CYCLES_800_T1H  (F_CPU / 1250000) // 0.8us
@@ -32,24 +32,24 @@ void ICACHE_RAM_ATTR espShow(
   startTime = 0;
 
 
-    time0  = CYCLES_800_T0H;
-    time1  = CYCLES_800_T1H;
-    period = CYCLES_800;
+  time0  = CYCLES_800_T0H;
+  time1  = CYCLES_800_T1H;
+  period = CYCLES_800;
 
-  for(t = time0;; t = time0) {
-    if(pix & mask) t = time1;                             // Bit high duration
-    while(((c = _getCycleCount()) - startTime) < period); // Wait for bit start
+  for (t = time0;; t = time0) {
+    if (pix & mask) t = time1;                            // Bit high duration
+    while (((c = _getCycleCount()) - startTime) < period); // Wait for bit start
     GPIO_REG_WRITE(GPIO_OUT_W1TS_ADDRESS, pinMask);       // Set high
     startTime = c;                                        // Save start time
-    while(((c = _getCycleCount()) - startTime) < t);      // Wait high duration
+    while (((c = _getCycleCount()) - startTime) < t);     // Wait high duration
     GPIO_REG_WRITE(GPIO_OUT_W1TC_ADDRESS, pinMask);       // Set low
-    if(!(mask >>= 1)) {                                   // Next bit/byte
-      if(p >= end) break;
+    if (!(mask >>= 1)) {                                  // Next bit/byte
+      if (p >= end) break;
       pix  = *p++;
       mask = 0x80;
     }
   }
-  while((_getCycleCount() - startTime) < period); // Wait for last bit
+  while ((_getCycleCount() - startTime) < period); // Wait for last bit
 }
 
 #endif // ESP8266
