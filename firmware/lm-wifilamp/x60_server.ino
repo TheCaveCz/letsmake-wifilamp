@@ -20,6 +20,9 @@ void serverSetup() {
   server.on("/api/defaults", HTTP_POST, serverApiSetDefaults);
   server.on("/api/defaults", HTTP_GET, serverApiGetDefaults);
 
+  server.on("/api/scan", HTTP_GET, serverApiGetScan);
+  server.on("/api/scan", HTTP_POST, serverApiStartScan);
+
   server.on("/api/reboot", HTTP_POST, serverApiReboot);
 
   server.begin();

@@ -129,3 +129,45 @@ void serverApiReboot() {
   ESP.restart();
 }
 
+void serverApiGetScan() {
+  SERVER_AUTH_REQUIRED
+
+  int16_t n = WiFi.scanComplete();
+  if (n == -2) {
+    WiFi.scanNetworks(true);
+    n = WiFi.scanComplete();
+  }
+  if (n == -1) {
+    server.send(200, "text/json", "{\"inprogress\":true,\"networks\":[]}\n");
+    return;
+  }
+
+  if (n < 0) {
+    n = 0;
+  }
+  
+  String response = "{\"inprogress\":false,\"networks\":[";
+  for (int16_t i = 0; i < n; i++) {
+    if (i) response += ',';
+    response += "{\"ssid\":\"";
+    String ssid = WiFi.SSID(i);
+    ssid.replace("\"", "\\\"");
+    response += ssid;
+    response += "\",\"rssi\":";
+    response += WiFi.RSSI(i);
+    response += ",\"enc\":";
+    response += WiFi.encryptionType(i);
+    response += '}';
+  }
+  response += "]}\n";
+  server.send(200, "text/json", response);
+}
+
+void serverApiStartScan() {
+  SERVER_AUTH_REQUIRED
+
+  WiFi.scanNetworks(true);
+
+  serverApiGetScan();
+}
+
