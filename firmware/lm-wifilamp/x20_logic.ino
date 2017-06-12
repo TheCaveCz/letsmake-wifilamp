@@ -39,12 +39,18 @@ void logicButtonTask() {
   logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
 
 
-  logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
-  if (logicButtonCounter >= 3) {
-    logInfo("Button trigger");
-    logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
-    logicButtonCounter = 0;
-    logicButtonTaskInterval = LOGIC_BUTTON_LOCKUP_TIME;
+  if (logicButtonCounter == 255) {
+    logicButtonCounter = buttonReadRaw() ? 255 : 0;
+    if (logicButtonCounter == 0) {
+      logicButtonTaskInterval = LOGIC_BUTTON_LOCKUP_TIME;
+    }
+  } else {
+    logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
+    if (logicButtonCounter >= 3) {
+      logInfo("Button trigger");
+      logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
+      logicButtonCounter = 255;
+    }
   }
 }
 

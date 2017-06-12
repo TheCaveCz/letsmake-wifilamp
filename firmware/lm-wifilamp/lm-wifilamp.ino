@@ -25,7 +25,7 @@
 #define WIFI_CONF_FILE "/conf/wifi.txt"
 
 #define LOGIC_CONF_FILE "/conf/logic.txt"
-#define LOGIC_BUTTON_LOCKUP_TIME 2000
+#define LOGIC_BUTTON_LOCKUP_TIME 1000UL
 #define LOGIC_BUTTON_TASK_INTERVAL 100UL
 
 #define MASTER_RESET_DELAY 20
