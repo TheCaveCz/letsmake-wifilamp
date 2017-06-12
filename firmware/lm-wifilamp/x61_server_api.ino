@@ -40,45 +40,6 @@ void serverApiSetPassword() {
   }
 }
 
-
-void serverApiStatus() {
-  SERVER_AUTH_REQUIRED
-
-  String response = "{\"mac\":\"";
-  response += WiFi.macAddress();
-  response += "\",\"chipid\":";
-  response += ESP.getChipId();
-  response += ",\"uptime\":";
-  response += millis() / 1000L;
-  response += ",\"r\":";
-  response += logicColorR;
-  response += ",\"g\":";
-  response += logicColorG;
-  response += ",\"b\":";
-  response += logicColorB;
-  response += ",\"on\":";
-  response += logicOn ? "true" : "false";
-  response += ",\"ssid\":\"";
-  response += wifiConfig.ssid;
-  response += "\"}\n";
-  server.send(200, "text/json", response);
-}
-
-void serverApiGetDefaults() {
-  SERVER_AUTH_REQUIRED
-
-  String response = "{\"r\":";
-  response += logicConfig.colorR;
-  response += ",\"g\":";
-  response += logicConfig.colorG;
-  response += ",\"b\":";
-  response += logicConfig.colorB;
-  response += ",\"on\":";
-  response += logicConfig.on ? "true" : "false";
-  response += "}\n";
-  server.send(200, "text/json", response);
-}
-
 void serverApiSetDefaults() {
   SERVER_AUTH_REQUIRED
 
@@ -88,10 +49,61 @@ void serverApiSetDefaults() {
   bool on = server.arg("on").toInt() ? true : false;
 
   if (logicSetDefaults(r, g, b, on)) {
-    serverApiGetDefaults();
+    server.send(204);
   } else {
     server.send(500, "text/json", "{\"error\":\"Unable to store default values\"}n");
   }
+}
+
+void serverApiStatus() {
+  SERVER_AUTH_REQUIRED
+
+  String response = "{\"chipid\":";
+  response += ESP.getChipId();
+  response += ",\"uptime\":";
+  response += millis() / 1000L;
+  response += ",\"current\":{\"r\":";
+  response += logicColorR;
+  response += ",\"g\":";
+  response += logicColorG;
+  response += ",\"b\":";
+  response += logicColorB;
+  response += ",\"on\":";
+  response += logicOn ? "true" : "false";
+  response += "},\"default\":{\"r\":";
+  response += logicConfig.colorR;
+  response += ",\"g\":";
+  response += logicConfig.colorG;
+  response += ",\"b\":";
+  response += logicConfig.colorB;
+  response += ",\"on\":";
+  response += logicConfig.on ? "true" : "false";
+  response += "},\"connection\":{\"ssid\":\"";
+  response += wifiConfig.ssid;
+  response += "\",\"mac\":\"";
+  response += WiFi.macAddress();
+  response += "\",\"ip\":\"";
+  response += WiFi.localIP().toString();
+  response += "\",\"ap\":";
+  response += wifiConfig.apMode ? "true": "false";
+  response += "}}\n";
+
+  server.send(200, "text/json", response);
+}
+
+void serverApiShortStatus() {
+  SERVER_AUTH_REQUIRED
+
+  String response = "{\"r\":";
+  response += logicColorR;
+  response += ",\"g\":";
+  response += logicColorG;
+  response += ",\"b\":";
+  response += logicColorB;
+  response += ",\"on\":";
+  response += logicOn ? "true" : "false";
+  response += "}\n";
+  server.send(200, "text/json", response);
 }
 
 void serverApiSetColor() {
@@ -108,7 +120,7 @@ void serverApiSetColor() {
     logicSetColor(r, g, b, t);
   }
 
-  serverApiStatus();
+  serverApiShortStatus();
 }
 
 void serverApiSetOn() {
@@ -118,7 +130,7 @@ void serverApiSetOn() {
   uint16_t t = server.arg("time").toInt();
   logicSetState(on, t);
 
-  serverApiStatus();
+  serverApiShortStatus();
 }
 
 void serverApiReboot() {
@@ -145,7 +157,7 @@ void serverApiGetScan() {
   if (n < 0) {
     n = 0;
   }
-  
+
   String response = "{\"inprogress\":false,\"networks\":[";
   for (int16_t i = 0; i < n; i++) {
     if (i) response += ',';

@@ -15,14 +15,15 @@ void serverSetup() {
 #endif
 
   server.on("/api/status", HTTP_GET, serverApiStatus);
+  server.on("/api/statusShort", HTTP_GET, serverApiShortStatus);
+  
   server.on("/api/color", HTTP_POST, serverApiSetColor);
   server.on("/api/on", HTTP_POST, serverApiSetOn);
+  
   server.on("/api/wifi", HTTP_POST, serverApiSetWifi);
   server.on("/api/password", HTTP_POST, serverApiSetPassword);
-
   server.on("/api/defaults", HTTP_POST, serverApiSetDefaults);
-  server.on("/api/defaults", HTTP_GET, serverApiGetDefaults);
-
+  
   server.on("/api/scan", HTTP_GET, serverApiGetScan);
   server.on("/api/scan", HTTP_POST, serverApiStartScan);
 
