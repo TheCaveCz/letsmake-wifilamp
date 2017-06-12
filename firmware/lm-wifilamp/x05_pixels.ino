@@ -55,6 +55,11 @@ void pixelsTask() {
     }
     pixelsUpdate();
   }
+#if BUTTON_DEBUG
+  else {
+    pixelsUpdate();
+  }
+#endif
 }
 
 void pixelsAnimate(uint8_t r, uint8_t g, uint8_t b, uint16_t lenMillis = 0) {
@@ -97,7 +102,15 @@ void pixelsUpdate() {
 }
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
+#if BUTTON_DEBUG
+  pixelsBuffer[1] = digitalRead(BUTTON_PIN) ? 255 : 0;
+  pixelsBuffer[0] = 0;
+  pixelsBuffer[2] = 0;
+
+  for (int i = 3; i < PIXELS_BYTE_COUNT; i += 3) {
+#else
   for (int i = 0; i < PIXELS_BYTE_COUNT; i += 3) {
+#endif
     pixelsBuffer[i] = g;
     pixelsBuffer[i + 1] = r;
     pixelsBuffer[i + 2] = b;

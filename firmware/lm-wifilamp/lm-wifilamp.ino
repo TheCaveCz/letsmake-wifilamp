@@ -32,3 +32,4 @@
 #define MASTER_RESET_COUNTER 200
 
 #define LOG_ENABLED 1
+#define BUTTON_DEBUG 0
