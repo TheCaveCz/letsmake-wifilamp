@@ -1,14 +1,12 @@
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import autoprefixer from 'autoprefixer';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import ReplacePlugin from 'replace-bundle-webpack-plugin';
-import OfflinePlugin from 'offline-plugin';
-import path from 'path';
-const ENV = process.env.NODE_ENV || 'development';
+import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import autoprefixer from 'autoprefixer'
+import ReplacePlugin from 'replace-bundle-webpack-plugin'
+import path from 'path'
+const ENV = process.env.NODE_ENV || 'development'
 
-const CSS_MAPS = ENV!=='production';
+const CSS_MAPS = ENV!=='production'
 
 module.exports = {
 	context: path.resolve(__dirname, "src"),
@@ -64,7 +62,7 @@ module.exports = {
 							options: {
 								sourceMap: CSS_MAPS,
 								plugins: () => {
-									autoprefixer({ browsers: [ 'last 2 versions' ] });
+									autoprefixer({ browsers: [ 'last 2 versions' ] })
 								}
 							}
 						},
@@ -90,7 +88,7 @@ module.exports = {
 							options: {
 								sourceMap: CSS_MAPS,
 								plugins: () => {
-									autoprefixer({ browsers: [ 'last 2 versions' ] });
+									autoprefixer({ browsers: [ 'last 2 versions' ] })
 								}
 							}
 						},
@@ -128,11 +126,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './index.ejs',
 			minify: { collapseWhitespace: true }
-		}),
-		new CopyWebpackPlugin([
-			//{ from: './manifest.json', to: './' },
-			{ from: './favicon.ico', to: './' }
-		])
+		})
 	]).concat(ENV==='production' ? [
 		new webpack.optimize.UglifyJsPlugin({
 			output: {
@@ -169,23 +163,7 @@ module.exports = {
 			// this is actually the property name https://github.com/kimhou/replace-bundle-webpack-plugin/issues/1
 			partten: /throw\s+(new\s+)?[a-zA-Z]+Error\s*\(/g,
 			replacement: () => 'return;('
-		}]),
-		// new OfflinePlugin({
-		// 	relativePaths: false,
-		// 	AppCache: false,
-		// 	excludes: ['_redirects'],
-		// 	ServiceWorker: {
-		// 		events: true
-		// 	},
-		// 	cacheMaps: [
-		// 		{
-		// 			match: /.,
-		// 			to: '/',
-		// 			requestTypes: ['navigate']
-		// 		}
-		// 	],
-		// 	publicPath: '/'
-		// })
+		}])
 	] : []),
 
 	stats: { colors: true },
@@ -199,7 +177,7 @@ module.exports = {
 		setImmediate: false
 	},
 
-	devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
+	//devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
 
 	devServer: {
 		port: process.env.PORT || 8080,
@@ -216,4 +194,4 @@ module.exports = {
 			// }
 		}
 	}
-};
+}
