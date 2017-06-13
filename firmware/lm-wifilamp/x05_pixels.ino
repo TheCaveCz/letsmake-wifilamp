@@ -53,13 +53,8 @@ void pixelsTask() {
       pixelsCurrentR = pixelsTargetR << 8;
       pixelsCurrentB = pixelsTargetB << 8;
     }
-    pixelsUpdate();
   }
-#if BUTTON_DEBUG
-  else {
-    pixelsUpdate();
-  }
-#endif
+  pixelsUpdate();
 }
 
 void pixelsAnimate(uint8_t r, uint8_t g, uint8_t b, uint16_t lenMillis = 0) {

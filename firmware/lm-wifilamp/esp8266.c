@@ -36,6 +36,10 @@ void ICACHE_RAM_ATTR espShow(
   time1  = CYCLES_800_T1H;
   period = CYCLES_800;
 
+  // Keeping interrupts off for the whole duration of sending often breaks TCP stack.
+  // We can disable then when sending data to one led which is often enough when the
+  // LED strip is refreshed periodically.
+  noInterrupts();
   for (t = time0;; t = time0) {
     if (pix & mask) t = time1;                            // Bit high duration
     while (((c = _getCycleCount()) - startTime) < period); // Wait for bit start
@@ -44,12 +48,13 @@ void ICACHE_RAM_ATTR espShow(
     while (((c = _getCycleCount()) - startTime) < t);     // Wait high duration
     GPIO_REG_WRITE(GPIO_OUT_W1TC_ADDRESS, pinMask);       // Set low
     if (!(mask >>= 1)) {                                  // Next bit/byte
+      interrupts();
       if (p >= end) break;
       pix  = *p++;
       mask = 0x80;
+      noInterrupts();
     }
   }
-  while ((_getCycleCount() - startTime) < period); // Wait for last bit
 }
 
 #endif // ESP8266
