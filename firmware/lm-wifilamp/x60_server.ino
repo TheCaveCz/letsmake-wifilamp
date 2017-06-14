@@ -5,7 +5,16 @@ ESP8266WebServer server(80);
 
 void serverSetup() {
   server.on("/", []() {
-    serverSendFile("/web/index.html");
+    serverSendFile("/web/index.html", "text/html");
+  });
+  server.on("/bundle.js", []() {
+    serverSendFile("/web/bundle.js.gz", "application/javascript");
+  });
+  server.on("/style.css", []() {
+    serverSendFile("/web/style.css.gz", "text/css");
+  });
+  server.on("/favicon.ico", []() {
+    serverSendFile("/web/favicon.ico", "image/x-icon");
   });
 
 #if LOG_ENABLED
@@ -42,22 +51,10 @@ bool serverAuthenticateUser() {
   }
 }
 
-String serverGetContentType(const String& filename) {
-  if (filename.endsWith(".htm")) return "text/html";
-  else if (filename.endsWith(".html")) return "text/html";
-  else if (filename.endsWith(".css")) return "text/css";
-  else if (filename.endsWith(".js")) return "application/javascript";
-  else if (filename.endsWith(".png")) return "image/png";
-  else if (filename.endsWith(".jpg")) return "image/jpeg";
-  else if (filename.endsWith(".ico")) return "image/x-icon";
-  else if (filename.endsWith(".gz")) return "application/x-gzip";
-  return "text/plain";
-}
-
-void serverSendFile(const String& path) {
+void serverSendFile(const String& path, const String& ct) {
   File file = SPIFFS.open(path, "r");
   size_t s = file.size();
-  size_t sent = server.streamFile(file, serverGetContentType(path));
+  size_t sent = server.streamFile(file, ct);
   if (s != sent) {
     logValue("Sent less bytes: ", path);
   }
