@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import style from './style.less'
 
-export default class Profile extends Component {
+export default class Settings extends Component {
 	state = {
 		count: 0
 	};
@@ -27,7 +27,6 @@ export default class Profile extends Component {
 		clearInterval(this.timer)
 	}
 
-	// Note: `user` comes from the URL, courtesy of our router
 	render({ user }, { time, count }) {
 		return (
 			<div class={style.profile}>

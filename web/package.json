@@ -7,7 +7,7 @@
     "start": "serve build -s -c 1",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress",
-    "prebuild": "mkdirp build && ncp src/assets build",
+    "prebuild": "mkdirp build && cp src/favicon.ico src/header.png build",
     "postbuild": "mkdirp ../firmware/lm-wifilamp/data/web && ncp build ../firmware/lm-wifilamp/data/web && gzip -f ../firmware/lm-wifilamp/data/web/*.js && gzip -f ../firmware/lm-wifilamp/data/web/*.css",
     "lint": "eslint src"
   },
@@ -63,6 +63,7 @@
     "preact-router": "^2.5.1",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^1.0.0",
+    "react-color": "^2.13.0",
     "serve": "^5.1.4"
   }
 }
