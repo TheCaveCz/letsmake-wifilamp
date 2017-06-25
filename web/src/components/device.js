@@ -1,3 +1,5 @@
+var request = require('superagent');
+
 export default class Device {
 	constructor(url, user, pass) {
 		this.url = url
@@ -6,41 +8,25 @@ export default class Device {
 	}
 
 	load(url, params) {
-		const headers = new Headers()
-		headers.append('Authorization','Basic '+btoa(this.user + ':' + this.pass))
-
-		var info = {
-			cache: 'no-cache',
-			headers: headers	
-		}
+		var req = request(params ? 'POST':'GET', this.url+url)
+			.auth(this.user,this.pass)
 
 		if (params) {
-			const body = new URLSearchParams()
-			for (let key in params) {
-				if (params.hasOwnProperty(key)) {
-					body.append(key, params[key])
-				}
-			}
-			
-			info.body = body
-			info.method = 'POST'
-			headers.append('Content-Type','application/x-www-form-urlencoded')
+			req = req.type('form').send(params)
 		}
 
-		return fetch(this.url + url, info)
-			.then(response => {
+		
+		return req.then(response => {
 				if (response.status == 401) {
 					throw new Error("Invalid username or password")
 				} else if (response.status == 404) {
 					throw new Error("File not found")
+				} else if (!response.ok) {
+					throw new Error("Response not ok")
+				} else if (response.body.error) {
+					throw new Error(response.body.error)
 				}
-				return response.json()
-			})
-			.then(json => {
-				if (json.error) {
-					throw new Error(json.error)
-				}
-				return Promise.resolve(json)
+				return Promise.resolve(response.body)
 			})
 	}
 
