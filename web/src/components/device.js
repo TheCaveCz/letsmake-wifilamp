@@ -14,7 +14,6 @@ export default class Device {
 		if (params) {
 			req = req.type('form').send(params)
 		}
-
 		
 		return req.then(response => {
 				if (response.status == 401) {
@@ -37,7 +36,7 @@ export default class Device {
 	}
 
 	setColor(color, time) {
-		this.load('api/color', {r: color.r, g:color.g, b:color.b, time:time || 1000})
+		this.load('api/color', {r: color.r, g:color.g, b:color.b, time:time || 500})
 	}
 
 }

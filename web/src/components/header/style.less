@@ -17,10 +17,15 @@
 		padding: 0 15px 0 80px;
 		font-size: 24px;
 		line-height: @headerHeight;
+		height: @headerHeight;
 		font-weight: 600;
 		color: #FFF;
 		background: url('/header.png') no-repeat 5px 5px;
 		background-size: 68px (@headerHeight - 10);
+
+		span {
+			.hideMobile()
+		}
 	}
 
 	nav {
