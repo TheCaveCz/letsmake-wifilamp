@@ -4,18 +4,12 @@ ESP8266WebServer server(80);
 #define SERVER_AUTH_REQUIRED if (!serverAuthenticateUser()) return;
 
 void serverSetup() {
-  server.on("/", []() {
-    serverSendFile("/web/index.html", "text/html");
-  });
-  server.on("/bundle.js", []() {
-    serverSendFile("/web/bundle.js.gz", "application/javascript");
-  });
-  server.on("/style.css", []() {
-    serverSendFile("/web/style.css.gz", "text/css");
-  });
-  server.on("/favicon.ico", []() {
-    serverSendFile("/web/favicon.ico", "image/x-icon");
-  });
+  server.serveStatic("/", SPIFFS, "/web/index.html");
+  server.serveStatic("/settings", SPIFFS, "/web/index.html");
+  server.serveStatic("/bundle.js", SPIFFS, "/web/bundle.js");
+  server.serveStatic("/style.css", SPIFFS, "/web/style.css");
+  server.serveStatic("/favicon.ico", SPIFFS, "/web/favicon.ico");
+  server.serveStatic("/header.png", SPIFFS, "/web/header.png");
 
 #if LOG_ENABLED
   server.on("/log", HTTP_GET, []() {
@@ -46,19 +40,8 @@ bool serverAuthenticateUser() {
     return true;
   } else {
     server.sendHeader("WWW-Authenticate", "Basic realm=\"Login Required\"");
-    server.send(401, "text/plain", "Login required\n");
+    server.send(401, "text/json", "{\"error\":\"Login required\"}\n");
     return false;
   }
 }
-
-void serverSendFile(const String& path, const String& ct) {
-  File file = SPIFFS.open(path, "r");
-  size_t s = file.size();
-  size_t sent = server.streamFile(file, ct);
-  if (s != sent) {
-    logValue("Sent less bytes: ", path);
-  }
-  file.close();
-}
-
 
