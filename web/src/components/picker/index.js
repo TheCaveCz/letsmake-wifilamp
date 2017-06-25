@@ -17,7 +17,7 @@ class MyHuePointer extends Component {
 }
 
 class MySwatch extends Component {
-	handleClick = e =>{
+	handleClick = e => {
 		this.props.onClick(this.props.color, e)
 	}
 
@@ -27,14 +27,15 @@ class MySwatch extends Component {
 }
 
 class MyColorPicker extends Component {
+	static defaultProps = {
+		colors: ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF', '#FFFFFF', '#808080']
+	}
 
 	render() {
-		const colors = ['#B80000', '#DB3E00', '#FCCB00', '#008B02', '#006B76', '#1273DE', '#004DCF', '#5300EB', '#EB9694', '#FAD0C3', '#FEF3BD', '#C1E1C5', '#BEDADC', '#C4DEF6', '#BED3F3', '#D4C4FB'];
-
 		return (
 			<div class={style.myPicker}>
 				<div class={style.swatchList}>
-				{ map(colors, (c) => (
+				{ map(this.props.colors, (c) => (
 					<MySwatch color={ c } onClick={ this.props.onChange }/>
 				)) }
 					<div class={style.clear} />

@@ -39,4 +39,8 @@ export default class Device {
 		this.load('api/color', {r: color.r, g:color.g, b:color.b, time:time || 500})
 	}
 
+	setOn(on, time) {
+		this.load('api/on', {on: on ? 1 : 0, time:time || 500})
+	}
+
 }

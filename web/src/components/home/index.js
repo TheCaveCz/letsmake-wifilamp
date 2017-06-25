@@ -1,36 +1,48 @@
 import { h, Component } from 'preact'
 import style from './style.less'
 import MyColorPicker from './../picker'
+import OnOff from './../onoff'
 
 export default class Home extends Component {
+	static defaultProps = {
+		refreshInterval: 5000
+	}
 	state = {
 		color: {r:0,g:0,b:0},
 		on: false
 	}
 
 	componentDidMount() {
-		this.timer = setInterval(this.refreshStatus, 3000)
 		this.refreshStatus()
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.timer)
+		clearTimeout(this.timer)
 	}
 
 	refreshStatus = () => {
-		this.props.device.loadStatus(status => this.setState({
-			color: {
-				r: status.r,
-				g: status.g,
-				b: status.b
-			},
-			on: status.on
-		}))
+		this.props.device.loadStatus(status => {
+			this.setState({
+				color: {
+					r: status.r,
+					g: status.g,
+					b: status.b
+				},
+				on: status.on
+			})
+
+			this.timer = setTimeout(this.refreshStatus, this.props.refreshInterval)
+		})
 	}
 
-	handleChange = color => {
+	handleColor = color => {
 		this.props.device.setColor(color.rgb)
 		this.setState({color: {r:color.rgb.r, g:color.rgb.g, b:color.rgb.b}})
+	}
+
+	handleOnOff = on => {
+		this.props.device.setOn(on)
+		this.setState({ on })
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -41,7 +53,8 @@ export default class Home extends Component {
 		console.log(this.state)
 		return (
 			<div class={style.home}>
-				<MyColorPicker onChangeComplete={ this.handleChange } color={ this.state.color } />
+				<OnOff onChange={ this.handleOnOff } on={this.state.on}/>
+				<MyColorPicker onChangeComplete={ this.handleColor } color={ this.state.color } />
 			</div>
 		)
 	}
