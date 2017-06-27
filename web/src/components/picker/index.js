@@ -1,28 +1,25 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import style from './style.less'
-import { CustomPicker } from 'react-color'
-import { Saturation, Hue, Swatch } from 'react-color/lib/components/common'
-import map from 'lodash/map'
+import {CustomPicker} from 'react-color'
+import {Saturation, Hue} from 'react-color/lib/components/common'
 
-class MySatPointer extends Component {
-	render() {
-		return (<div class={style.satPointer}></div>)
-	}
-}
-
-class MyHuePointer extends Component {
-	render() {
-		return (<div class={style.huePointer}></div>)
-	}
-}
+const MySatPointer = () => <div class={style.satPointer}/>
+const MyHuePointer = () => <div class={style.huePointer}/>
 
 class MySwatch extends Component {
 	handleClick = e => {
-		this.props.onClick(this.props.color, e)
+		e.preventDefault()
+		this.props.onClick(this.props.color)
 	}
 
 	render() {
-		return (<div class={style.swatch} style={ {'background-color':this.props.color} } onClick={this.handleClick} ></div>)
+		return (
+			<button
+				class={style.swatch}
+				style={{'background-color': this.props.color}}
+				onClick={this.handleClick}
+			/>
+		)
 	}
 }
 
@@ -35,20 +32,24 @@ class MyColorPicker extends Component {
 		return (
 			<div class={style.myPicker}>
 				<div class={style.swatchList}>
-				{ map(this.props.colors, (c) => (
-					<MySwatch color={ c } onClick={ this.props.onChange }/>
-				)) }
-					<div class={style.clear} />
-				</div>
-				<div class={style.satPicker}>
-					<Saturation {...this.props} onChange={ this.props.onChange } pointer={MySatPointer} />
+					{this.props.colors.map((c, index) => (
+						<MySwatch
+							key={index}
+							color={c}
+							onClick={this.props.onChange}
+						/>
+					)) }
+					<div class={style.clear}/>
 				</div>
 				<div class={style.huePicker}>
-					<Hue {...this.props} onChange={ this.props.onChange } pointer={MyHuePointer} />
+					<Hue {...this.props} onChange={this.props.onChange} pointer={MyHuePointer}/>
+				</div>
+				<div class={style.satPicker}>
+					<Saturation {...this.props} onChange={this.props.onChange} pointer={MySatPointer}/>
 				</div>
 			</div>
 		)
 	}
 }
 
-export default CustomPicker(MyColorPicker);
+export default CustomPicker(MyColorPicker)

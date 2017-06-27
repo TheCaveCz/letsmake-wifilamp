@@ -6,7 +6,7 @@ import ReplacePlugin from 'replace-bundle-webpack-plugin'
 import path from 'path'
 const ENV = process.env.NODE_ENV || 'development'
 
-const CSS_MAPS = ENV!=='production'
+const CSS_MAPS = ENV !== 'production'
 
 module.exports = {
 	context: path.resolve(__dirname, "src"),
@@ -55,20 +55,20 @@ module.exports = {
 					use: [
 						{
 							loader: 'css-loader',
-							options: { modules: true, sourceMap: CSS_MAPS, importLoaders: 1 }
+							options: {modules: true, sourceMap: CSS_MAPS, importLoaders: 1}
 						},
 						{
 							loader: `postcss-loader`,
 							options: {
 								sourceMap: CSS_MAPS,
 								plugins: () => {
-									autoprefixer({ browsers: [ 'last 2 versions' ] })
+									autoprefixer({browsers: ['last 2 versions']})
 								}
 							}
 						},
 						{
 							loader: 'less-loader',
-							options: { sourceMap: CSS_MAPS }
+							options: {sourceMap: CSS_MAPS}
 						}
 					]
 				})
@@ -81,20 +81,20 @@ module.exports = {
 					use: [
 						{
 							loader: 'css-loader',
-							options: { sourceMap: CSS_MAPS, importLoaders: 1 }
+							options: {sourceMap: CSS_MAPS, importLoaders: 1}
 						},
 						{
 							loader: `postcss-loader`,
 							options: {
 								sourceMap: CSS_MAPS,
 								plugins: () => {
-									autoprefixer({ browsers: [ 'last 2 versions' ] })
+									autoprefixer({browsers: ['last 2 versions']})
 								}
 							}
 						},
 						{
 							loader: 'less-loader',
-							options: { sourceMap: CSS_MAPS }
+							options: {sourceMap: CSS_MAPS}
 						}
 					]
 				})
@@ -109,7 +109,7 @@ module.exports = {
 			},
 			{
 				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-				use: ENV==='production' ? 'file-loader' : 'url-loader'
+				use: ENV === 'production' ? 'file-loader' : 'url-loader'
 			}
 		]
 	},
@@ -125,9 +125,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.ejs',
-			minify: { collapseWhitespace: true }
+			minify: {collapseWhitespace: true}
 		})
-	]).concat(ENV==='production' ? [
+	]).concat(ENV === 'production' ? [
 		new webpack.optimize.UglifyJsPlugin({
 			output: {
 				comments: false
@@ -166,7 +166,7 @@ module.exports = {
 		}])
 	] : []),
 
-	stats: { colors: true },
+	stats: {colors: true},
 
 	node: {
 		global: true,

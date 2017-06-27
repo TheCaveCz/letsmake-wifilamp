@@ -8,25 +8,25 @@ export default class Device {
 	}
 
 	load(url, params) {
-		var req = request(params ? 'POST':'GET', this.url+url)
-			.auth(this.user,this.pass)
+		let req = request(params ? 'POST' : 'GET', this.url + url)
+			.auth(this.user, this.pass)
 
 		if (params) {
 			req = req.type('form').send(params)
 		}
-		
+
 		return req.then(response => {
-				if (response.status == 401) {
-					throw new Error("Invalid username or password")
-				} else if (response.status == 404) {
-					throw new Error("File not found")
-				} else if (!response.ok) {
-					throw new Error("Response not ok")
-				} else if (response.body.error) {
-					throw new Error(response.body.error)
-				}
-				return Promise.resolve(response.body)
-			})
+			if (response.status === 401) {
+				throw new Error("Invalid username or password")
+			} else if (response.status === 404) {
+				throw new Error("File not found")
+			} else if (!response.ok) {
+				throw new Error("Response not ok")
+			} else if (response.body.error) {
+				throw new Error(response.body.error)
+			}
+			return Promise.resolve(response.body)
+		})
 	}
 
 	loadStatus(result) {
@@ -36,11 +36,12 @@ export default class Device {
 	}
 
 	setColor(color, time) {
-		this.load('api/color', {r: color.r, g:color.g, b:color.b, time:time || 500})
+		const {r, g, b} = color
+		this.load('api/color', {r, g, b, time: time || 500})
 	}
 
 	setOn(on, time) {
-		this.load('api/on', {on: on ? 1 : 0, time:time || 500})
+		this.load('api/on', {on: on ? 1 : 0, time: time || 500})
 	}
 
 }

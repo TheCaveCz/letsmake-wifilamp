@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { Router } from 'preact-router'
+import {h, Component} from 'preact'
+import {Router} from 'preact-router'
 
 import Header from './header'
 import Home from './home'
@@ -13,7 +13,7 @@ export default class App extends Component {
 		super()
 
 		this.state = {
-			device: new Device(ENV === 'production' ? '/':'http://192.168.85.219/','admin','wifilamp')
+			device: new Device(ENV === 'production' ? '/' : 'http://192.168.85.219/', 'admin', 'wifilamp')
 		}
 	}
 
@@ -21,12 +21,12 @@ export default class App extends Component {
 		this.currentUrl = e.url
 	};
 
-	render({ }, { device }) {
+	render({}, {device}) {
 		return (
 			<div id="app">
 				<Header />
 				<Router onChange={this.handleRoute}>
-					<Home path="/" device={ device } />
+					<Home path="/" device={ device }/>
 					<Settings path="/settings/" user="me" device={ device }/>
 				</Router>
 			</div>

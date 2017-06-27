@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import style from './style.less'
 import MyColorPicker from './../picker'
 import OnOff from './../onoff'
@@ -7,13 +7,21 @@ export default class Home extends Component {
 	static defaultProps = {
 		refreshInterval: 5000
 	}
+
 	state = {
-		color: {r:0,g:0,b:0},
+		color: {r: 0, g: 0, b: 0},
 		on: false
 	}
 
 	componentDidMount() {
 		this.refreshStatus()
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextState.color.r !== this.state.color.r
+			|| nextState.color.g !== this.state.color.g
+			|| nextState.color.b !== this.state.color.b
+			|| nextState.on !== this.state.on
 	}
 
 	componentWillUnmount() {
@@ -22,12 +30,10 @@ export default class Home extends Component {
 
 	refreshStatus = () => {
 		this.props.device.loadStatus(status => {
+			const {r, g, b} = status
+
 			this.setState({
-				color: {
-					r: status.r,
-					g: status.g,
-					b: status.b
-				},
+				color: {r, g, b},
 				on: status.on
 			})
 
@@ -35,9 +41,12 @@ export default class Home extends Component {
 		})
 	}
 
-	handleColor = color => {
-		this.props.device.setColor(color.rgb)
-		this.setState({color: {r:color.rgb.r, g:color.rgb.g, b:color.rgb.b}})
+	handleColor = newColor => {
+		const { r, g, b } = newColor.rgb
+		const color = { r, g, b }
+
+		this.props.device.setColor(color)
+		this.setState({ color })
 	}
 
 	handleOnOff = on => {
@@ -45,16 +54,12 @@ export default class Home extends Component {
 		this.setState({ on })
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return nextState.color.r != this.state.color.r || nextState.color.g != this.state.color.g || nextState.color.b != this.state.color.b || nextState.on != this.state.on
-	}
-
 	render() {
 		console.log(this.state)
 		return (
 			<div class={style.home}>
-				<OnOff onChange={ this.handleOnOff } on={this.state.on}/>
-				<MyColorPicker onChangeComplete={ this.handleColor } color={ this.state.color } />
+				<OnOff onChange={this.handleOnOff} on={this.state.on}/>
+				<MyColorPicker onChangeComplete={this.handleColor} color={this.state.color}/>
 			</div>
 		)
 	}
