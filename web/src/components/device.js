@@ -35,6 +35,44 @@ export default class Device {
 		}).catch(e => console.log(e))
 	}
 
+	loadFullStatus(result) {
+		this.load('api/status').then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))
+	}
+
+	loadNetworks(result) {
+		this.load('api/scan').then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))
+	}
+
+	scanNetworks(result) {
+		this.load('api/scan', {scan: true}).then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))	
+	}
+
+	saveConfig(params, result) {
+		const { pass, r, g, b, on, button } = params
+		this.load('api/config', { pass, r, g, b, on, button }).then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))
+	}
+
+	saveWifi(ssid, pass, result) {
+		this.load('api/wifi', { ssid, pass }).then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))	
+	}
+
+	reboot(result) {
+		this.load('api/reboot', { reboot: true }).then(json => {
+			if (result) result(json)
+		}).catch(e => console.log(e))	
+	}
+
+
 	setColor(color, time) {
 		const {r, g, b} = color
 		this.load('api/color', {r, g, b, time: time || 500})

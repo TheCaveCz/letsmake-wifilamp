@@ -8,7 +8,7 @@
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress",
     "prebuild": "mkdirp build && cp src/favicon.ico src/header.png build",
-    "postbuild": "mkdirp ../firmware/lm-wifilamp/data/web && ncp build ../firmware/lm-wifilamp/data/web && gzip -f ../firmware/lm-wifilamp/data/web/*.js && gzip -f ../firmware/lm-wifilamp/data/web/*.css",
+    "postbuild": "mkdirp ../firmware/lm-wifilamp/data/web && ncp build ../firmware/lm-wifilamp/data/web && gzip -f ../firmware/lm-wifilamp/data/web/*.js && gzip -f ../firmware/lm-wifilamp/data/web/*.css && gzip -f ../firmware/lm-wifilamp/data/web/*.ico",
     "lint": "eslint src"
   },
   "license": "MIT",

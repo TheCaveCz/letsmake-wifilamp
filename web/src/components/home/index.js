@@ -54,13 +54,10 @@ export default class Home extends Component {
 		this.setState({ on })
 	}
 
-	render() {
-		console.log(this.state)
-		return (
-			<div class={style.home}>
-				<OnOff onChange={this.handleOnOff} on={this.state.on}/>
-				<MyColorPicker onChangeComplete={this.handleColor} color={this.state.color}/>
-			</div>
-		)
-	}
+	render = ({}, {on, color}) =>
+		<div class={style.home}>
+			<OnOff onChange={this.handleOnOff} on={ on }/>
+			<MyColorPicker onChangeComplete={this.handleColor} color={ color }/>
+		</div>
+		
 }
