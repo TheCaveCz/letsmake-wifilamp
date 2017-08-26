@@ -55,6 +55,18 @@ void serverApiSetDefaults() {
   }
 }
 
+void serverApiSetButton() {
+  SERVER_AUTH_REQUIRED
+
+  bool e = server.arg("enabled").toInt() ? true : false;
+
+  if (logicSetButtonEnabled(e)) {
+    server.send(204);
+  } else {
+    server.send(500, "text/json", "{\"error\":\"Unable to store button enabled value\"}n");
+  }
+}
+
 void serverApiStatus() {
   SERVER_AUTH_REQUIRED
 
@@ -62,6 +74,8 @@ void serverApiStatus() {
   response += ESP.getChipId();
   response += ",\"uptime\":";
   response += millis() / 1000L;
+  response += ",\"buttonEnabled\":";
+  response += logicConfig.buttonEnabled ? "true" : "false";
   response += ",\"current\":{\"r\":";
   response += logicColorR;
   response += ",\"g\":";
@@ -85,7 +99,7 @@ void serverApiStatus() {
   response += "\",\"ip\":\"";
   response += WiFi.localIP().toString();
   response += "\",\"ap\":";
-  response += wifiConfig.apMode ? "true": "false";
+  response += wifiConfig.apMode ? "true" : "false";
   response += "}}\n";
 
   server.send(200, "text/json", response);

@@ -6,6 +6,7 @@ struct LogicConfig {
   uint8_t colorB;
   bool on;
   uint16_t defaultTurnOnSpeed;
+  bool buttonEnabled;
 } logicConfig;
 
 uint8_t logicColorR;
@@ -48,7 +49,9 @@ void logicButtonTask() {
     logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
     if (logicButtonCounter >= 3) {
       logInfo("Button trigger");
-      logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
+      if (logicConfig.buttonEnabled) {
+        logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
+      }
       logicButtonCounter = 255;
     }
   }
@@ -90,6 +93,7 @@ void logicResetConfig() {
   logicColorB = logicConfig.colorB = 255;
   logicOn = logicConfig.on = true;
   logicConfig.defaultTurnOnSpeed = 1000;
+  logicConfig.buttonEnabled = true;
   logicWriteConfig();
 }
 
@@ -103,6 +107,7 @@ void logicReadConfig() {
     logicConfig.colorB = cfg.readStringUntil('\n').toInt();
     logicConfig.on = cfg.readStringUntil('\n').toInt() ? true : false;
     logicConfig.defaultTurnOnSpeed = cfg.readStringUntil('\n').toInt();
+    logicConfig.buttonEnabled = cfg.readStringUntil('\n').toInt() ? true : false;
     cfg.close();
   } else {
     logInfo("Unable to open logic config");
@@ -114,6 +119,7 @@ void logicReadConfig() {
   logValue(" colorB: ", logicConfig.colorB);
   logValue(" on: ", logicConfig.on);
   logValue(" onSpeed: ", logicConfig.defaultTurnOnSpeed);
+  logValue(" buttonEnabled: ", logicConfig.buttonEnabled);
 }
 
 bool logicSetAdminPass(const String& pass) {
@@ -143,6 +149,12 @@ bool logicSetDefaults(uint8_t r, uint8_t g, uint8_t b, bool on) {
   return logicWriteConfig();
 }
 
+bool logicSetButtonEnabled(bool e) {
+  logValue("Changing button enabled: ", e);
+  logicConfig.buttonEnabled = e ? true : false;
+  return logicWriteConfig();
+}
+
 bool logicWriteConfig() {
   logInfo("Writing logic config");
   File cfg = SPIFFS.open(LOGIC_CONF_FILE, "w");
@@ -162,6 +174,8 @@ bool logicWriteConfig() {
   cfg.write(logicConfig.on ? '1' : '0');
   cfg.write('\n');
   cfg.print(logicConfig.defaultTurnOnSpeed);
+  cfg.write('\n');
+  cfg.write(logicConfig.buttonEnabled ? '1' : '0');
   cfg.write('\n');
 
   cfg.close();
