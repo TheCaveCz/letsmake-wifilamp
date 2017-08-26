@@ -162,7 +162,10 @@ void serverApiGetScan() {
     n = WiFi.scanComplete();
   }
   if (n == -1) {
-    server.send(200, "text/json", "{\"inprogress\":true,\"networks\":[]}\n");
+    String response = "{\"inprogress\":true,\"current\":\"";
+    response += wifiConfig.ssid;
+    response += "\",\"networks\":[]}\n";
+    server.send(200, "text/json", response);
     return;
   }
 
@@ -170,7 +173,9 @@ void serverApiGetScan() {
     n = 0;
   }
 
-  String response = "{\"inprogress\":false,\"networks\":[";
+  String response = "{\"inprogress\":false,\"current\":\"";
+  response += wifiConfig.ssid;
+  response += "\",\"networks\":[";
   for (int16_t i = 0; i < n; i++) {
     if (i) response += ',';
     response += "{\"ssid\":\"";
