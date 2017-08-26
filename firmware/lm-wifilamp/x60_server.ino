@@ -24,9 +24,7 @@ void serverSetup() {
   server.on("/api/on", HTTP_POST, serverApiSetOn);
 
   server.on("/api/wifi", HTTP_POST, serverApiSetWifi);
-  server.on("/api/password", HTTP_POST, serverApiSetPassword);
-  server.on("/api/defaults", HTTP_POST, serverApiSetDefaults);
-  server.on("/api/button", HTTP_POST, serverApiSetButton);
+  server.on("/api/config", HTTP_POST, serverApiSetConfig);
 
   server.on("/api/scan", HTTP_GET, serverApiGetScan);
   server.on("/api/scan", HTTP_POST, serverApiStartScan);

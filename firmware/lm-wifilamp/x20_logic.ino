@@ -122,13 +122,12 @@ void logicReadConfig() {
   logValue(" buttonEnabled: ", logicConfig.buttonEnabled);
 }
 
-bool logicSetAdminPass(const String& pass) {
+void logicSetAdminPass(const String& pass) {
   logInfo("Changing admin pass");
   logicConfig.adminPass = pass;
-  return logicWriteConfig();
 }
 
-bool logicSetDefaults(uint8_t r, uint8_t g, uint8_t b, bool on) {
+void logicSetDefaultColor(uint8_t r, uint8_t g, uint8_t b) {
   logHeader();
   logRaw("Change defaults R:");
   logRaw(r);
@@ -136,8 +135,6 @@ bool logicSetDefaults(uint8_t r, uint8_t g, uint8_t b, bool on) {
   logRaw(g);
   logRaw(", B:");
   logRaw(b);
-  logRaw(", on:");
-  logRaw(on);
   logLine();
 
   if (r != 0 || g != 0 || b != 0) {
@@ -145,14 +142,16 @@ bool logicSetDefaults(uint8_t r, uint8_t g, uint8_t b, bool on) {
     logicConfig.colorG = g;
     logicConfig.colorB = b;
   }
-  logicConfig.on = on;
-  return logicWriteConfig();
 }
 
-bool logicSetButtonEnabled(bool e) {
-  logValue("Changing button enabled: ", e);
+void logicSetDefaultOn(bool on) {
+  logValue("Change default on: ", on);
+  logicConfig.on = on;
+}
+
+void logicSetButtonEnabled(bool e) {
+  logValue("Change button enabled: ", e);
   logicConfig.buttonEnabled = e ? true : false;
-  return logicWriteConfig();
 }
 
 bool logicWriteConfig() {

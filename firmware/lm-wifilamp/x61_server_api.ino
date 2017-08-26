@@ -18,59 +18,57 @@ void serverApiSetWifi() {
   }
 }
 
-void serverApiSetPassword() {
+void serverApiSetConfig() {
   SERVER_AUTH_REQUIRED
 
-  String pass = server.arg("new");
-  String oldPass = server.arg("old");
-  uint16_t passLen = pass.length();
-  if (passLen < 4 || passLen > 64 || pass == oldPass) {
-    server.send(400, "text/json", "{\"error\":\"Password to short or long\"}\n");
-    return;
-  }
-  if (logicConfig.adminPass != oldPass) {
-    server.send(400, "text/json", "{\"error\":\"Invalid password\"}\n");
-    return;
-  }
-
-  if (logicSetAdminPass(pass)) {
-    server.send(204);
-  } else {
-    server.send(500, "text/json", "{\"error\":\"Unable to store password\"}n");
-  }
-}
-
-void serverApiSetDefaults() {
-  SERVER_AUTH_REQUIRED
-
+  String pass = server.arg("pass");
   uint8_t r = server.arg("r").toInt();
   uint8_t g = server.arg("g").toInt();
   uint8_t b = server.arg("b").toInt();
-  bool on = server.arg("on").toInt() ? true : false;
+  String onS = server.arg("on");
+  String buttonS = server.arg("button");
 
-  if (logicSetDefaults(r, g, b, on)) {
-    server.send(204);
-  } else {
-    server.send(500, "text/json", "{\"error\":\"Unable to store default values\"}n");
+  uint16_t passLen = pass.length();
+  if (passLen && (passLen < 4 || passLen > 64)) {
+    server.send(400, "text/json", "{\"error\":\"Password to short or long\"}\n");
+    return;
   }
-}
 
-void serverApiSetButton() {
-  SERVER_AUTH_REQUIRED
+  bool modified = false;
 
-  bool e = server.arg("enabled").toInt() ? true : false;
+  if (passLen) {
+    logicSetAdminPass(pass);
+    modified = true;
+  }
+  if (r && g && b) {
+    logicSetDefaultColor(r, g, b);
+    modified = true;
+  }
+  if (onS.length()) {
+    logicSetDefaultOn(onS.toInt() ? true : false);
+    modified = true;
+  }
+  if (buttonS.length()) {
+    logicSetButtonEnabled(buttonS.toInt() ? true : false);
+    modified = true;
+  }
 
-  if (logicSetButtonEnabled(e)) {
-    server.send(204);
+  if (!modified) {
+    server.send(400, "text/json", "{\"error\":\"No changes sent!\"}\n");
+    return;
+  }
+
+  if (logicWriteConfig()) {
+    serverApiStatus();
   } else {
-    server.send(500, "text/json", "{\"error\":\"Unable to store button enabled value\"}n");
+    server.send(500, "text/json", "{\"error\":\"Unable to store new config\"}n");
   }
 }
 
 void serverApiStatus() {
   SERVER_AUTH_REQUIRED
 
-  String response = "{\"chipid\":";
+  String response = "{\"fwVersion\":\"" FW_VERSION "\",\"chipid\":";
   response += ESP.getChipId();
   response += ",\"uptime\":";
   response += millis() / 1000L;
