@@ -59,7 +59,7 @@ void serverApiSetConfig() {
   }
 
   if (logicWriteConfig()) {
-    serverApiStatus();
+    server.send(204);
   } else {
     server.send(500, "text/json", "{\"error\":\"Unable to store new config\"}n");
   }

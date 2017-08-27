@@ -6,6 +6,8 @@ ESP8266WebServer server(80);
 void serverSetup() {
   server.serveStatic("/", SPIFFS, "/web/index.html");
   server.serveStatic("/settings", SPIFFS, "/web/index.html");
+  server.serveStatic("/settings/connect", SPIFFS, "/web/index.html");
+  server.serveStatic("/login", SPIFFS, "/web/index.html");
   server.serveStatic("/bundle.js", SPIFFS, "/web/bundle.js");
   server.serveStatic("/style.css", SPIFFS, "/web/style.css");
   server.serveStatic("/favicon.ico", SPIFFS, "/web/favicon.ico");
