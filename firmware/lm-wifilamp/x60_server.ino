@@ -83,7 +83,7 @@ bool serverAuthenticateUser() {
   if (logicConfig.adminPass.length() == 0 || server.authenticate("admin", logicConfig.adminPass.c_str())) {
     return true;
   } else {
-    server.sendHeader("WWW-Authenticate", "Basic realm=\"Login Required\"");
+    //server.sendHeader("WWW-Authenticate", "Basic realm=\"Login Required\"");
     server.send(401, "text/json", "{\"error\":\"Login required\"}\n");
     return false;
   }
