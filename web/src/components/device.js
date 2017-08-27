@@ -15,7 +15,7 @@ export default class Device {
 		if (!callback) callback = () => {}
 
 		let req = request(params ? 'POST' : 'GET', this.url + url)
-			.auth(this.user, this.pass).timeout({ response: 3000, deadline: 8000 })
+			.auth(this.user, this.pass).timeout({ response: 6000, deadline: 12000 })
 
 		if (params) {
 			req = req.type('form').send(params)

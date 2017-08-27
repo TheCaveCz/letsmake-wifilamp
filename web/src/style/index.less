@@ -1,12 +1,15 @@
 @import 'helpers';
 
+html, body, input {
+	font-family: MyriadPro, 'Myriad Pro', OpenSans, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
 html, body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
 	background: @background;
-	font-family: MyriadPro, 'Myriad Pro', OpenSans, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 	color: @text;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -46,6 +49,11 @@ table {
 	}
 }
 
+input[type='text'], input[type='password'] {
+	font-size: 18px;
+	display: block;
+	width: 100%;
+}
 
 .stickyErrors {
 	.error();

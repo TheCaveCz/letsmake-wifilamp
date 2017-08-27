@@ -40,7 +40,7 @@ export default class Login extends Component {
 			<h2>Login</h2>
 			{ message ? <p class={style.error}>{message}</p> : <p/> }
 
-			<p><input type="text" placeholder="Username" oninput={this.handleUserInput} value={user}/></p>
+			<p><input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" type="text" placeholder="Username" oninput={this.handleUserInput} value={user}/></p>
 			<p><input type="password" placeholder="Password" oninput={this.handlePassInput} value={pass}/></p>
 			
 			<p><button onClick={this.handleLogin} disabled={ loading }>Login</button></p>
