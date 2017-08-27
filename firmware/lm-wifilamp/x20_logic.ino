@@ -125,6 +125,7 @@ void logicReadConfig() {
 void logicSetAdminPass(const String& pass) {
   logInfo("Changing admin pass");
   logicConfig.adminPass = pass;
+  otaUpdatePassword();
 }
 
 void logicSetDefaultColor(uint8_t r, uint8_t g, uint8_t b) {

@@ -34,6 +34,8 @@
 #define MASTER_RESET_COUNTER 200
 
 #define LOG_ENABLED 1
-#define BUTTON_DEBUG 0
+#define BUTTON_DEBUG 1
+#define OPTIONS_ENABLED 1
+#define OTA_REQUIRES_PASSWORD 1
 
 String chipId = String(ESP.getChipId(),HEX);
