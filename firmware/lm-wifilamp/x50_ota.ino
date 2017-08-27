@@ -6,7 +6,7 @@ void otaUpdatePassword() {
 }
 
 void otaSetup() {
-  String ssid = WIFI_AP_PREFIX;
+  String ssid = HOSTNAME_PREFIX;
   ssid += chipId;
   ArduinoOTA.setHostname(ssid.c_str());
 

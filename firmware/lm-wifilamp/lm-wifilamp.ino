@@ -5,6 +5,8 @@
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include <ESP8266SSDP.h>
+
 
 #define PIXELS_PIN D1
 #define PIXELS_COUNT 15
@@ -23,6 +25,8 @@
 #define WIFI_AP_PASSWORD "wifilamp"
 
 #define WIFI_CONF_FILE "/conf/wifi.txt"
+
+#define HOSTNAME_PREFIX "wifilamp-"
 
 #define LOGIC_CONF_FILE "/conf/logic.txt"
 #define LOGIC_BUTTON_LOCKUP_TIME 1000UL

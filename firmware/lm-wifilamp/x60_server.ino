@@ -76,6 +76,10 @@ void serverSetup() {
 
   server.on("/api/reboot", HTTP_POST, serverApiReboot);
 
+  server.on("/description.xml", HTTP_GET, []() {
+    SSDP.schema(server.client());
+  });
+
   server.begin();
 }
 

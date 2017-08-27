@@ -59,6 +59,7 @@ void setup() {
 
   otaSetup();
   serverSetup();
+  discoverSetup();
 }
 
 void loop() {
