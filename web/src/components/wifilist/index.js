@@ -51,7 +51,9 @@ export default class WiFiList extends Component {
 		this.props.device.scanNetworks(this.handleScanResult)	
 	}
 
-	handleScanResult = result => {
+	handleScanResult = (error, result) => {
+		if (error) return;
+
 		const { inprogress, current } = result
 		
 		if (inprogress) {

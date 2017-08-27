@@ -7,79 +7,84 @@ export default class Device {
 		this.pass = pass
 	}
 
-	load(url, params) {
+	load(url, params, callback) {
+		if (typeof params === 'function') {
+			callback = params
+			params = undefined
+		}
+		if (!callback) callback = () => {}
+
 		let req = request(params ? 'POST' : 'GET', this.url + url)
-			.auth(this.user, this.pass)
+			.auth(this.user, this.pass).timeout({ response: 3000, deadline: 8000 })
 
 		if (params) {
 			req = req.type('form').send(params)
 		}
 
-		return req.then(response => {
-			if (response.status === 401) {
-				throw new Error("Invalid username or password")
-			} else if (response.status === 404) {
-				throw new Error("File not found")
-			} else if (!response.ok) {
-				throw new Error("Response not ok")
-			} else if (response.body.error) {
-				throw new Error(response.body.error)
+		req.then(response => {
+			callback(undefined, response.body)
+
+		}, e => {
+			if (e.status === 401) {
+				callback("Invalid username or password")
+				if (this.onAuthError) this.onAuthError(e)
+			} else {
+				if (e.response && e.response.body && e.response.body.error) {
+					e = e.response.body.error
+				}
+				callback(""+e)
+				if (this.onError) this.onError(e)
 			}
-			return Promise.resolve(response.body)
+		})
+	}
+
+	tryLogin(user,pass,result) {
+		request('GET', this.url + 'api/statusShort').auth(user, pass).timeout({ response: 3000, deadline: 8000 }).then(response => {
+			this.user = user
+			this.pass = pass
+			result({login:true})
+		}, e => {
+			result(e.status === 401 ? {login:false} : {error:e})
 		})
 	}
 
 	loadStatus(result) {
-		this.load('api/statusShort').then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))
+		this.load('api/statusShort', result)
 	}
 
 	loadFullStatus(result) {
-		this.load('api/status').then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))
+		this.load('api/status', result);
 	}
 
 	loadNetworks(result) {
-		this.load('api/scan').then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))
+		this.load('api/scan', result);
 	}
 
 	scanNetworks(result) {
-		this.load('api/scan', {scan: true}).then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))	
+		this.load('api/scan', {scan: true}, result);
 	}
 
 	saveConfig(params, result) {
 		const { pass, r, g, b, on, button } = params
-		this.load('api/config', { pass, r, g, b, on, button }).then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))
+		this.load('api/config', { pass, r, g, b, on, button }, result);
 	}
 
 	saveWifi(ssid, pass, result) {
-		this.load('api/wifi', { ssid, pass }).then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))	
+		this.load('api/wifi', { ssid, pass }, result);
 	}
 
 	reboot(result) {
-		this.load('api/reboot', { reboot: true }).then(json => {
-			if (result) result(json)
-		}).catch(e => console.log(e))	
+		this.load('api/reboot', { reboot: true }, result);
 	}
 
 
-	setColor(color, time) {
+	setColor(color, time, result) {
 		const {r, g, b} = color
-		this.load('api/color', {r, g, b, time: time || 500})
+		this.load('api/color', {r, g, b, time: time || 500}, result);
 	}
 
-	setOn(on, time) {
-		this.load('api/on', {on: on ? 1 : 0, time: time || 500})
+	setOn(on, time, result) {
+		this.load('api/on', {on: on ? 1 : 0, time: time || 500}, result);
 	}
 
 }

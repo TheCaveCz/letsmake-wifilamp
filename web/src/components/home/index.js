@@ -29,14 +29,16 @@ export default class Home extends Component {
 	}
 
 	refreshStatus = () => {
-		this.props.device.loadStatus(status => {
-			const {r, g, b} = status
+		this.props.device.loadStatus((error, status) => {
+			if (status) {
+				const {r, g, b} = status
 
-			this.setState({
-				color: {r, g, b},
-				on: status.on
-			})
-
+				this.setState({
+					color: {r, g, b},
+					on: status.on
+				})
+			}
+			
 			this.timer = setTimeout(this.refreshStatus, this.props.refreshInterval)
 		})
 	}

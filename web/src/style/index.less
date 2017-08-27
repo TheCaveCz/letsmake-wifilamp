@@ -45,3 +45,27 @@ table {
 		border: 1px #ddd solid;
 	}
 }
+
+
+.stickyErrors {
+	.error();
+
+	display: block;
+	position: fixed;
+	top: @headerHeight;
+	left: 0;
+	right: 0;
+	z-index: 49;
+	margin: 0;
+	padding: 0 20px;
+
+	a {
+		float: right;
+		text-decoration: none;
+		color: darken(#fdd,30%);
+	}
+	a:hover, a:active {
+		text-decoration: underline;
+		color: darken(#fdd,50%);
+	}
+}

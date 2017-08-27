@@ -3,11 +3,21 @@ import style from './style.less'
 import MyColorPicker from './../picker'
 import OnOff from './../onoff'
 
+const toHHMMSS = (secs) => {
+    var sec_num = parseInt(secs, 10)    
+    var hours   = Math.floor(sec_num / 3600) % 24
+    var minutes = Math.floor(sec_num / 60) % 60
+    var seconds = sec_num % 60    
+    return [hours,minutes,seconds]
+        .map(v => v < 10 ? "0" + v : v)
+        .filter((v,i) => v !== "00" || i > 0)
+        .join(":")
+}
 
 const DeviceInfo = ({chipid,fwVersion,uptime,connection}, {}) => <table>
 	<tr><th>Chip ID</th><td>{ chipid }</td></tr>
 	<tr><th>Firmware version</th><td>{ fwVersion }</td></tr>
-	<tr><th>Uptime</th><td>{ uptime } s</td></tr>
+	<tr><th>Uptime</th><td>{ toHHMMSS(uptime) }</td></tr>
 	<tr><th>Current SSID</th><td>{ connection && connection.ssid }</td></tr> 
 	<tr><th>AP mode</th><td>{ connection && connection.ap ? 'yes':'no' }</td></tr> 
 	<tr><th>MAC address</th><td>{connection && connection.mac}</td></tr>
@@ -65,24 +75,32 @@ export default class Settings extends Component {
 
 		changed: false,
 		loading: false,
+		afterReboot: false
 	};
 
 	componentDidMount() {
-		this.setState({ changed: false, loading: true })
-		this.props.device.loadFullStatus(this.processStatus)
+		this.reload()
 	}
 
-	processStatus = status => {
-		const { chipid, fwVersion, uptime, buttonEnabled } = status
+	reload = () => {
+		this.setState({ loading: true })
+		this.props.device.loadFullStatus((error, status) => {
+			if (error) {
+				this.setState({loading:false})
+				return
+			}
 
-		const def = status['default']
-		const { r, g, b } = def
-		const defaultOn = def.on
+			const { chipid, fwVersion, uptime, buttonEnabled } = status
 
-		const { ssid, mac, ap } = status.connection
-		const connection = { mac, ap, ssid }
+			const def = status['default']
+			const { r, g, b } = def
+			const defaultOn = def.on
 
-		this.setState({ defaultOn, defaultColor: {r, g, b}, buttonEnabled, connection, info: {chipid, fwVersion, uptime}, loading: false, changed: false})
+			const { ssid, mac, ap } = status.connection
+			const connection = { mac, ap, ssid }
+
+			this.setState({ defaultOn, defaultColor: {r, g, b}, buttonEnabled, connection, info: {chipid, fwVersion, uptime}, loading: false, changed: false})
+		})
 	}
 
 	handleDefaultColor = newColor => {
@@ -110,7 +128,7 @@ export default class Settings extends Component {
 		if (this.state.loading) return
 
 		const params = {
-			pass: "",
+			pass: this.state.password.valid ? this.state.password.value : '',
 			r: this.state.defaultColor.r,
 			g: this.state.defaultColor.g,
 			b: this.state.defaultColor.b,
@@ -119,25 +137,48 @@ export default class Settings extends Component {
 		}
 
 		this.setState({ loading: true })
-		this.props.device.saveConfig(params, this.processStatus)
+		this.props.device.saveConfig(params, error => {
+			if (error) {
+				this.setState({ loading: false })
+				return
+			}
+
+			this.reload()
+		})
+	}
+
+	handleReboot = e => {
+		e.preventDefault()
+
+		this.setState({ loading: true })
+		this.props.device.reboot(error => {
+			this.setState({ loading: false, afterReboot: error ? false:true })
+		})
 	}
 	
-	render = ({ }, {defaultOn, defaultColor, buttonEnabled, info, connection, changed, password, loading}) =>
-		<div class={style.settings}>
-			<h2>State after power-on</h2>
-			<OnOff onChange={this.handleDefaultOn} on={defaultOn}/>
-			<MyColorPicker onChangeComplete={this.handleDefaultColor} color={defaultColor}/>
+	render = ({ }, {defaultOn, defaultColor, buttonEnabled, info, connection, changed, password, loading, afterReboot}) =>
+		afterReboot ?
+			<div class={style.settings}>
+				<h2>Reboot</h2>
+				<p>Device is rebooting right now. Refresh the page after device is ready.</p>
+			</div>
+			:
+			<div class={style.settings}>
+				<h2>State after power-on</h2>
+				<OnOff onChange={this.handleDefaultOn} on={defaultOn}/>
+				<MyColorPicker onChangeComplete={this.handleDefaultColor} color={defaultColor}/>
 
-			<h2>Touch button enabled</h2>
-			<OnOff onChange={this.handleButtonEnabled} on={buttonEnabled}/>
+				<h2>Touch button enabled</h2>
+				<OnOff onChange={this.handleButtonEnabled} on={buttonEnabled}/>
 
-			<h2>Admin password</h2>
-			<AdminPass onChange={this.handlePassword} />
+				<h2>Admin password</h2>
+				<AdminPass onChange={this.handlePassword} />
 
-			<h2>Device info</h2>
-			<DeviceInfo {...info} connection={ connection } />
+				<h2>Device info</h2>
+				<DeviceInfo {...info} connection={ connection } />
+				<p><button onClick={this.handleReboot} disabled={ loading }>Reboot device</button></p>
 
-			{changed ? <button onClick={this.handleSave} disabled={ !password.valid || loading } class={style.saveButton}>Save changes</button> : '' }
-		</div>
+				{changed ? <button onClick={this.handleSave} disabled={ !password.valid || loading } class={style.saveButton}>Save changes</button> : '' }
+			</div>
 
 }
