@@ -133,7 +133,7 @@ void wifiConnectAp() {
   if (WiFi.getMode() != WIFI_AP) WiFi.mode(WIFI_AP);
 
   String ssid = WIFI_AP_PREFIX;
-  ssid += ESP.getChipId();
+  ssid += chipId;
   if (!WiFi.softAP(ssid.c_str(), WIFI_AP_PASSWORD)) {
     bail("FATAL: softAP");
     return;

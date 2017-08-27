@@ -35,3 +35,5 @@
 
 #define LOG_ENABLED 1
 #define BUTTON_DEBUG 0
+
+String chipId = String(ESP.getChipId(),HEX);

@@ -1,7 +1,7 @@
 
 void otaSetup() {
   String ssid = WIFI_AP_PREFIX;
-  ssid += ESP.getChipId();
+  ssid += chipId;
   ArduinoOTA.setHostname(ssid.c_str());
 
   ArduinoOTA.setPassword(logicConfig.adminPass.c_str());

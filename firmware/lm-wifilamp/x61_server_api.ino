@@ -68,9 +68,9 @@ void serverApiSetConfig() {
 void serverApiStatus() {
   SERVER_AUTH_REQUIRED
 
-  String response = "{\"fwVersion\":\"" FW_VERSION "\",\"chipid\":";
-  response += ESP.getChipId();
-  response += ",\"uptime\":";
+  String response = "{\"fwVersion\":\"" FW_VERSION "\",\"chipid\":\"";
+  response += chipId;
+  response += "\",\"uptime\":";
   response += millis() / 1000L;
   response += ",\"buttonEnabled\":";
   response += logicConfig.buttonEnabled ? "true" : "false";

@@ -42,7 +42,7 @@ void setup() {
   Serial.begin(9600);
 
   logInfo("Starting");
-  logValue("Chip id: ", ESP.getChipId());
+  logValue("Chip id: ", chipId);
 
   buttonSetup();
   pixelsSetup();
