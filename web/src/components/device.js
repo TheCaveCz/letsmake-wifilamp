@@ -1,4 +1,4 @@
-var request = require('superagent');
+let request = require('superagent')
 
 export default class Device {
 	constructor(url, user, pass) {
@@ -12,10 +12,11 @@ export default class Device {
 			callback = params
 			params = undefined
 		}
-		if (!callback) callback = () => {}
+		if (!callback) callback = () => {
+		}
 
 		let req = request(params ? 'POST' : 'GET', this.url + url)
-			.auth(this.user, this.pass).timeout({ response: 6000, deadline: 12000 })
+			.auth(this.user, this.pass).timeout({response: 6000, deadline: 12000})
 
 		if (params) {
 			req = req.type('form').send(params)
@@ -32,19 +33,22 @@ export default class Device {
 				if (e.response && e.response.body && e.response.body.error) {
 					e = e.response.body.error
 				}
-				callback(""+e)
+				callback("" + e)
 				if (this.onError) this.onError(e)
 			}
 		})
 	}
 
-	tryLogin(user,pass,result) {
-		request('GET', this.url + 'api/statusShort').auth(user, pass).timeout({ response: 3000, deadline: 8000 }).then(response => {
+	tryLogin(user, pass, result) {
+		request('GET', this.url + 'api/statusShort').auth(user, pass).timeout({
+			response: 3000,
+			deadline: 8000
+		}).then(() => {
 			this.user = user
 			this.pass = pass
-			result({login:true})
+			result({login: true})
 		}, e => {
-			result(e.status === 401 ? {login:false} : {error:e})
+			result(e.status === 401 ? {login: false} : {error: e})
 		})
 	}
 
@@ -53,38 +57,38 @@ export default class Device {
 	}
 
 	loadFullStatus(result) {
-		this.load('api/status', result);
+		this.load('api/status', result)
 	}
 
 	loadNetworks(result) {
-		this.load('api/scan', result);
+		this.load('api/scan', result)
 	}
 
 	scanNetworks(result) {
-		this.load('api/scan', {scan: true}, result);
+		this.load('api/scan', {scan: true}, result)
 	}
 
 	saveConfig(params, result) {
-		const { pass, r, g, b, on, button } = params
-		this.load('api/config', { pass, r, g, b, on, button }, result);
+		const {pass, r, g, b, on, button} = params
+		this.load('api/config', {pass, r, g, b, on, button}, result)
 	}
 
 	saveWifi(ssid, pass, result) {
-		this.load('api/wifi', { ssid, pass }, result);
+		this.load('api/wifi', {ssid, pass}, result)
 	}
 
 	reboot(result) {
-		this.load('api/reboot', { reboot: true }, result);
+		this.load('api/reboot', {reboot: true}, result)
 	}
 
 
 	setColor(color, time, result) {
 		const {r, g, b} = color
-		this.load('api/color', {r, g, b, time: time || 500}, result);
+		this.load('api/color', {r, g, b, time: time || 500}, result)
 	}
 
 	setOn(on, time, result) {
-		this.load('api/on', {on: on ? 1 : 0, time: time || 500}, result);
+		this.load('api/on', {on: on ? 1 : 0, time: time || 500}, result)
 	}
 
 }

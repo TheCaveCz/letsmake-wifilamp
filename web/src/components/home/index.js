@@ -38,28 +38,28 @@ export default class Home extends Component {
 					on: status.on
 				})
 			}
-			
+
 			this.timer = setTimeout(this.refreshStatus, this.props.refreshInterval)
 		})
 	}
 
 	handleColor = newColor => {
-		const { r, g, b } = newColor.rgb
-		const color = { r, g, b }
+		const {r, g, b} = newColor.rgb
+		const color = {r, g, b}
 
 		this.props.device.setColor(color)
-		this.setState({ color })
+		this.setState({color})
 	}
 
 	handleOnOff = on => {
 		this.props.device.setOn(on)
-		this.setState({ on })
+		this.setState({on})
 	}
 
 	render = ({}, {on, color}) =>
 		<div class={style.home}>
-			<OnOff onChange={this.handleOnOff} on={ on }/>
-			<MyColorPicker onChangeComplete={this.handleColor} color={ color }/>
+			<OnOff onChange={this.handleOnOff} on={on}/>
+			<MyColorPicker onChangeComplete={this.handleColor} color={color}/>
 		</div>
-		
+
 }

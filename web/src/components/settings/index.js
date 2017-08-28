@@ -1,26 +1,44 @@
-import { h, Component } from 'preact'
+import {h, Component} from 'preact'
 import style from './style.less'
 import MyColorPicker from './../picker'
 import OnOff from './../onoff'
 
 const toHHMMSS = (secs) => {
-    var sec_num = parseInt(secs, 10)    
-    var hours   = Math.floor(sec_num / 3600) % 24
-    var minutes = Math.floor(sec_num / 60) % 60
-    var seconds = sec_num % 60    
-    return [hours,minutes,seconds]
-        .map(v => v < 10 ? "0" + v : v)
-        .filter((v,i) => v !== "00" || i > 0)
-        .join(":")
+	const sec_num = parseInt(secs, 10)
+	const hours = Math.floor(sec_num / 3600) % 24
+	const minutes = Math.floor(sec_num / 60) % 60
+	const seconds = sec_num % 60
+	return [hours, minutes, seconds]
+		.map(v => v < 10 ? "0" + v : v)
+		.filter((v, i) => v !== "00" || i > 0)
+		.join(":")
 }
 
-const DeviceInfo = ({chipid,fwVersion,uptime,connection}, {}) => <table>
-	<tr><th>Chip ID</th><td>{ chipid }</td></tr>
-	<tr><th>Firmware version</th><td>{ fwVersion }</td></tr>
-	<tr><th>Uptime</th><td>{ toHHMMSS(uptime) }</td></tr>
-	<tr><th>Current SSID</th><td>{ connection && connection.ssid }</td></tr> 
-	<tr><th>AP mode</th><td>{ connection && connection.ap ? 'yes':'no' }</td></tr> 
-	<tr><th>MAC address</th><td>{connection && connection.mac}</td></tr>
+const DeviceInfo = ({chipid, fwVersion, uptime, connection}, {}) => <table>
+	<tr>
+		<th>Chip ID</th>
+		<td>{ chipid }</td>
+	</tr>
+	<tr>
+		<th>Firmware version</th>
+		<td>{ fwVersion }</td>
+	</tr>
+	<tr>
+		<th>Uptime</th>
+		<td>{ toHHMMSS(uptime) }</td>
+	</tr>
+	<tr>
+		<th>Current SSID</th>
+		<td>{ connection && connection.ssid }</td>
+	</tr>
+	<tr>
+		<th>AP mode</th>
+		<td>{ connection && connection.ap ? 'yes' : 'no' }</td>
+	</tr>
+	<tr>
+		<th>MAC address</th>
+		<td>{connection && connection.mac}</td>
+	</tr>
 </table>
 
 
@@ -32,27 +50,28 @@ class AdminPass extends Component {
 	}
 
 	handleChange1 = txt => {
-		this.setState({ password1: txt.target.value })
+		this.setState({password1: txt.target.value})
 		this.fireChange()
 	}
 
 	handleChange2 = txt => {
-		this.setState({ password2: txt.target.value })
+		this.setState({password2: txt.target.value})
 		this.fireChange()
 	}
 
 	fireChange = () => {
 		const l = this.state.password1.length
 		const valid = this.state.password1 === this.state.password2 && ((l >= 4 && l <= 64) || l == 0)
-		this.setState({ valid })
+		this.setState({valid})
 		this.props.onChange(valid, valid ? this.state.password1 : '')
 	}
 
-	render = ({}, {valid, password1}) => 
+	render = ({}, {valid, password1}) =>
 		<div>
-			<p><input type='password' placeholder='Enter admin password' maxlength='64' oninput={this.handleChange1} /></p>
-			<p><input type='password' placeholder='Verify admin password' maxlength='64' oninput={this.handleChange2} /></p>
-			{ valid ? (password1.length ? <p class={style.success}>Password is verified and will be changed on save.</p>:'') : <p class={style.error}>Password must have between 4 and 64 characters and must match.</p> }
+			<p><input type='password' placeholder='Enter admin password' maxlength='64' oninput={this.handleChange1}/></p>
+			<p><input type='password' placeholder='Verify admin password' maxlength='64' oninput={this.handleChange2}/></p>
+			{ valid ? (password1.length ? <p class={style.success}>Password is verified and will be changed on save.</p> : '') :
+				<p class={style.error}>Password must have between 4 and 64 characters and must match.</p> }
 		</div>
 }
 
@@ -83,43 +102,43 @@ export default class Settings extends Component {
 	}
 
 	reload = () => {
-		this.setState({ loading: true })
+		this.setState({loading: true})
 		this.props.device.loadFullStatus((error, status) => {
 			if (error) {
-				this.setState({loading:false})
+				this.setState({loading: false})
 				return
 			}
 
-			const { chipid, fwVersion, uptime, buttonEnabled } = status
+			const {chipid, fwVersion, uptime, buttonEnabled} = status
 
 			const def = status['default']
-			const { r, g, b } = def
+			const {r, g, b} = def
 			const defaultOn = def.on
 
-			const { ssid, mac, ap } = status.connection
-			const connection = { mac, ap, ssid }
+			const {ssid, mac, ap} = status.connection
+			const connection = {mac, ap, ssid}
 
-			this.setState({ defaultOn, defaultColor: {r, g, b}, buttonEnabled, connection, info: {chipid, fwVersion, uptime}, loading: false, changed: false})
+			this.setState({defaultOn, defaultColor: {r, g, b}, buttonEnabled, connection, info: {chipid, fwVersion, uptime}, loading: false, changed: false})
 		})
 	}
 
 	handleDefaultColor = newColor => {
-		const { r, g, b } = newColor.rgb
-		const defaultColor = { r, g, b }
+		const {r, g, b} = newColor.rgb
+		const defaultColor = {r, g, b}
 
-		this.setState({ defaultColor, changed: true })
+		this.setState({defaultColor, changed: true})
 	}
 
 	handleDefaultOn = defaultOn => {
-		this.setState({ defaultOn, changed: true })
+		this.setState({defaultOn, changed: true})
 	}
 
 	handleButtonEnabled = buttonEnabled => {
-		this.setState({ buttonEnabled, changed: true })
+		this.setState({buttonEnabled, changed: true})
 	}
 
 	handlePassword = (valid, value) => {
-		this.setState({ password: { valid, value }, changed: true })
+		this.setState({password: {valid, value}, changed: true})
 	}
 
 	handleSave = e => {
@@ -132,14 +151,14 @@ export default class Settings extends Component {
 			r: this.state.defaultColor.r,
 			g: this.state.defaultColor.g,
 			b: this.state.defaultColor.b,
-			on: this.state.defaultOn ? 1:0,
-			button: this.state.buttonEnabled ? 1:0
+			on: this.state.defaultOn ? 1 : 0,
+			button: this.state.buttonEnabled ? 1 : 0
 		}
 
-		this.setState({ loading: true })
+		this.setState({loading: true})
 		this.props.device.saveConfig(params, error => {
 			if (error) {
-				this.setState({ loading: false })
+				this.setState({loading: false})
 				return
 			}
 
@@ -150,13 +169,13 @@ export default class Settings extends Component {
 	handleReboot = e => {
 		e.preventDefault()
 
-		this.setState({ loading: true })
+		this.setState({loading: true})
 		this.props.device.reboot(error => {
-			this.setState({ loading: false, afterReboot: error ? false:true })
+			this.setState({loading: false, afterReboot: error ? false : true})
 		})
 	}
-	
-	render = ({ }, {defaultOn, defaultColor, buttonEnabled, info, connection, changed, password, loading, afterReboot}) =>
+
+	render = ({}, {defaultOn, defaultColor, buttonEnabled, info, connection, changed, password, loading, afterReboot}) =>
 		afterReboot ?
 			<div class={style.settings}>
 				<h2>Reboot</h2>
@@ -172,13 +191,13 @@ export default class Settings extends Component {
 				<OnOff onChange={this.handleButtonEnabled} on={buttonEnabled}/>
 
 				<h2>Admin password</h2>
-				<AdminPass onChange={this.handlePassword} />
+				<AdminPass onChange={this.handlePassword}/>
 
 				<h2>Device info</h2>
-				<DeviceInfo {...info} connection={ connection } />
-				<p><button onClick={this.handleReboot} disabled={ loading }>Reboot device</button></p>
+				<DeviceInfo {...info} connection={connection}/>
+				<p><button onClick={this.handleReboot} disabled={loading}>Reboot device</button></p>
 
-				{changed ? <button onClick={this.handleSave} disabled={ !password.valid || loading } class={style.saveButton}>Save changes</button> : '' }
+				{changed ? <button onClick={this.handleSave} disabled={!password.valid || loading} class={style.saveButton}>Save changes</button> : '' }
 			</div>
 
 }

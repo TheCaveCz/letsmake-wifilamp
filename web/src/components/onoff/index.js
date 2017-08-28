@@ -10,11 +10,11 @@ export default class OnOff extends Component {
 		this.props.onChange(false)
 	}
 
-	render = ({on}, {}) => 
+	render = ({on}, {}) =>
 		<div class={style.container}>
 			<button class={style.on + (on ? ' ' + style.active : '')} onClick={this.handleOn}>ON</button>
 			<button class={style.off + (!on ? ' ' + style.active : '')} onClick={this.handleOff}>OFF</button>
 			<div style={{clear: 'both'}}/>
 		</div>
-	
+
 }

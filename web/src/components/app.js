@@ -9,7 +9,7 @@ import Login from './login'
 import Device from './device.js'
 
 const ENV = process.env.NODE_ENV || 'development'
-const defaultDevice = new Device(ENV === 'production' ? '/' : 'http://192.168.85.219/', 'admin', '');
+const defaultDevice = new Device(ENV === 'production' ? '/' : 'http://192.168.85.219/', 'admin', '')
 
 export default class App extends Component {
 	state = {
@@ -24,7 +24,7 @@ export default class App extends Component {
 		}
 		this.state.device.onError = e => {
 			console.log("App level handle error", e)
-			this.setState({ lastError: ''+e })
+			this.setState({lastError: '' + e})
 		}
 	}
 
@@ -33,24 +33,25 @@ export default class App extends Component {
 	}
 
 	handleRoute = e => {
-		this.setState({ currentUrl: e.url })
+		this.setState({currentUrl: e.url})
 	}
 
 	handleDismissError = e => {
-		this.setState({ lastError:'' })
+		e.preventDefault()
+		this.setState({lastError: ''})
 	}
 
 	render = ({}, {device, currentUrl, lastError}) =>
 		<div id="app">
-			<Header selected={ currentUrl }/>
+			<Header selected={currentUrl}/>
 			{lastError ? <div class="stickyErrors">
 				<p>{lastError}<a href="#" onClick={this.handleDismissError}>Dismiss</a></p>
-			</div>:''}
+			</div> : ''}
 			<Router onChange={this.handleRoute}>
-				<Home path="/" device={ device }/>
-				<Settings path="/settings" device={ device } />
-				<Connect path="/settings/connect" device={ device } />
-				<Login path="/login" device={ device } onLogin={ this.handleLogin } />
+				<Home path="/" device={device}/>
+				<Settings path="/settings" device={device}/>
+				<Connect path="/settings/connect" device={device}/>
+				<Login path="/login" device={device} onLogin={this.handleLogin}/>
 			</Router>
 		</div>
 }

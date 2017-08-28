@@ -1,55 +1,55 @@
 @import '~style/helpers';
 
 .header {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: @headerHeight;
-	padding: 0;
-	background: @primary;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	z-index: 50;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: @headerHeight;
+  padding: 0;
+  background: @primary;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 50;
 
-	h1 {
-		float: left;
-		margin: 0;
-		padding: 0 15px 0 80px;
-		font-size: 24px;
-		line-height: @headerHeight;
-		height: @headerHeight;
-		font-weight: 600;
-		color: #FFF;
-		background: url('/header.png') no-repeat 5px 5px;
-		background-size: 68px (@headerHeight - 10);
+  h1 {
+    float: left;
+    margin: 0;
+    padding: 0 15px 0 80px;
+    font-size: 24px;
+    line-height: @headerHeight;
+    height: @headerHeight;
+    font-weight: 600;
+    color: #FFF;
+    background: url('/header.png') no-repeat 5px 5px;
+    background-size: 68px (@headerHeight - 10);
 
-		span {
-			.hideMobile()
-		}
-	}
+    span {
+      .hideMobile()
+    }
+  }
 
-	nav {
-		float: right;
-		font-size: 100%;
+  nav {
+    float: right;
+    font-size: 100%;
 
-		a {
-			display: inline-block;
-			height: @headerHeight;
-			line-height: @headerHeight;
-			padding: 0 15px;
-			min-width: 50px;
-			text-align: center;
-			background: rgba(255,255,255,0);
-			text-decoration: none;
-			color: #fff;
-			will-change: background-color;
+    a {
+      display: inline-block;
+      height: @headerHeight;
+      line-height: @headerHeight;
+      padding: 0 15px;
+      min-width: 50px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0);
+      text-decoration: none;
+      color: #fff;
+      will-change: background-color;
 
-			&:hover, &:active {
-				background: rgba(255,255,255,0.4);
-			}
-		}
-		.active {
-			background: rgba(255,255,255,0.2);
-		}
-	}
+      &:hover, &:active {
+        background: rgba(255, 255, 255, 0.4);
+      }
+    }
+    .active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
