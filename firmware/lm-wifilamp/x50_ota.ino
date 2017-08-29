@@ -6,6 +6,12 @@ void otaUpdatePassword() {
 }
 
 void otaSetup() {
+  String name = "The Cave WiFi lamp (";
+  name += chipId;
+  name += ")";
+  
+  MDNS.setInstanceName(name);
+  
   String ssid = HOSTNAME_PREFIX;
   ssid += chipId;
   ArduinoOTA.setHostname(ssid.c_str());
