@@ -35,16 +35,11 @@ export default class Connect extends Component {
   }
 
   render = ({ ssid, device }, { loading, valid, reboot, afterReboot }) => {
-    if (ssid) {
+    if (afterReboot) {
       return (
         <div className={style.connect}>
           <h2>Connect to new WiFi</h2>
-          <p>You are connecting to network <strong>{ ssid }</strong>. Please enter password.</p>
-          <p><input type="password" placeholder="WiFi password" onInput={this.handlePassword}/></p>
-          <p>
-            <button onClick={this.handleConnect} disabled={loading || !valid}>Connect!</button>
-          </p>
-          <p><Link href="/settings/connect">Back</Link></p>
+          <p>Device is rebooting right now. It will probably have new IP address so you should <strong>close this page</strong>.</p>
         </div>
       )
     }
@@ -61,11 +56,16 @@ export default class Connect extends Component {
       )
     }
 
-    if (afterReboot) {
+    if (ssid) {
       return (
         <div className={style.connect}>
           <h2>Connect to new WiFi</h2>
-          <p>Device is rebooting right now. It will probably have new IP address so you should <strong>close this page</strong>.</p>
+          <p>You are connecting to network <strong>{ ssid }</strong>. Please enter password.</p>
+          <p><input type="password" placeholder="WiFi password" onInput={this.handlePassword}/></p>
+          <p>
+            <button onClick={this.handleConnect} disabled={loading || !valid}>Connect!</button>
+          </p>
+          <p><Link href="/settings/connect">Back</Link></p>
         </div>
       )
     }
