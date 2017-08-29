@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "Webpage for WiFi lamp",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "start": "serve build -s -c 1",
-    "prestart": "npm run build",
-    "build": "cross-env NODE_ENV=production webpack -p --progress",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
     "prebuild": "mkdirp build && cp src/favicon.ico src/header.png build",
-    "postbuild": "mkdirp ../firmware/lm-wifilamp/data/web && ncp build ../firmware/lm-wifilamp/data/web && gzip -f ../firmware/lm-wifilamp/data/web/*.js && gzip -f ../firmware/lm-wifilamp/data/web/*.css && gzip -f ../firmware/lm-wifilamp/data/web/*.ico",
-    "lint": "eslint src"
+    "build": "cross-env NODE_ENV=production webpack -p --progress",
+    "postbuild": "mkdirp ../firmware/lm-wifilamp/data/web && ncp build ../firmware/lm-wifilamp/data/web && gzip -f ../firmware/lm-wifilamp/data/web/*.js && gzip -f ../firmware/lm-wifilamp/data/web/*.css && gzip -f ../firmware/lm-wifilamp/data/web/*.ico"
   },
   "license": "MIT",
   "author": "The Cave <info@thecave.cz>",
@@ -33,9 +30,9 @@
     "core-js": "^2.4.1",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.5.0",
     "eslint-plugin-jest": "^20.0.0",
-    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
@@ -59,12 +56,9 @@
   "dependencies": {
     "preact": "^8.1.0",
     "preact-compat": "^3.15.0",
-    "preact-render-to-string": "^3.6.0",
     "preact-router": "^2.5.1",
     "promise-polyfill": "^6.0.2",
-    "proptypes": "^1.0.0",
     "react-color": "^2.13.0",
-    "serve": "^5.1.4",
     "superagent": "^3.5.2"
   }
 }
