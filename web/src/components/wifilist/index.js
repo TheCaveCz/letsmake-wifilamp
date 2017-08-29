@@ -59,7 +59,10 @@ export default class WiFiList extends Component {
       this.setState({ inprogress, current })
       this.timer = setTimeout(this.refreshNetworks, this.props.refreshInterval)
     } else {
-      const networks = (result.networks || []).sort((a, b) => b.rssi - a.rssi)
+      const networkNames = {}
+      const networks = (result.networks || []).sort((a, b) => b.rssi - a.rssi).filter(item => {
+        return networkNames.hasOwnProperty(item.ssid) ? false : (networkNames[item.ssid] = true)
+      })
       this.setState({ inprogress, current, networks })
     }
   }
