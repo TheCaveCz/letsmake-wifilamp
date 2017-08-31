@@ -20,7 +20,7 @@ export default class WiFiList extends Component {
   }
 
   state = {
-    inprogress: false,
+    inprogress: true,
     networks: [],
     current: '',
   }
@@ -51,7 +51,10 @@ export default class WiFiList extends Component {
   }
 
   handleScanResult = (error, result) => {
-    if (error) { return }
+    if (error) {
+      this.setState({ inprogress: false})
+      return
+    }
 
     const { inprogress, current } = result
 
