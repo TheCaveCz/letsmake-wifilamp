@@ -98,7 +98,7 @@ void pixelsUpdate() {
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
 #if BUTTON_DEBUG
-  pixelsBuffer[1] = digitalRead(BUTTON_PIN) ? 255 : 0;
+  pixelsBuffer[1] = buttonReadRaw() ? 255 : 0;
   pixelsBuffer[0] = 0;
   pixelsBuffer[2] = 0;
 

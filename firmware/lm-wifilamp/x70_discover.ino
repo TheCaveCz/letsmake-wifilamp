@@ -20,5 +20,6 @@ void discoverSetup() {
   SSDP.begin();
 
   MDNS.addService("http", "tcp", 80);
+  MDNS.addService("wifilamp", "tcp", 80);
 }
 
