@@ -14,7 +14,7 @@
 #define BUTTON_DEBUG 0
 
 // Enable HTTP OPTIONS method response handler - useful for remote webpage debugging
-#define OPTIONS_ENABLED 1
+#define OPTIONS_ENABLED 0
 
 // Firmware updates over-the-air will require admin password.
 #define OTA_REQUIRES_PASSWORD 1

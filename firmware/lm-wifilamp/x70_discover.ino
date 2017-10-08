@@ -9,7 +9,7 @@ void discoverSetup() {
   name += chipId;
   name += ")";
   SSDP.setName(name);
-  
+
   SSDP.setSerialNumber(chipId);
   SSDP.setURL("/");
   SSDP.setModelName("The Cave WiFi lamp v1");
@@ -21,5 +21,6 @@ void discoverSetup() {
 
   MDNS.addService("http", "tcp", 80);
   MDNS.addService("wifilamp", "tcp", 80);
+  MDNS.addServiceTxt("wifilamp", "tcp", "chipid", chipId);
 }
 
