@@ -12,13 +12,21 @@
 
 ![LED strip wire assembly](6.jpg)
 
-![Touch sensor assembly](7.jpg)
+![Button holder assembly](7.jpg)
 
-![Installing PCB](8.jpg)
+![Button holder assembly](8.jpg)
 
-![Connecting touch pad](9.jpg)
+![Button holder assembly](9.jpg)
 
-![Detail of touch pad connection](10.jpg)
+![Button holder assembly](10.jpg)
 
-![Lamp is complete](11.jpg)
+![Installing PCB](11.jpg)
+
+![Connecting button](12.jpg)
+
+![Securing PCB in bottom cover](13.jpg)
+
+![Correct orientation of notch on bottom cover](14.jpg)
+
+![Lamp is complete](15.jpg)
 
