@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SCq-qI-l6t">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--WiFi Lamp-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="DeviceSelectVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-0b-NEm">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectCell" rowHeight="60" id="cSY-k9-oRV" customClass="DeviceSelectCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cSY-k9-oRV" id="bkI-cQ-ctZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="csV-00-FhD">
+                                                    <rect key="frame" x="8" y="8" width="43.5" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="csV-00-FhD" secondAttribute="height" id="Xkp-7M-bAK"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lamp name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLZ-XT-Jfj">
+                                                    <rect key="frame" x="59.5" y="8" width="93" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="lamp id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGJ-nx-kDm">
+                                                    <rect key="frame" x="59" y="30.5" width="44.5" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="csV-00-FhD" firstAttribute="leading" secondItem="bkI-cQ-ctZ" secondAttribute="leadingMargin" id="15X-Hn-GkE"/>
+                                                <constraint firstItem="nLZ-XT-Jfj" firstAttribute="top" secondItem="bkI-cQ-ctZ" secondAttribute="topMargin" id="82Y-jd-BhP"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fGJ-nx-kDm" secondAttribute="trailing" id="8B1-N6-8dq"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="nLZ-XT-Jfj" secondAttribute="trailing" id="9Gm-XP-mj7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="csV-00-FhD" secondAttribute="bottom" id="AQF-Y3-4Lc"/>
+                                                <constraint firstItem="fGJ-nx-kDm" firstAttribute="top" secondItem="nLZ-XT-Jfj" secondAttribute="bottom" constant="2" id="ASZ-Pp-cgr"/>
+                                                <constraint firstItem="fGJ-nx-kDm" firstAttribute="leading" secondItem="nLZ-XT-Jfj" secondAttribute="leading" id="UyU-3S-WPJ"/>
+                                                <constraint firstItem="nLZ-XT-Jfj" firstAttribute="leading" secondItem="csV-00-FhD" secondAttribute="trailing" constant="8" id="W3w-q5-RRI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fGJ-nx-kDm" secondAttribute="bottom" id="diF-br-QNT"/>
+                                                <constraint firstItem="csV-00-FhD" firstAttribute="top" secondItem="bkI-cQ-ctZ" secondAttribute="topMargin" id="wGw-xK-uhf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="idLabel" destination="fGJ-nx-kDm" id="Adh-82-8w7"/>
+                                            <outlet property="nameLabel" destination="nLZ-XT-Jfj" id="5lj-ad-mvt"/>
+                                            <outlet property="stateImage" destination="csV-00-FhD" id="XsA-uz-PF5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectNearbyEmptyCell" rowHeight="80" id="YNG-eP-3Es" customClass="DeviceSelectNearbyEmptyCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YNG-eP-3Es" id="ost-oc-m76">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No other nearby lamps detected." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPd-cC-7DJ">
+                                                    <rect key="frame" x="8" y="8.5" width="304" height="62.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="pWw-wv-lFd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RPd-cC-7DJ" secondAttribute="bottom" id="7FY-87-SCL"/>
+                                                <constraint firstItem="RPd-cC-7DJ" firstAttribute="leading" secondItem="ost-oc-m76" secondAttribute="leadingMargin" id="LRF-Kj-Y29"/>
+                                                <constraint firstItem="RPd-cC-7DJ" firstAttribute="top" secondItem="ost-oc-m76" secondAttribute="topMargin" id="i50-tO-BHk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RPd-cC-7DJ" secondAttribute="trailing" id="kTq-sV-myb"/>
+                                                <constraint firstItem="RPd-cC-7DJ" firstAttribute="centerY" secondItem="ost-oc-m76" secondAttribute="centerY" id="xjk-j5-CAk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectNearbyLoadingCell" rowHeight="80" id="e5B-h8-7dZ" customClass="DeviceSelectNearbyLoadingCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="168" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5B-h8-7dZ" id="RQp-rA-Uyx">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hFe-Ud-Jw9">
+                                                    <rect key="frame" x="35.5" y="29" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for other nearby lamps..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHV-iD-4es">
+                                                    <rect key="frame" x="60.5" y="8" width="200" height="63.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="QVo-Th-xZz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hFe-Ud-Jw9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RQp-rA-Uyx" secondAttribute="leadingMargin" id="WMZ-1z-uu2"/>
+                                                <constraint firstItem="kHV-iD-4es" firstAttribute="centerY" secondItem="hFe-Ud-Jw9" secondAttribute="centerY" id="eXE-xo-XVZ"/>
+                                                <constraint firstItem="kHV-iD-4es" firstAttribute="centerX" secondItem="RQp-rA-Uyx" secondAttribute="centerX" id="gco-bA-305"/>
+                                                <constraint firstItem="kHV-iD-4es" firstAttribute="leading" secondItem="hFe-Ud-Jw9" secondAttribute="trailing" constant="5" id="hzK-1K-Xb6"/>
+                                                <constraint firstItem="kHV-iD-4es" firstAttribute="top" secondItem="RQp-rA-Uyx" secondAttribute="topMargin" id="mNn-LL-3e1"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="kHV-iD-4es" secondAttribute="trailing" id="pjU-DN-FRz"/>
+                                                <constraint firstItem="kHV-iD-4es" firstAttribute="bottom" secondItem="RQp-rA-Uyx" secondAttribute="bottomMargin" id="toX-ME-hSP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="hFe-Ud-Jw9" id="IgZ-44-wRD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectEmptyCell" rowHeight="80" id="cct-0l-k1M" customClass="DeviceSelectEmptyCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="248" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cct-0l-k1M" id="Xhc-AH-ZOL">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved lamps. Either add new lamp or select one from nearby lamps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-pw-XRO">
+                                                    <rect key="frame" x="8" y="8" width="304" height="63.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Eya-ZP-hS0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Xc-pw-XRO" firstAttribute="top" secondItem="Xhc-AH-ZOL" secondAttribute="topMargin" id="E4b-e3-PvL"/>
+                                                <constraint firstItem="5Xc-pw-XRO" firstAttribute="bottom" secondItem="Xhc-AH-ZOL" secondAttribute="bottomMargin" id="L2m-QE-iw5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5Xc-pw-XRO" secondAttribute="trailing" id="LSi-bj-xjh"/>
+                                                <constraint firstItem="5Xc-pw-XRO" firstAttribute="leading" secondItem="Xhc-AH-ZOL" secondAttribute="leadingMargin" id="VXi-ML-sMt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="yrd-v9-n1v"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="edF-FS-L8M"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GfO-Cb-EmO" firstAttribute="bottom" secondItem="c1A-0b-NEm" secondAttribute="bottom" id="Vuo-Nd-Thu"/>
+                            <constraint firstItem="c1A-0b-NEm" firstAttribute="leading" secondItem="GfO-Cb-EmO" secondAttribute="leading" id="hgr-H4-Jsh"/>
+                            <constraint firstItem="c1A-0b-NEm" firstAttribute="top" secondItem="GfO-Cb-EmO" secondAttribute="top" id="ihe-ZC-Q6z"/>
+                            <constraint firstItem="GfO-Cb-EmO" firstAttribute="trailing" secondItem="c1A-0b-NEm" secondAttribute="trailing" id="xoy-3u-O8e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GfO-Cb-EmO"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="WiFi Lamp" id="e7U-GI-CTC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="47Y-oO-ge1"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundView" destination="ylU-uf-0cf" id="oHh-Rf-vvm"/>
+                        <outlet property="tableView" destination="c1A-0b-NEm" id="FHJ-dw-kEj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="ylU-uf-0cf">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="N1f-hq-ZGw">
+                            <rect key="frame" x="110" y="8" width="120" height="120"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="N1f-hq-ZGw" secondAttribute="height" multiplier="1:1" id="ZOD-pm-GHP"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="N1f-hq-ZGw" firstAttribute="width" secondItem="ylU-uf-0cf" secondAttribute="width" multiplier="0.5" id="cj8-gp-vZM"/>
+                        <constraint firstItem="N1f-hq-ZGw" firstAttribute="trailing" secondItem="eYO-eg-jBN" secondAttribute="trailing" constant="-10" id="ipu-XW-plM"/>
+                        <constraint firstItem="N1f-hq-ZGw" firstAttribute="bottom" secondItem="eYO-eg-jBN" secondAttribute="bottom" id="mij-8B-qKR"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="eYO-eg-jBN"/>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="577.5" y="84.507042253521121"/>
+        </scene>
+        <!--Custom Navigation Controller-->
+        <scene sceneID="gY1-AI-Ir5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SCq-qI-l6t" customClass="CustomNavigationController" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kcM-qD-I8v">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HS9-vR-MLy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSS-wn-oMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="84.507042253521121"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="909" height="669"/>
+    </resources>
+    <color key="tintColor" red="0.50196078431372548" green="0.80000000000000004" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+</document>

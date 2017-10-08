@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
+		9442A7561F8995670045B2D1 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7551F8995670045B2D1 /* Cells.swift */; };
+		9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */; };
+		9442A75A1F8A316F0045B2D1 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7591F8A316F0045B2D1 /* Interface.swift */; };
+		946D9BBE1F891C880058173B /* UITableView+NibAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D9BBD1F891C880058173B /* UITableView+NibAware.swift */; };
+		946D9BC11F8989D10058173B /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946D9BC01F8989D10058173B /* NetworkExtension.framework */; };
+		94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94875B8D1F5D4C0400588B03 /* AppDelegate.swift */; };
+		94875B901F5D4C0400588B03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94875B8F1F5D4C0400588B03 /* ViewController.swift */; };
+		94875B931F5D4C0400588B03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94875B911F5D4C0400588B03 /* Main.storyboard */; };
+		94875B951F5D4C0400588B03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94875B941F5D4C0400588B03 /* Assets.xcassets */; };
+		94875B981F5D4C0400588B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */; };
+		94E6A6781F891B75009E3C8F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E6A6771F891B75009E3C8F /* ViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
+		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
+		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9442A7551F8995670045B2D1 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		9442A7591F8A316F0045B2D1 /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
+		946D9BBD1F891C880058173B /* UITableView+NibAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+NibAware.swift"; sourceTree = "<group>"; };
+		946D9BBF1F8989D10058173B /* wifilamp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wifilamp.entitlements; sourceTree = "<group>"; };
+		946D9BC01F8989D10058173B /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		94875B8A1F5D4C0400588B03 /* wifilamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wifilamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94875B8D1F5D4C0400588B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		94875B8F1F5D4C0400588B03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94875B921F5D4C0400588B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		94875B941F5D4C0400588B03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94875B971F5D4C0400588B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		94875B991F5D4C0400588B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94E6A6771F891B75009E3C8F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94875B871F5D4C0400588B03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */,
+				946D9BC11F8989D10058173B /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9442A75B1F8A31960045B2D1 /* DeviceSelect */ = {
+			isa = PBXGroup;
+			children = (
+				9442A7591F8A316F0045B2D1 /* Interface.swift */,
+				94875B8F1F5D4C0400588B03 /* ViewController.swift */,
+				94E6A6771F891B75009E3C8F /* ViewModel.swift */,
+				9442A7551F8995670045B2D1 /* Cells.swift */,
+			);
+			path = DeviceSelect;
+			sourceTree = "<group>";
+		};
+		9442A75C1F8A51FF0045B2D1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				946D9BBD1F891C880058173B /* UITableView+NibAware.swift */,
+				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9442A75D1F8A59520045B2D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9442A75C1F8A51FF0045B2D1 /* Utils */,
+				9442A75B1F8A31960045B2D1 /* DeviceSelect */,
+				94875B911F5D4C0400588B03 /* Main.storyboard */,
+				94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9442A75E1F8A59AC0045B2D1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				94875B941F5D4C0400588B03 /* Assets.xcassets */,
+				94875B991F5D4C0400588B03 /* Info.plist */,
+				946D9BBF1F8989D10058173B /* wifilamp.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		94875B811F5D4C0400588B03 = {
+			isa = PBXGroup;
+			children = (
+				94875B8C1F5D4C0400588B03 /* wifilamp */,
+				94875B8B1F5D4C0400588B03 /* Products */,
+				ADF3D6944D766B1167141139 /* Pods */,
+				DA418D47B7CDF13A93D83562 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		94875B8B1F5D4C0400588B03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94875B8A1F5D4C0400588B03 /* wifilamp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94875B8C1F5D4C0400588B03 /* wifilamp */ = {
+			isa = PBXGroup;
+			children = (
+				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
+				9442A75D1F8A59520045B2D1 /* Views */,
+				9442A75E1F8A59AC0045B2D1 /* Resources */,
+			);
+			path = wifilamp;
+			sourceTree = "<group>";
+		};
+		ADF3D6944D766B1167141139 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */,
+				31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DA418D47B7CDF13A93D83562 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				946D9BC01F8989D10058173B /* NetworkExtension.framework */,
+				68F120E6042B35049D0129BA /* Pods_wifilamp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94875B891F5D4C0400588B03 /* wifilamp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94875B9C1F5D4C0400588B03 /* Build configuration list for PBXNativeTarget "wifilamp" */;
+			buildPhases = (
+				C7402FE544E61C860E2CC7A5 /* [CP] Check Pods Manifest.lock */,
+				94875B861F5D4C0400588B03 /* Sources */,
+				94875B871F5D4C0400588B03 /* Frameworks */,
+				94875B881F5D4C0400588B03 /* Resources */,
+				69479FC13B75BBD595102129 /* [CP] Embed Pods Frameworks */,
+				072B21047779185A524654CB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wifilamp;
+			productName = wifilamp;
+			productReference = 94875B8A1F5D4C0400588B03 /* wifilamp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94875B821F5D4C0400588B03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "The Cave";
+				TargetAttributes = {
+					94875B891F5D4C0400588B03 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 9W7F66BR5D;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HotspotConfiguration = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 94875B851F5D4C0400588B03 /* Build configuration list for PBXProject "wifilamp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 94875B811F5D4C0400588B03;
+			productRefGroup = 94875B8B1F5D4C0400588B03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94875B891F5D4C0400588B03 /* wifilamp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94875B881F5D4C0400588B03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94875B981F5D4C0400588B03 /* LaunchScreen.storyboard in Resources */,
+				94875B951F5D4C0400588B03 /* Assets.xcassets in Resources */,
+				94875B931F5D4C0400588B03 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		072B21047779185A524654CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69479FC13B75BBD595102129 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ChromaColorPicker/ChromaColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChromaColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7402FE544E61C860E2CC7A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-wifilamp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94875B861F5D4C0400588B03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
+				94875B901F5D4C0400588B03 /* ViewController.swift in Sources */,
+				9442A7561F8995670045B2D1 /* Cells.swift in Sources */,
+				9442A75A1F8A316F0045B2D1 /* Interface.swift in Sources */,
+				94E6A6781F891B75009E3C8F /* ViewModel.swift in Sources */,
+				946D9BBE1F891C880058173B /* UITableView+NibAware.swift in Sources */,
+				94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		94875B911F5D4C0400588B03 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94875B921F5D4C0400588B03 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94875B971F5D4C0400588B03 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94875B9A1F5D4C0400588B03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		94875B9B1F5D4C0400588B03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		94875B9D1F5D4C0400588B03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
+				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		94875B9E1F5D4C0400588B03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
+				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94875B851F5D4C0400588B03 /* Build configuration list for PBXProject "wifilamp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94875B9A1F5D4C0400588B03 /* Debug */,
+				94875B9B1F5D4C0400588B03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94875B9C1F5D4C0400588B03 /* Build configuration list for PBXNativeTarget "wifilamp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94875B9D1F5D4C0400588B03 /* Debug */,
+				94875B9E1F5D4C0400588B03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94875B821F5D4C0400588B03 /* Project object */;
+}
