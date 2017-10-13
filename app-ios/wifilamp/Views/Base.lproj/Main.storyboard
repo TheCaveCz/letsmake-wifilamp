@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SCq-qI-l6t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,34 +18,35 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DeviceSelectVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-0b-NEm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-0b-NEm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectCell" rowHeight="60" id="cSY-k9-oRV" customClass="DeviceSelectCell" customModule="wifilamp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectCell" rowHeight="61" id="cSY-k9-oRV" customClass="DeviceSelectCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cSY-k9-oRV" id="bkI-cQ-ctZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="csV-00-FhD">
-                                                    <rect key="frame" x="8" y="8" width="43.5" height="43.5"/>
+                                                    <rect key="frame" x="8" y="8" width="44.5" height="44.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="44.5" id="RBM-Ls-8VK"/>
                                                         <constraint firstAttribute="width" secondItem="csV-00-FhD" secondAttribute="height" id="Xkp-7M-bAK"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lamp name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLZ-XT-Jfj">
-                                                    <rect key="frame" x="59.5" y="8" width="93" height="20.5"/>
+                                                    <rect key="frame" x="60.5" y="8" width="93" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="lamp id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGJ-nx-kDm">
-                                                    <rect key="frame" x="59" y="30.5" width="44.5" height="21"/>
+                                                    <rect key="frame" x="60" y="30.5" width="44.5" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -73,7 +74,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectNearbyEmptyCell" rowHeight="80" id="YNG-eP-3Es" customClass="DeviceSelectNearbyEmptyCell" customModule="wifilamp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="89" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YNG-eP-3Es" id="ost-oc-m76">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
@@ -89,6 +90,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RPd-cC-7DJ" secondAttribute="bottom" id="7FY-87-SCL"/>
                                                 <constraint firstItem="RPd-cC-7DJ" firstAttribute="leading" secondItem="ost-oc-m76" secondAttribute="leadingMargin" id="LRF-Kj-Y29"/>
@@ -97,49 +99,16 @@
                                                 <constraint firstItem="RPd-cC-7DJ" firstAttribute="centerY" secondItem="ost-oc-m76" secondAttribute="centerY" id="xjk-j5-CAk"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectNearbyLoadingCell" rowHeight="80" id="e5B-h8-7dZ" customClass="DeviceSelectNearbyLoadingCell" customModule="wifilamp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="168" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e5B-h8-7dZ" id="RQp-rA-Uyx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hFe-Ud-Jw9">
-                                                    <rect key="frame" x="35.5" y="29" width="20" height="20"/>
-                                                </activityIndicatorView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for other nearby lamps..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHV-iD-4es">
-                                                    <rect key="frame" x="60.5" y="8" width="200" height="63.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="QVo-Th-xZz"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="hFe-Ud-Jw9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RQp-rA-Uyx" secondAttribute="leadingMargin" id="WMZ-1z-uu2"/>
-                                                <constraint firstItem="kHV-iD-4es" firstAttribute="centerY" secondItem="hFe-Ud-Jw9" secondAttribute="centerY" id="eXE-xo-XVZ"/>
-                                                <constraint firstItem="kHV-iD-4es" firstAttribute="centerX" secondItem="RQp-rA-Uyx" secondAttribute="centerX" id="gco-bA-305"/>
-                                                <constraint firstItem="kHV-iD-4es" firstAttribute="leading" secondItem="hFe-Ud-Jw9" secondAttribute="trailing" constant="5" id="hzK-1K-Xb6"/>
-                                                <constraint firstItem="kHV-iD-4es" firstAttribute="top" secondItem="RQp-rA-Uyx" secondAttribute="topMargin" id="mNn-LL-3e1"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="kHV-iD-4es" secondAttribute="trailing" id="pjU-DN-FRz"/>
-                                                <constraint firstItem="kHV-iD-4es" firstAttribute="bottom" secondItem="RQp-rA-Uyx" secondAttribute="bottomMargin" id="toX-ME-hSP"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="activityIndicator" destination="hFe-Ud-Jw9" id="IgZ-44-wRD"/>
-                                        </connections>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceSelectEmptyCell" rowHeight="80" id="cct-0l-k1M" customClass="DeviceSelectEmptyCell" customModule="wifilamp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="248" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="169" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cct-0l-k1M" id="Xhc-AH-ZOL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved lamps. Either add new lamp or select one from nearby lamps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-pw-XRO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved lamps. Add new lamp or select one from nearby lamps." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-pw-XRO">
                                                     <rect key="frame" x="8" y="8" width="304" height="63.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Eya-ZP-hS0"/>
@@ -149,6 +118,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="5Xc-pw-XRO" firstAttribute="top" secondItem="Xhc-AH-ZOL" secondAttribute="topMargin" id="E4b-e3-PvL"/>
                                                 <constraint firstItem="5Xc-pw-XRO" firstAttribute="bottom" secondItem="Xhc-AH-ZOL" secondAttribute="bottomMargin" id="L2m-QE-iw5"/>
@@ -156,6 +126,7 @@
                                                 <constraint firstItem="5Xc-pw-XRO" firstAttribute="leading" secondItem="Xhc-AH-ZOL" secondAttribute="leadingMargin" id="VXi-ML-sMt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -166,16 +137,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GfO-Cb-EmO" firstAttribute="bottom" secondItem="c1A-0b-NEm" secondAttribute="bottom" id="Vuo-Nd-Thu"/>
+                            <constraint firstAttribute="bottom" secondItem="c1A-0b-NEm" secondAttribute="bottom" id="Vuo-Nd-Thu"/>
                             <constraint firstItem="c1A-0b-NEm" firstAttribute="leading" secondItem="GfO-Cb-EmO" secondAttribute="leading" id="hgr-H4-Jsh"/>
-                            <constraint firstItem="c1A-0b-NEm" firstAttribute="top" secondItem="GfO-Cb-EmO" secondAttribute="top" id="ihe-ZC-Q6z"/>
+                            <constraint firstItem="c1A-0b-NEm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ihe-ZC-Q6z"/>
                             <constraint firstItem="GfO-Cb-EmO" firstAttribute="trailing" secondItem="c1A-0b-NEm" secondAttribute="trailing" id="xoy-3u-O8e"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GfO-Cb-EmO"/>
                     </view>
                     <navigationItem key="navigationItem" title="WiFi Lamp" id="e7U-GI-CTC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="47Y-oO-ge1"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="u8L-sX-MqB"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="47Y-oO-ge1">
+                            <connections>
+                                <action selector="addDeviceTap:" destination="BYZ-38-t0r" id="ahB-nv-REa"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="backgroundView" destination="ylU-uf-0cf" id="oHh-Rf-vvm"/>
                         <outlet property="tableView" destination="c1A-0b-NEm" id="FHJ-dw-kEj"/>
@@ -204,26 +181,92 @@
             </objects>
             <point key="canvasLocation" x="577.5" y="84.507042253521121"/>
         </scene>
-        <!--Custom Navigation Controller-->
-        <scene sceneID="gY1-AI-Ir5">
+        <!--Title-->
+        <scene sceneID="ARJ-xw-JmN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SCq-qI-l6t" customClass="CustomNavigationController" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kcM-qD-I8v">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController storyboardIdentifier="DeviceDetailVC" id="O93-Iy-eWe" customClass="DeviceDetailVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UZn-z2-g2A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nST-xi-z8h" customClass="SwiftHSVColorPicker" customModule="wifilamp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="320"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nST-xi-z8h" secondAttribute="height" id="2t7-zF-GLU"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BrC-4W-I59">
+                                <rect key="frame" x="0.0" y="404" width="320" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="WRt-Yp-m8j"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="17" minY="0.0" maxX="17" maxY="0.0"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="qwv-Wz-LjQ">
+                                    <size key="itemSize" width="56" height="56"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="8"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceDetailColorCell" id="gZ1-fl-7wu" customClass="DeviceDetailColorCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="56" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1w-dR-DQ9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                                    <color key="backgroundColor" red="0.99215686270000003" green="0.1176470588" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="z1w-dR-DQ9" secondAttribute="trailing" id="5To-aN-kcX"/>
+                                            <constraint firstItem="z1w-dR-DQ9" firstAttribute="leading" secondItem="gZ1-fl-7wu" secondAttribute="leading" id="QYf-bw-Ifh"/>
+                                            <constraint firstAttribute="bottom" secondItem="z1w-dR-DQ9" secondAttribute="bottom" id="ZCd-oD-cYA"/>
+                                            <constraint firstItem="z1w-dR-DQ9" firstAttribute="top" secondItem="gZ1-fl-7wu" secondAttribute="top" id="eXV-ix-l7U"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="colorView" destination="z1w-dR-DQ9" id="cMc-lZ-CV8"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="O93-Iy-eWe" id="Y5J-aF-fD1"/>
+                                    <outlet property="delegate" destination="O93-Iy-eWe" id="wTZ-k9-8xx"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nST-xi-z8h" firstAttribute="top" secondItem="hE4-R7-H3s" secondAttribute="top" id="1hv-fw-CYG"/>
+                            <constraint firstItem="nST-xi-z8h" firstAttribute="leading" secondItem="hE4-R7-H3s" secondAttribute="leading" id="6QH-tn-Q1m"/>
+                            <constraint firstItem="hE4-R7-H3s" firstAttribute="trailing" secondItem="nST-xi-z8h" secondAttribute="trailing" id="fPB-E9-7of"/>
+                            <constraint firstAttribute="trailing" secondItem="BrC-4W-I59" secondAttribute="trailing" id="ial-5t-Qju"/>
+                            <constraint firstItem="BrC-4W-I59" firstAttribute="top" secondItem="nST-xi-z8h" secondAttribute="bottom" constant="20" id="kH0-h0-3KJ"/>
+                            <constraint firstItem="BrC-4W-I59" firstAttribute="leading" secondItem="UZn-z2-g2A" secondAttribute="leading" id="qvZ-Ff-HEH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hE4-R7-H3s"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="80l-vk-fPa">
+                        <barButtonItem key="rightBarButtonItem" image="gear" id="wPM-Su-z9r"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HS9-vR-MLy"/>
+                        <outlet property="collectionView" destination="BrC-4W-I59" id="fQy-GD-eAh"/>
+                        <outlet property="colorPicker" destination="nST-xi-z8h" id="Let-9Z-fYM"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RSS-wn-oMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NvQ-hc-eXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-270" y="84.507042253521121"/>
+            <point key="canvasLocation" x="1389.375" y="77.112676056338032"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gear" width="28" height="28"/>
         <image name="logo" width="909" height="669"/>
     </resources>
     <color key="tintColor" red="0.50196078431372548" green="0.80000000000000004" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>

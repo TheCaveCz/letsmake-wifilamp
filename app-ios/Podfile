@@ -5,5 +5,5 @@ use_frameworks!
 target 'wifilamp' do
 	pod 'Alamofire'
 	pod 'QRCodeReader.swift'
-    pod 'ChromaColorPicker'
+    pod 'R.swift'
 end

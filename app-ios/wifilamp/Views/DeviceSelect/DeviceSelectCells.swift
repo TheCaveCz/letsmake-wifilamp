@@ -9,7 +9,7 @@
 import UIKit
 
 
-class DeviceSelectCell: UITableViewCell, NibAware, DataLoadable {
+class DeviceSelectCell: UITableViewCell, DataLoadable {
     @IBOutlet weak var stateImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
@@ -22,17 +22,11 @@ class DeviceSelectCell: UITableViewCell, NibAware, DataLoadable {
 }
 
 
-class DeviceSelectEmptyCell: UITableViewCell, NibAware {
+class DeviceSelectEmptyCell: UITableViewCell {
     
 }
 
 
-class DeviceSelectNearbyEmptyCell: UITableViewCell, NibAware {
-    
-}
-
-
-class DeviceSelectNearbyLoadingCell: UITableViewCell, NibAware {
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+class DeviceSelectNearbyEmptyCell: UITableViewCell {
     
 }

@@ -1,18 +1,21 @@
 PODS:
   - Alamofire (4.5.1)
-  - ChromaColorPicker (1.5.1)
   - QRCodeReader.swift (8.0.3)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
-  - ChromaColorPicker
   - QRCodeReader.swift
+  - R.swift
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  ChromaColorPicker: cc7fc1d92569a8a9198fe89d9a420147e508462c
   QRCodeReader.swift: 7c98a05c2544a7c8737853845428b4460273d50d
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
 
-PODFILE CHECKSUM: 5e05a4192c4d1b8face119eff24124449fc87e93
+PODFILE CHECKSUM: 9f4b1b3c63db5ea8ef699f420145ebb4d0470861
 
 COCOAPODS: 1.3.1

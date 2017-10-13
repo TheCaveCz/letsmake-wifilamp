@@ -8,37 +8,61 @@
 
 /* Begin PBXBuildFile section */
 		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
-		9442A7561F8995670045B2D1 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7551F8995670045B2D1 /* Cells.swift */; };
+		9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */; };
+		9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */; };
+		9419AF001F8FB56D0021AF14 /* DeviceDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFF1F8FB56D0021AF14 /* DeviceDetailVM.swift */; };
+		9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF011F8FBBB80021AF14 /* DeviceDetailColorCell.swift */; };
+		9419AF0B1F9007A20021AF14 /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF061F9007A20021AF14 /* BrightnessView.swift */; };
+		9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF081F9007A20021AF14 /* ColorWheel.swift */; };
+		9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF0A1F9007A20021AF14 /* SwiftHSVColorPicker.swift */; };
+		942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C71F8E31890055A7E2 /* MainFlow.swift */; };
+		942463CA1F8E4C4E0055A7E2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C91F8E4C4E0055A7E2 /* Device.swift */; };
+		942463CC1F8E5BFE0055A7E2 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463CB1F8E5BFE0055A7E2 /* Context.swift */; };
+		942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */; };
+		9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */; };
 		9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */; };
-		9442A75A1F8A316F0045B2D1 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7591F8A316F0045B2D1 /* Interface.swift */; };
-		946D9BBE1F891C880058173B /* UITableView+NibAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D9BBD1F891C880058173B /* UITableView+NibAware.swift */; };
+		9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B01F8CF6FC00235002 /* Browser.swift */; };
+		9468C9B31F8CF75500235002 /* Array+RemoveEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */; };
+		946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */; };
 		946D9BC11F8989D10058173B /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946D9BC01F8989D10058173B /* NetworkExtension.framework */; };
 		94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94875B8D1F5D4C0400588B03 /* AppDelegate.swift */; };
-		94875B901F5D4C0400588B03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94875B8F1F5D4C0400588B03 /* ViewController.swift */; };
+		94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94875B8F1F5D4C0400588B03 /* DeviceSelectVC.swift */; };
 		94875B931F5D4C0400588B03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94875B911F5D4C0400588B03 /* Main.storyboard */; };
 		94875B951F5D4C0400588B03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94875B941F5D4C0400588B03 /* Assets.xcassets */; };
 		94875B981F5D4C0400588B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */; };
-		94E6A6781F891B75009E3C8F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E6A6771F891B75009E3C8F /* ViewModel.swift */; };
+		94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9442A7551F8995670045B2D1 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailVC.swift; sourceTree = "<group>"; };
+		9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		9419AEFF1F8FB56D0021AF14 /* DeviceDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailVM.swift; sourceTree = "<group>"; };
+		9419AF011F8FBBB80021AF14 /* DeviceDetailColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailColorCell.swift; sourceTree = "<group>"; };
+		9419AF061F9007A20021AF14 /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
+		9419AF081F9007A20021AF14 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
+		9419AF0A1F9007A20021AF14 /* SwiftHSVColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHSVColorPicker.swift; sourceTree = "<group>"; };
+		942463C71F8E31890055A7E2 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		942463C91F8E4C4E0055A7E2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		942463CB1F8E5BFE0055A7E2 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlow.swift; sourceTree = "<group>"; };
+		9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectCells.swift; sourceTree = "<group>"; };
 		9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
-		9442A7591F8A316F0045B2D1 /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
-		946D9BBD1F891C880058173B /* UITableView+NibAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+NibAware.swift"; sourceTree = "<group>"; };
+		9468C9B01F8CF6FC00235002 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+RemoveEquatable.swift"; sourceTree = "<group>"; };
+		946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DataLoadable.swift"; sourceTree = "<group>"; };
 		946D9BBF1F8989D10058173B /* wifilamp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wifilamp.entitlements; sourceTree = "<group>"; };
 		946D9BC01F8989D10058173B /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		94875B8A1F5D4C0400588B03 /* wifilamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wifilamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94875B8D1F5D4C0400588B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94875B8F1F5D4C0400588B03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94875B8F1F5D4C0400588B03 /* DeviceSelectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectVC.swift; sourceTree = "<group>"; };
 		94875B921F5D4C0400588B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94875B941F5D4C0400588B03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94875B971F5D4C0400588B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94875B991F5D4C0400588B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94E6A6771F891B75009E3C8F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,13 +78,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9419AEF91F8FACCA0021AF14 /* DeviceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */,
+				9419AEFF1F8FB56D0021AF14 /* DeviceDetailVM.swift */,
+				9419AF011F8FBBB80021AF14 /* DeviceDetailColorCell.swift */,
+			);
+			path = DeviceDetail;
+			sourceTree = "<group>";
+		};
+		9419AF051F9007A20021AF14 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				9419AF061F9007A20021AF14 /* BrightnessView.swift */,
+				9419AF081F9007A20021AF14 /* ColorWheel.swift */,
+				9419AF0A1F9007A20021AF14 /* SwiftHSVColorPicker.swift */,
+			);
+			path = ColorPicker;
+			sourceTree = "<group>";
+		};
 		9442A75B1F8A31960045B2D1 /* DeviceSelect */ = {
 			isa = PBXGroup;
 			children = (
-				9442A7591F8A316F0045B2D1 /* Interface.swift */,
-				94875B8F1F5D4C0400588B03 /* ViewController.swift */,
-				94E6A6771F891B75009E3C8F /* ViewModel.swift */,
-				9442A7551F8995670045B2D1 /* Cells.swift */,
+				94875B8F1F5D4C0400588B03 /* DeviceSelectVC.swift */,
+				94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */,
+				9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */,
 			);
 			path = DeviceSelect;
 			sourceTree = "<group>";
@@ -68,8 +111,9 @@
 		9442A75C1F8A51FF0045B2D1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				946D9BBD1F891C880058173B /* UITableView+NibAware.swift */,
+				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
 				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
+				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -77,10 +121,10 @@
 		9442A75D1F8A59520045B2D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9442A75C1F8A51FF0045B2D1 /* Utils */,
-				9442A75B1F8A31960045B2D1 /* DeviceSelect */,
+				9419AF051F9007A20021AF14 /* ColorPicker */,
 				94875B911F5D4C0400588B03 /* Main.storyboard */,
-				94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */,
+				9419AEF91F8FACCA0021AF14 /* DeviceDetail */,
+				9442A75B1F8A31960045B2D1 /* DeviceSelect */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -88,6 +132,7 @@
 		9442A75E1F8A59AC0045B2D1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */,
 				94875B941F5D4C0400588B03 /* Assets.xcassets */,
 				94875B991F5D4C0400588B03 /* Info.plist */,
 				946D9BBF1F8989D10058173B /* wifilamp.entitlements */,
@@ -116,7 +161,14 @@
 		94875B8C1F5D4C0400588B03 /* wifilamp */ = {
 			isa = PBXGroup;
 			children = (
+				9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */,
 				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
+				9468C9B01F8CF6FC00235002 /* Browser.swift */,
+				942463CB1F8E5BFE0055A7E2 /* Context.swift */,
+				942463C71F8E31890055A7E2 /* MainFlow.swift */,
+				942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */,
+				942463C91F8E4C4E0055A7E2 /* Device.swift */,
+				9442A75C1F8A51FF0045B2D1 /* Utils */,
 				9442A75D1F8A59520045B2D1 /* Views */,
 				9442A75E1F8A59AC0045B2D1 /* Resources */,
 			);
@@ -149,6 +201,7 @@
 			buildConfigurationList = 94875B9C1F5D4C0400588B03 /* Build configuration list for PBXNativeTarget "wifilamp" */;
 			buildPhases = (
 				C7402FE544E61C860E2CC7A5 /* [CP] Check Pods Manifest.lock */,
+				9419AEFC1F8FAE370021AF14 /* R.swift */,
 				94875B861F5D4C0400588B03 /* Sources */,
 				94875B871F5D4C0400588B03 /* Frameworks */,
 				94875B881F5D4C0400588B03 /* Resources */,
@@ -242,18 +295,33 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ChromaColorPicker/ChromaColorPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChromaColorPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9419AEFC1F8FAE370021AF14 /* R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = R.swift;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 			showEnvVarsInLog = 0;
 		};
 		C7402FE544E61C860E2CC7A5 /* [CP] Check Pods Manifest.lock */ = {
@@ -281,13 +349,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9419AF001F8FB56D0021AF14 /* DeviceDetailVM.swift in Sources */,
+				9468C9B31F8CF75500235002 /* Array+RemoveEquatable.swift in Sources */,
+				9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */,
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
-				94875B901F5D4C0400588B03 /* ViewController.swift in Sources */,
-				9442A7561F8995670045B2D1 /* Cells.swift in Sources */,
-				9442A75A1F8A316F0045B2D1 /* Interface.swift in Sources */,
-				94E6A6781F891B75009E3C8F /* ViewModel.swift in Sources */,
-				946D9BBE1F891C880058173B /* UITableView+NibAware.swift in Sources */,
+				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
+				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
+				942463CC1F8E5BFE0055A7E2 /* Context.swift in Sources */,
+				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
+				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
+				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,
+				9419AF0B1F9007A20021AF14 /* BrightnessView.swift in Sources */,
+				9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */,
+				942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */,
+				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
+				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
+				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
+				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,
 				94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */,
+				942463CA1F8E4C4E0055A7E2 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

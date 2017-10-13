@@ -13,3 +13,4 @@ xcuserdata/
 firmware/**/*.hex
 
 app-ios/Pods
+app-ios/R.generated.swift
