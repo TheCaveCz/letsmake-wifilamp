@@ -181,7 +181,7 @@
             </objects>
             <point key="canvasLocation" x="577.5" y="84.507042253521121"/>
         </scene>
-        <!--Title-->
+        <!--Delegate-->
         <scene sceneID="ARJ-xw-JmN">
             <objects>
                 <viewController storyboardIdentifier="DeviceDetailVC" id="O93-Iy-eWe" customClass="DeviceDetailVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,16 +190,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nST-xi-z8h" customClass="SwiftHSVColorPicker" customModule="wifilamp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="320"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="nST-xi-z8h" secondAttribute="height" id="2t7-zF-GLU"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="O93-Iy-eWe" id="yn5-bM-fVR"/>
+                                </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BrC-4W-I59">
-                                <rect key="frame" x="0.0" y="404" width="320" height="164"/>
+                                <rect key="frame" x="0.0" y="435" width="320" height="133"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qwv-Wz-LjQ">
                                     <size key="itemSize" width="56" height="56"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -236,16 +238,30 @@
                                     <outlet property="delegate" destination="O93-Iy-eWe" id="wTZ-k9-8xx"/>
                                 </connections>
                             </collectionView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dPy-uM-Kdk">
+                                <rect key="frame" x="251" y="74" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Zapnuto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe0-bs-s5b">
+                                <rect key="frame" x="20" y="79" width="64.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dPy-uM-Kdk" firstAttribute="centerY" secondItem="fe0-bs-s5b" secondAttribute="centerY" id="0YZ-wX-OaN"/>
                             <constraint firstAttribute="bottom" secondItem="BrC-4W-I59" secondAttribute="bottom" id="1Hv-AW-EG5"/>
-                            <constraint firstItem="nST-xi-z8h" firstAttribute="top" secondItem="hE4-R7-H3s" secondAttribute="top" id="1hv-fw-CYG"/>
+                            <constraint firstItem="fe0-bs-s5b" firstAttribute="leading" secondItem="hE4-R7-H3s" secondAttribute="leading" constant="20" id="3gS-lh-yAt"/>
                             <constraint firstItem="nST-xi-z8h" firstAttribute="leading" secondItem="hE4-R7-H3s" secondAttribute="leading" id="6QH-tn-Q1m"/>
+                            <constraint firstItem="dPy-uM-Kdk" firstAttribute="top" secondItem="hE4-R7-H3s" secondAttribute="top" constant="10" id="HTK-Vg-cPQ"/>
+                            <constraint firstItem="dPy-uM-Kdk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fe0-bs-s5b" secondAttribute="trailing" constant="10" id="Lu3-sz-13Y"/>
                             <constraint firstItem="hE4-R7-H3s" firstAttribute="trailing" secondItem="nST-xi-z8h" secondAttribute="trailing" id="fPB-E9-7of"/>
-                            <constraint firstAttribute="trailing" secondItem="BrC-4W-I59" secondAttribute="trailing" id="ial-5t-Qju"/>
-                            <constraint firstItem="BrC-4W-I59" firstAttribute="top" secondItem="nST-xi-z8h" secondAttribute="bottom" constant="20" id="kH0-h0-3KJ"/>
-                            <constraint firstItem="BrC-4W-I59" firstAttribute="leading" secondItem="UZn-z2-g2A" secondAttribute="leading" id="qvZ-Ff-HEH"/>
+                            <constraint firstItem="BrC-4W-I59" firstAttribute="leading" secondItem="hE4-R7-H3s" secondAttribute="leading" id="jqs-AT-DBc"/>
+                            <constraint firstItem="BrC-4W-I59" firstAttribute="top" secondItem="nST-xi-z8h" secondAttribute="bottom" constant="10" id="kH0-h0-3KJ"/>
+                            <constraint firstItem="nST-xi-z8h" firstAttribute="top" secondItem="dPy-uM-Kdk" secondAttribute="bottom" id="tA3-MD-TnH"/>
+                            <constraint firstItem="BrC-4W-I59" firstAttribute="trailing" secondItem="hE4-R7-H3s" secondAttribute="trailing" id="ud7-P1-ogw"/>
+                            <constraint firstItem="hE4-R7-H3s" firstAttribute="trailing" secondItem="dPy-uM-Kdk" secondAttribute="trailing" constant="20" id="xTl-tn-jxU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hE4-R7-H3s"/>
                     </view>

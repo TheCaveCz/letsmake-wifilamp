@@ -121,8 +121,8 @@
 		9442A75D1F8A59520045B2D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9419AF051F9007A20021AF14 /* ColorPicker */,
 				94875B911F5D4C0400588B03 /* Main.storyboard */,
+				9419AF051F9007A20021AF14 /* ColorPicker */,
 				9419AEF91F8FACCA0021AF14 /* DeviceDetail */,
 				9442A75B1F8A31960045B2D1 /* DeviceSelect */,
 			);

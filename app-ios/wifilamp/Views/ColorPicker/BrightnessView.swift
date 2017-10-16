@@ -67,7 +67,7 @@ class BrightnessView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        colorLayer.frame = self.bounds.insetBy(dx: 10, dy: 2)
+        colorLayer.frame = self.bounds.insetBy(dx: 20, dy: 2)
         indicator.bounds = CGRect(x: 0, y: 0, width: 6, height: bounds.height)
         indicator.path = UIBezierPath(roundedRect: indicator.bounds, cornerRadius: indicator.bounds.width / 2).cgPath
         drawIndicator()

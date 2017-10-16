@@ -23,9 +23,6 @@ class DeviceDetailVC: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = viewModel.title
-        
-        //colorPicker.setViewColor(.red)
-        colorPicker.delegate = self
     }
 }
 

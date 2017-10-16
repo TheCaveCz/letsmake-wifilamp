@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SwiftHSVColorPickerDelegate: class {
+@objc protocol SwiftHSVColorPickerDelegate: class {
     func colorPicker(_ picker: SwiftHSVColorPicker, didChangeColor color: UIColor)
 }
 
@@ -16,7 +16,7 @@ class SwiftHSVColorPicker: UIView, ColorWheelDelegate, BrightnessViewDelegate {
     private var colorWheel: ColorWheel!
     private var brightnessView: BrightnessView!
 
-    weak var delegate: SwiftHSVColorPickerDelegate?
+    @IBOutlet weak var delegate: SwiftHSVColorPickerDelegate?
     
     var color: UIColor {
         get {

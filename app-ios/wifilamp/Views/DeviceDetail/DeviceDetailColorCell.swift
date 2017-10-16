@@ -12,17 +12,9 @@ import UIKit
 class DeviceDetailColorCell: UICollectionViewCell, DataLoadable {
     @IBOutlet weak private var colorView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        
-        
-    }
-    
     func loadData(data: UIColor) {
         colorView.backgroundColor = data
-        colorView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
-        //data.darkerColor(0.075).cgColor
+        colorView.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     override func layoutSubviews() {

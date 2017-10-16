@@ -18,8 +18,8 @@ class DeviceDetailVM {
     
     let colors: [UIColor] = [
         UIColor(red: 1,        green: 0x69/255, blue: 0,        alpha: 1),
-        UIColor(red: 0xff/255, green: 189/255, blue: 0,        alpha: 1),
-        UIColor(red: 142/255, green: 255/255, blue: 210/255, alpha: 1),
+        UIColor(red: 0xff/255, green: 189/255,  blue: 0,        alpha: 1),
+        UIColor(red: 142/255,  green: 255/255,  blue: 210/255,  alpha: 1),
         UIColor(red: 0,        green: 0xd0/255, blue: 0x84/255, alpha: 1),
         UIColor(red: 0x8e/255, green: 0xd1/255, blue: 0xfc/255, alpha: 1),
         UIColor(red: 0x06/255, green: 0x93/255, blue: 0xe3/255, alpha: 1),

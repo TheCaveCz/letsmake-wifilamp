@@ -32,7 +32,7 @@ class ColorWheel: UIView {
     }
     
     let indicatorLayer: CAShapeLayer
-    var indicatorCircleRadius: CGFloat = 12 {
+    var indicatorCircleRadius: CGFloat = 24 {
         didSet {
             updateIndicatorRadius()
         }
@@ -74,7 +74,7 @@ class ColorWheel: UIView {
     }
     
     private func updateIndicatorRadius() {
-        indicatorLayer.bounds = CGRect(x: 0, y:0, width:indicatorCircleRadius*scale, height:indicatorCircleRadius*scale)
+        indicatorLayer.bounds = CGRect(x: 0, y:0, width:indicatorCircleRadius, height:indicatorCircleRadius)
         indicatorLayer.path = UIBezierPath(ovalIn: indicatorLayer.bounds).cgPath
     }
     
@@ -87,7 +87,7 @@ class ColorWheel: UIView {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        indicatorCircleRadius = 18.0
+        indicatorCircleRadius = 36
         touchHandler(touches)
     }
 
@@ -96,7 +96,7 @@ class ColorWheel: UIView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        indicatorCircleRadius = 12.0
+        indicatorCircleRadius = 24
         touchHandler(touches)
     }
 
