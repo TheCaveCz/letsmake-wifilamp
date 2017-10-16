@@ -3,30 +3,17 @@
 //  SwiftHSVColorPicker
 //
 //  Created by johankasperi on 2015-08-20.
+//  Modified by dzindra on 2017-10-15.
 //
 
 import UIKit
-import QuartzCore
+
 
 protocol ColorWheelDelegate: class {
     func hueAndSaturationSelected(_ hue: CGFloat, saturation: CGFloat)
 }
 
 class ColorWheel: UIView {
-    var color: UIColor {
-        get {
-            return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
-        }
-        set(value) {
-            var hue: CGFloat = 0.0, saturation: CGFloat = 0.0, brightness: CGFloat = 0.0
-            value.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
-            
-            self.hue = hue
-            self.saturation = saturation
-            self.brightness = brightness
-        }
-    }
-    
     var brightness: CGFloat = 1.0 {
         didSet {
             brightnessLayer.fillColor = UIColor(white: 0, alpha: 1.0 - brightness).cgColor
@@ -153,6 +140,7 @@ class ColorWheel: UIView {
         let point = pointAt(hue: hue, saturation: saturation)
         indicatorLayer.position = CGPoint(x: point.x + wheelImage.frame.origin.x, y: point.y + wheelImage.frame.origin.y)
         
+        let color = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
         indicatorLayer.fillColor = color.cgColor
     }
 

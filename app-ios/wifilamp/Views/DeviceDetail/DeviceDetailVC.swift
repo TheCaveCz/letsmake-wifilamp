@@ -25,6 +25,7 @@ class DeviceDetailVC: UIViewController {
         navigationItem.title = viewModel.title
         
         //colorPicker.setViewColor(.red)
+        colorPicker.delegate = self
     }
 }
 
@@ -45,4 +46,16 @@ extension DeviceDetailVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         colorPicker.color = viewModel.colors[indexPath.row]
     }
+}
+
+extension DeviceDetailVC: SwiftHSVColorPickerDelegate {
+    func colorPicker(_ picker: SwiftHSVColorPicker, didChangeColor color: UIColor) {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: nil)
+        print("\(Int(r*255)) \(Int(g*255)) \(Int(b*255))")
+    }
+    
+    
 }

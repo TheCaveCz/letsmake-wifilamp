@@ -3,6 +3,7 @@
 //  SwiftHSVColorPicker
 //
 //  Created by johankasperi on 2015-08-20.
+//  Modified by dzindra on 2017-10-15.
 //
 
 import UIKit
@@ -12,56 +13,71 @@ protocol BrightnessViewDelegate: class {
 }
 
 class BrightnessView: UIView {
-  
+    var hue: CGFloat = 0 {
+        didSet {
+            updateGradient()
+        }
+    }
+    var saturation: CGFloat = 0 {
+        didSet {
+            updateGradient()
+        }
+    }
+    var brightness: CGFloat = 0 {
+        didSet {
+            drawIndicator()
+        }
+    }
+    
+    var indicator: CAShapeLayer
+    
     weak var delegate: BrightnessViewDelegate?
-  
-    var colorLayer: CAGradientLayer!
     
-    var point: CGPoint!
-    var indicator = CAShapeLayer()
-    var indicatorColor: CGColor = UIColor.lightGray.cgColor
-    var indicatorBorderWidth: CGFloat = 2.0
+    private var colorLayer: CAGradientLayer
     
-    init(frame: CGRect, color: UIColor) {
+    
+    override init(frame: CGRect) {
+        colorLayer = CAGradientLayer()
+        indicator = CAShapeLayer()
+        
         super.init(frame: frame)
         
-        // Init the point at the correct position
-        point = getPointFromColor(color)
-        
-        // Clear the background
         backgroundColor = UIColor.clear
         
-        // Create a gradient layer that goes from black to white
-        // Create a gradient layer that goes from black to white
-        var hue: CGFloat = 0.0, saturation: CGFloat = 0.0, brightness: CGFloat = 0.0, alpha: CGFloat = 0.0
-        let ok: Bool = color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        if (!ok) {
-            print("SwiftHSVColorPicker: exception <The color provided to SwiftHSVColorPicker is not convertible to HSV>")
-        }
         colorLayer = CAGradientLayer()
+        colorLayer.locations = [0.0, 1.0]
+        colorLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        colorLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        colorLayer.actions = ["colors": NSNull()]
+        layer.insertSublayer(colorLayer, below: layer)
+        
+        // Add the indicator
+        //indicator.strokeColor = indicatorColor
+        indicator.fillColor = UIColor.lightGray.cgColor
+        //indicator.lineWidth = indicatorBorderWidth
+        indicator.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        indicator.actions = ["bounds": NSNull(), "position": NSNull()]
+        layer.addSublayer(indicator)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("NSCoding not implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        colorLayer.frame = self.bounds.insetBy(dx: 10, dy: 2)
+        indicator.bounds = CGRect(x: 0, y: 0, width: 6, height: bounds.height)
+        indicator.path = UIBezierPath(roundedRect: indicator.bounds, cornerRadius: indicator.bounds.width / 2).cgPath
+        drawIndicator()
+    }
+    
+    private func updateGradient() {
         colorLayer.colors = [
             UIColor.black.cgColor,
             UIColor(hue: hue, saturation: saturation, brightness: 1, alpha: 1).cgColor
         ]
-        colorLayer.locations = [0.0, 1.0]
-        colorLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        colorLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        colorLayer.frame = CGRect(x: 0, y: 2, width: self.frame.size.width, height: 24)
-        colorLayer.actions = ["colors": NSNull()]
-        // Insert the colorLayer into this views layer as a sublayer
-        self.layer.insertSublayer(colorLayer, below: layer)
-        
-        // Add the indicator
-        indicator.strokeColor = indicatorColor
-        indicator.fillColor = indicatorColor
-        indicator.lineWidth = indicatorBorderWidth
-        self.layer.addSublayer(indicator)
-        
-        drawIndicator()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,64 +88,20 @@ class BrightnessView: UIView {
         touchHandler(touches)
     }
     
-    func touchHandler(_ touches: Set<UITouch>) {
-        // Set reference to the location of the touchesMoved in member point
-        if let touch = touches.first {
-            point = touch.location(in: self)
-        }
-        
-        point.y = self.frame.height/2
-        point.x = getXCoordinate(point.x)
-        // Notify delegate of the new brightness
-        delegate?.brightnessSelected(getBrightnessFromPoint())
-        
-        drawIndicator()
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchHandler(touches)
     }
     
-    func getXCoordinate(_ coord: CGFloat) -> CGFloat {
-        // Offset the x coordinate to fit the view
-        if (coord < 1) {
-            return 1
-        }
-        if (coord > frame.size.width - 1 ) {
-            return frame.size.width - 1
-        }
-        return coord
-    }
-    
-    func drawIndicator() {
-        // Draw the indicator
-        if (point != nil) {
-            indicator.path = UIBezierPath(roundedRect: CGRect(x: point.x-3, y: 0, width: 6, height: 28), cornerRadius: 3).cgPath
-        }
-    }
-    
-    func getBrightnessFromPoint() -> CGFloat {
-        // Get the brightness value for a given point
-        return point.x/self.frame.width
-    }
-    
-    func getPointFromColor(_ color: UIColor) -> CGPoint {
-        // Update the indicator position for a given color
-        var hue: CGFloat = 0.0, saturation: CGFloat = 0.0, brightness: CGFloat = 0.0, alpha: CGFloat = 0.0
-        let ok: Bool = color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        if (!ok) {
-            print("SwiftHSVColorPicker: exception <The color provided to SwiftHSVColorPicker is not convertible to HSV>")
-        }
+    private func touchHandler(_ touches: Set<UITouch>) {
+        guard let touch = touches.first else { return }
 
-        return CGPoint(x: brightness * frame.width, y: frame.height / 2)
+        brightness = min(max(touch.location(in: self).x - colorLayer.frame.minX, 0), colorLayer.frame.width) / colorLayer.frame.width
+
+        delegate?.brightnessSelected(brightness)
     }
     
-    func setViewColor(_ color: UIColor!) {
-        // Update the Gradient Layer with a given color
-        var hue: CGFloat = 0.0, saturation: CGFloat = 0.0, brightness: CGFloat = 0.0, alpha: CGFloat = 0.0
-        let ok: Bool = color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
-        if (!ok) {
-            print("SwiftHSVColorPicker: exception <The color provided to SwiftHSVColorPicker is not convertible to HSV>")
-        }
-        colorLayer.colors = [
-            UIColor.black.cgColor,
-            UIColor(hue: hue, saturation: saturation, brightness: 1, alpha: 1).cgColor
-        ]
+    private func drawIndicator() {
+        indicator.position = CGPoint(x: colorLayer.frame.minX + colorLayer.frame.width * brightness, y: bounds.height / 2)
     }
+    
 }

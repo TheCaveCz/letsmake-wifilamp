@@ -197,17 +197,14 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BrC-4W-I59">
-                                <rect key="frame" x="0.0" y="404" width="320" height="64"/>
+                                <rect key="frame" x="0.0" y="404" width="320" height="164"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="WRt-Yp-m8j"/>
-                                </constraints>
-                                <inset key="scrollIndicatorInsets" minX="17" minY="0.0" maxX="17" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="qwv-Wz-LjQ">
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qwv-Wz-LjQ">
                                     <size key="itemSize" width="56" height="56"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="8"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeviceDetailColorCell" id="gZ1-fl-7wu" customClass="DeviceDetailColorCell" customModule="wifilamp" customModuleProvider="target">
@@ -242,6 +239,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BrC-4W-I59" secondAttribute="bottom" id="1Hv-AW-EG5"/>
                             <constraint firstItem="nST-xi-z8h" firstAttribute="top" secondItem="hE4-R7-H3s" secondAttribute="top" id="1hv-fw-CYG"/>
                             <constraint firstItem="nST-xi-z8h" firstAttribute="leading" secondItem="hE4-R7-H3s" secondAttribute="leading" id="6QH-tn-Q1m"/>
                             <constraint firstItem="hE4-R7-H3s" firstAttribute="trailing" secondItem="nST-xi-z8h" secondAttribute="trailing" id="fPB-E9-7of"/>
