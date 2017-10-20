@@ -30,7 +30,7 @@ extension BrowserRecord: DeviceConvertible {
 
 
 struct Device {
-    static let dummy = Device(baseUrl: URL(string:"http://foo")!, name: "Test", chipId: "edaded")
+    static let dummy = Device(baseUrl: URL(string: "http://foo")!, name: "Test", chipId: "edaded")
     
     let baseUrl: URL
     let name: String
@@ -38,5 +38,3 @@ struct Device {
     
     
 }
-
-

@@ -52,9 +52,7 @@ class BrightnessView: UIView {
         layer.insertSublayer(colorLayer, below: layer)
         
         // Add the indicator
-        //indicator.strokeColor = indicatorColor
         indicator.fillColor = UIColor.lightGray.cgColor
-        //indicator.lineWidth = indicatorBorderWidth
         indicator.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         indicator.actions = ["bounds": NSNull(), "position": NSNull()]
         layer.addSublayer(indicator)

@@ -6,4 +6,7 @@ target 'wifilamp' do
 	pod 'Alamofire'
 	pod 'QRCodeReader.swift'
     pod 'R.swift'
+    pod 'Swinject'
+    pod 'SwinjectStoryboard'
+    pod 'SwiftLint'
 end

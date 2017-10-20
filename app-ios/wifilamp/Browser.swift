@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BrowserDelegate {
+protocol BrowserDelegate: class {
     func browser(_ browser: Browser, foundRecord record: BrowserRecord)
     func browser(_ browser: Browser, removedRecord record: BrowserRecord)
 }
@@ -16,7 +16,7 @@ protocol BrowserDelegate {
 
 class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     let serviceType: String
-    var delegate: BrowserDelegate?
+    weak var delegate: BrowserDelegate?
     var records: [BrowserRecord] {
         return resolvedServices
     }
@@ -26,8 +26,8 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private var resolvedServices: [BrowserRecord] = []
     private var searching: Bool = false
     
-    init(serviceType t: String = "_wifilamp._tcp.") {
-        serviceType = t
+    init(serviceType type: String = "_wifilamp._tcp.") {
+        serviceType = type
         browser = NetServiceBrowser()
         
         super.init()
@@ -49,7 +49,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
         resolvedServices.removeAll()
     }
     
-    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber]) {
+    func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String: NSNumber]) {
         print("Error \(errorDict)")
         clearResults()
         searching = false
@@ -87,7 +87,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
         sender.stop()
     }
     
-    func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
+    func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
         servicesToResolve.removeFirst(element: sender)
     }
     
@@ -104,11 +104,12 @@ struct BrowserRecord {
     fileprivate let service: NetService
     
     static func from(service: NetService) -> BrowserRecord? {
-        guard let data = service.txtRecordData(), let hostName = service.hostName, let url = URL(string:"http://\(hostName)") else {
+        // swiftlint:disable:next force_https
+        guard let data = service.txtRecordData(), let hostName = service.hostName, let url = URL(string: "http://\(hostName)") else {
             return nil
         }
         
-        guard let chipIdData = NetService.dictionary(fromTXTRecord: data)["chipid"], let chipId = String(data: chipIdData, encoding:.utf8) else {
+        guard let chipIdData = NetService.dictionary(fromTXTRecord: data)["chipid"], let chipId = String(data: chipIdData, encoding: .utf8) else {
             return nil
         }
         

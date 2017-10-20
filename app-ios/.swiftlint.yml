@@ -1,0 +1,85 @@
+#
+# SwiftLint configuration file commonly used in STRV (v 0.1)
+#
+# Feel free to send pull request or suggest improvements!
+# 
+
+
+#
+# Rule identifiers to exclude from running.
+#
+disabled_rules:
+
+
+#
+# Some rules are only opt-in. Find all the available rules by running: swiftlint rules
+#
+opt_in_rules:
+- empty_count
+
+
+#
+# Paths to include during linting. `--path` is ignored if present.
+#
+included:
+
+
+#
+# Paths to ignore during linting. Takes precedence over `included`.
+#
+excluded:
+- Carthage
+- Pods
+- R.generated.swift
+
+
+#
+# Configure individual rules below.
+#
+vertical_whitespace:
+    max_empty_lines: 2
+
+force_cast: warning
+
+identifier_name:
+    excluded:
+        - id
+        - vc
+
+empty_count: warning
+
+trailing_whitespace:
+    ignores_empty_lines: true
+
+line_length:
+    ignores_function_declarations: true
+    ignores_comments: true
+    ignores_urls: true
+    error: 300
+    warning: 200
+
+
+#
+# Place custom rules here.
+#
+custom_rules:
+    comments_space: # From https://github.com/brandenr/swiftlintconfig
+        name: "Space After Comment"
+        regex: "(^ *//\\w+)"
+        message: "There should be a space after //"
+        severity: warning
+
+    force_https: # From https://github.com/Twigz/Game
+        name: "Force HTTPS over HTTP"
+        regex: "((?i)http(?!s))"
+        match_kinds: string
+        message: "HTTPS should be favored over HTTP"
+        severity: warning
+
+    double_space: # From https://github.com/IBM-Swift/Package-Builder
+        include: "*.swift"
+        name: "Double space"
+        regex: "([a-z,A-Z] \\s+)"
+        message: "Double space between keywords"
+        match_kinds: keyword
+        severity: warning

@@ -36,7 +36,9 @@ class DeviceSelectVM {
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 2", details: "some"),
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3 ekfjnsdkjfnsdkjfnsdkjfnsdkfjnsdf", details: "some"),
+        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
+        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
+        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3 ekfjnsdkjfnsdkjfnsdkjfnsdkfjnsdf", details: "some")
     ]
     
     

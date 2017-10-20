@@ -74,7 +74,7 @@ class ColorWheel: UIView {
     }
     
     private func updateIndicatorRadius() {
-        indicatorLayer.bounds = CGRect(x: 0, y:0, width:indicatorCircleRadius, height:indicatorCircleRadius)
+        indicatorLayer.bounds = CGRect(x: 0, y: 0, width: indicatorCircleRadius, height: indicatorCircleRadius)
         indicatorLayer.path = UIBezierPath(ovalIn: indicatorLayer.bounds).cgPath
     }
     
@@ -122,14 +122,14 @@ class ColorWheel: UIView {
         var outputCoord: CGPoint = coord
 
         // If the touch coordinate is outside the radius of the wheel, transform it to the edge of the wheel with polar coordinates
-        if (distance > radius) {
+        if distance > radius {
             let theta: CGFloat = atan2(dy, dx)
             outputCoord.x = radius * cos(theta) + wheelLayerCenter.x
             outputCoord.y = radius * sin(theta) + wheelLayerCenter.y
         }
 
         // If the touch coordinate is close to center, focus it to the very center at set the color to white
-        if (distance < whiteThreshold) {
+        if distance < whiteThreshold {
             outputCoord.x = wheelLayerCenter.x
             outputCoord.y = wheelLayerCenter.y
         }
@@ -155,11 +155,11 @@ class ColorWheel: UIView {
         let saturation: CGFloat = d
 
         var hue: CGFloat
-        if (d == 0) {
-            hue = 0;
+        if d == 0 {
+            hue = 0
         } else {
             hue = acos(dx / d) / CGFloat.pi / 2.0
-            if (dy < 0) {
+            if dy < 0 {
                 hue = 1.0 - hue
             }
         }
@@ -171,10 +171,9 @@ class ColorWheel: UIView {
 
         let dimension = wheelImage.frame.width
         let radius: CGFloat = saturation * dimension / 2
-        let x = dimension / 2 + radius * cos(hue * CGFloat.pi * 2);
-        let y = dimension / 2 + radius * sin(hue * CGFloat.pi * 2);
+        let x = dimension / 2 + radius * cos(hue * CGFloat.pi * 2)
+        let y = dimension / 2 + radius * sin(hue * CGFloat.pi * 2)
         return CGPoint(x: x, y: y)
     }
 
 }
-

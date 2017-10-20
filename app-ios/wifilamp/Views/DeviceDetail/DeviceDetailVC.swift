@@ -15,7 +15,7 @@ class DeviceDetailVC: UIViewController {
     
     var viewModel: DeviceDetailVM! {
         didSet {
-            //viewModel.delegate = self
+            // viewModel.delegate = self
         }
     }
     

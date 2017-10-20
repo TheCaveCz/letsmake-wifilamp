@@ -20,8 +20,7 @@ protocol DataLoadable {
 extension UITableView {
 
     func dequeueReusableCell<Identifier>(withIdentifier identifier: Identifier, for indexPath: IndexPath, data: Identifier.ReusableType.DataType) -> Identifier.ReusableType?
-        where Identifier: ReuseIdentifierType, Identifier.ReusableType: UITableViewCell, Identifier.ReusableType: DataLoadable
-    {
+        where Identifier: ReuseIdentifierType, Identifier.ReusableType: UITableViewCell, Identifier.ReusableType: DataLoadable {
         return dequeueReusableCell(withIdentifier: identifier, for: indexPath).map {
             $0.loadData(data: data)
             return $0
@@ -34,8 +33,7 @@ extension UITableView {
 extension UICollectionView {
     
     func dequeueReusableCell<Identifier>(withReuseIdentifier identifier: Identifier, for indexPath: IndexPath, data: Identifier.ReusableType.DataType) -> Identifier.ReusableType?
-        where Identifier: ReuseIdentifierType, Identifier.ReusableType: UICollectionViewCell, Identifier.ReusableType: DataLoadable
-    {
+        where Identifier: ReuseIdentifierType, Identifier.ReusableType: UICollectionViewCell, Identifier.ReusableType: DataLoadable {
         return dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath).map {
             $0.loadData(data: data)
             return $0

@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
 
         
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.backgroundColor = .white
         window.rootViewController = mainFlow.createRootVC()
@@ -47,5 +46,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
-
