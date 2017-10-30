@@ -17,7 +17,6 @@
 		9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AF0A1F9007A20021AF14 /* SwiftHSVColorPicker.swift */; };
 		942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C71F8E31890055A7E2 /* MainFlow.swift */; };
 		942463CA1F8E4C4E0055A7E2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C91F8E4C4E0055A7E2 /* Device.swift */; };
-		942463CC1F8E5BFE0055A7E2 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463CB1F8E5BFE0055A7E2 /* Context.swift */; };
 		942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */; };
 		9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */; };
 		9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */; };
@@ -46,7 +45,6 @@
 		9419AF0A1F9007A20021AF14 /* SwiftHSVColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHSVColorPicker.swift; sourceTree = "<group>"; };
 		942463C71F8E31890055A7E2 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		942463C91F8E4C4E0055A7E2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		942463CB1F8E5BFE0055A7E2 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlow.swift; sourceTree = "<group>"; };
 		9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectCells.swift; sourceTree = "<group>"; };
 		9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */,
 				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
 				9468C9B01F8CF6FC00235002 /* Browser.swift */,
-				942463CB1F8E5BFE0055A7E2 /* Context.swift */,
 				942463C71F8E31890055A7E2 /* MainFlow.swift */,
 				942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */,
 				942463C91F8E4C4E0055A7E2 /* Device.swift */,
@@ -299,7 +296,6 @@
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
-				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -307,7 +303,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -374,7 +369,6 @@
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
-				942463CC1F8E5BFE0055A7E2 /* Context.swift in Sources */,
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
 				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,

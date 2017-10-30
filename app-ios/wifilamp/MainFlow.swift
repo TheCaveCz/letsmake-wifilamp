@@ -7,21 +7,22 @@
 //
 
 import UIKit
+import Swinject
+
+protocol Flow {
+    func createRootVC() -> UIViewController
+}
 
 
 class MainFlow: Flow {
-    let context: Context
-    
+    let resolver: Resolver
 
-    init(context: Context) {
-        self.context = context
-        
-        context.browser.startSearch()
+    init(resolver: Resolver) {
+        self.resolver = resolver
     }
     
     func createRootVC() -> UIViewController {
-        let dc = R.storyboard.main.instantiateInitialViewController()!
-        dc.viewModel = DeviceSelectVM(browser: context.browser)
+        let dc = resolver.resolve(DeviceSelectVC.self)!
         
         dc.actionAddDevice = { vc in
             print("Add")
@@ -32,7 +33,7 @@ class MainFlow: Flow {
                 return
             }
             
-            let flow = DeviceFlow(device: dc.toDevice())
+            let flow = self.resolver.resolve(Flow.self, name: Flows.detail.rawValue, argument: dc.toDevice())! //DeviceFlow(device: dc.toDevice())
             vc.navigationController?.pushViewController(flow.createRootVC(), animated: true)
         }
         
