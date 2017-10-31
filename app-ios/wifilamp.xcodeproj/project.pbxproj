@@ -34,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
+		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailVC.swift; sourceTree = "<group>"; };
@@ -76,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37EDD0601FA75B220017B127 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				37EDD0611FA75B9B0017B127 /* .swiftlint.yml */,
+				9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */,
+			);
+			name = Other;
+			sourceTree = SOURCE_ROOT;
+		};
 		9419AEF91F8FACCA0021AF14 /* DeviceDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +169,6 @@
 		94875B8C1F5D4C0400588B03 /* wifilamp */ = {
 			isa = PBXGroup;
 			children = (
-				9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */,
 				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
 				9468C9B01F8CF6FC00235002 /* Browser.swift */,
 				942463C71F8E31890055A7E2 /* MainFlow.swift */,
@@ -168,6 +177,7 @@
 				9442A75C1F8A51FF0045B2D1 /* Utils */,
 				9442A75D1F8A59520045B2D1 /* Views */,
 				9442A75E1F8A59AC0045B2D1 /* Resources */,
+				37EDD0601FA75B220017B127 /* Other */,
 			);
 			path = wifilamp;
 			sourceTree = "<group>";
