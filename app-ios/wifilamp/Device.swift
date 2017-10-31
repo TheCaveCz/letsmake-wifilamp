@@ -30,6 +30,7 @@ extension BrowserRecord: DeviceConvertible {
 
 
 struct Device {
+    // swiftlint:disable:next force_https
     static let dummy = Device(baseUrl: URL(string: "http://foo")!, name: "Test", chipId: "edaded")
     
     let baseUrl: URL

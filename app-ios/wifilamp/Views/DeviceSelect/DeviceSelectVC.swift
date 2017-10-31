@@ -26,7 +26,7 @@ class DeviceSelectVC: UIViewController {
         }
     }
     var actionSelectDevice: ((DeviceSelectVC, DeviceSelectItem) -> Void)?
-    var actionAddDevice: ((DeviceSelectVC) -> Void)?
+    var actionSetupNewDevice: ((DeviceSelectVC) -> Void)?
     
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class DeviceSelectVC: UIViewController {
     }
 
     @IBAction private func addDeviceTap(_ sender: Any) {
-        actionAddDevice?(self)
+        actionSetupNewDevice?(self)
     }
 }
 

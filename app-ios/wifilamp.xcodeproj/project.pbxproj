@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378575C11FA8B56300A45C9E /* SetupFlow.storyboard */; };
+		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
+		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
 		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
 		9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */; };
 		9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */; };
@@ -34,6 +37,9 @@
 
 /* Begin PBXFileReference section */
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
+		378575C11FA8B56300A45C9E /* SetupFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupFlow.storyboard; sourceTree = "<group>"; };
+		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
+		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
 		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +83,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		378575C01FA8B4D700A45C9E /* DeviceSetup */ = {
+			isa = PBXGroup;
+			children = (
+				378575C11FA8B56300A45C9E /* SetupFlow.storyboard */,
+				378575C31FA8B60B00A45C9E /* SetupFlow.swift */,
+				378575C51FA8B69000A45C9E /* QRScannerVC.swift */,
+			);
+			path = DeviceSetup;
+			sourceTree = "<group>";
+		};
 		37EDD0601FA75B220017B127 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +149,7 @@
 				9419AF051F9007A20021AF14 /* ColorPicker */,
 				9419AEF91F8FACCA0021AF14 /* DeviceDetail */,
 				9442A75B1F8A31960045B2D1 /* DeviceSelect */,
+				378575C01FA8B4D700A45C9E /* DeviceSetup */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */,
 				94875B981F5D4C0400588B03 /* LaunchScreen.storyboard in Resources */,
 				94875B951F5D4C0400588B03 /* Assets.xcassets in Resources */,
 				94875B931F5D4C0400588B03 /* Main.storyboard in Resources */,
@@ -383,9 +401,11 @@
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
 				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,
 				9419AF0B1F9007A20021AF14 /* BrightnessView.swift in Sources */,
+				378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */,
 				9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */,
 				942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */,
 				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
+				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,
 				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
 				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,

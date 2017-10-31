@@ -67,6 +67,7 @@ class CoreAssembly: Assembly {
 enum Flows: String {
     case main
     case detail
+    case setup
 }
 
 
@@ -79,13 +80,22 @@ class DeviceSelectAssembly: Assembly {
             return DeviceSelectVM(browser: res.resolve(Browser.self)!)
         }
         container.register(DeviceSelectVC.self) { res in
-            let vc = R.storyboard.main.instantiateInitialViewController()!
+            let vc = R.storyboard.main.deviceSelectVC()!
             vc.viewModel = res.resolve(DeviceSelectVM.self)
             return vc
         }
         
         container.register(Flow.self, name: Flows.detail.rawValue) { _, arg1 in
             return DeviceFlow(device: arg1)
+        }
+        
+        container.register(Flow.self, name: Flows.setup.rawValue) { res in
+            return SetupFlow(resolver: res)
+        }
+        
+        container.register(QRScannerVC.self) { _ in
+            let vc = R.storyboard.setupFlow.qrScannerVC()!
+            return vc
         }
     }
 }
