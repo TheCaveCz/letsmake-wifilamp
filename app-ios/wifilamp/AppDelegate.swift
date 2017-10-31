@@ -97,5 +97,10 @@ class DeviceSelectAssembly: Assembly {
             let vc = R.storyboard.setupFlow.qrScannerVC()!
             return vc
         }
+        
+        container.register(AutomaticSetupVC.self) { _ in
+            let vc = R.storyboard.setupFlow.automaticSetupVC()!
+            return vc
+        }
     }
 }

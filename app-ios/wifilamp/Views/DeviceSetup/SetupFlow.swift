@@ -10,7 +10,7 @@ import UIKit
 import Swinject
 
 class SetupFlow: Flow {
-    let resolver: Resolver
+    private let resolver: Resolver
     
     init(resolver: Resolver) {
         self.resolver = resolver
@@ -21,8 +21,14 @@ class SetupFlow: Flow {
         return CustomNavigationController(rootViewController: initialVC)
     }
     
-    func createQRScannerVC() -> UIViewController {
+    private func createQRScannerVC() -> QRScannerVC {
         let qrScannerVC = resolver.resolve(QRScannerVC.self)!
+        
+        qrScannerVC.actionGotDeviceId = { vc, deviceId in
+            let automaticSetupVC = self.resolver.resolve(AutomaticSetupVC.self)!
+            vc.navigationController?.pushViewController(automaticSetupVC, animated: true)
+        }
+        
         return qrScannerVC
     }
 }

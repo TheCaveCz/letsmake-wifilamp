@@ -10,6 +10,7 @@
 		378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378575C11FA8B56300A45C9E /* SetupFlow.storyboard */; };
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
+		378575C81FA8E26A00A45C9E /* AutomaticSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */; };
 		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
 		9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */; };
 		9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */; };
@@ -40,6 +41,7 @@
 		378575C11FA8B56300A45C9E /* SetupFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupFlow.storyboard; sourceTree = "<group>"; };
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSetupVC.swift; sourceTree = "<group>"; };
 		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				378575C11FA8B56300A45C9E /* SetupFlow.storyboard */,
 				378575C31FA8B60B00A45C9E /* SetupFlow.swift */,
 				378575C51FA8B69000A45C9E /* QRScannerVC.swift */,
+				378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */,
 			);
 			path = DeviceSetup;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				9419AF0B1F9007A20021AF14 /* BrightnessView.swift in Sources */,
 				378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */,
 				9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */,
+				378575C81FA8E26A00A45C9E /* AutomaticSetupVC.swift in Sources */,
 				942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */,
 				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
 				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,

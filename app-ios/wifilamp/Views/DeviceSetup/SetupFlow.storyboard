@@ -17,7 +17,20 @@
                     <view key="view" contentMode="scaleToFill" id="j6x-MX-smq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h3-ZZ-PkV">
+                                <rect key="frame" x="89" y="286" width="196" height="30"/>
+                                <state key="normal" title="Start with scanning QR code"/>
+                                <connections>
+                                    <action selector="scanQRCodeTap:" destination="WkI-c0-rMY" eventType="touchUpInside" id="3hH-8f-ZbG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="centerY" secondItem="HDs-3X-Qzc" secondAttribute="centerY" id="27Z-N3-YpM"/>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="centerX" secondItem="HDs-3X-Qzc" secondAttribute="centerX" id="mgi-gS-Xkm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HDs-3X-Qzc"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -25,6 +38,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuW-FK-5JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="100" y="170"/>
+        </scene>
+        <!--Automatic SetupVC-->
+        <scene sceneID="mhQ-cE-UyQ">
+            <objects>
+                <viewController storyboardIdentifier="AutomaticSetupVC" id="eNS-fm-Jsz" customClass="AutomaticSetupVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RJY-9O-spE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="6Lk-f4-oAy"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vLf-q3-Ctp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="168"/>
         </scene>
     </scenes>
 </document>
