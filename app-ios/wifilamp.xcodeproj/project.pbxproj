@@ -11,6 +11,10 @@
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
 		378575C81FA8E26A00A45C9E /* AutomaticSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */; };
+		37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */; };
+		37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DA1FAA27B0000BA60D /* Constants.swift */; };
+		37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */; };
+		37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DE1FAA3516000BA60D /* APIManager.swift */; };
 		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
 		9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */; };
 		9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */; };
@@ -42,6 +46,10 @@
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
 		378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSetupVC.swift; sourceTree = "<group>"; };
+		37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLamp.swift; sourceTree = "<group>"; };
+		37DBD2DA1FAA27B0000BA60D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
+		37DBD2DE1FAA3516000BA60D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +104,24 @@
 			path = DeviceSetup;
 			sourceTree = "<group>";
 		};
+		37DBD2D61FAA11D2000BA60D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				942463C91F8E4C4E0055A7E2 /* Device.swift */,
+				37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		37DBD2D91FAA18C2000BA60D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9468C9B01F8CF6FC00235002 /* Browser.swift */,
+				37DBD2DE1FAA3516000BA60D /* APIManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		37EDD0601FA75B220017B127 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +167,7 @@
 				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
 				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
 				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
+				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -190,12 +217,13 @@
 			isa = PBXGroup;
 			children = (
 				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
-				9468C9B01F8CF6FC00235002 /* Browser.swift */,
+				37DBD2DA1FAA27B0000BA60D /* Constants.swift */,
 				942463C71F8E31890055A7E2 /* MainFlow.swift */,
 				942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */,
-				942463C91F8E4C4E0055A7E2 /* Device.swift */,
+				37DBD2D61FAA11D2000BA60D /* Models */,
 				9442A75C1F8A51FF0045B2D1 /* Utils */,
 				9442A75D1F8A59520045B2D1 /* Views */,
+				37DBD2D91FAA18C2000BA60D /* Services */,
 				9442A75E1F8A59AC0045B2D1 /* Resources */,
 				37EDD0601FA75B220017B127 /* Other */,
 			);
@@ -396,10 +424,12 @@
 			files = (
 				9419AF001F8FB56D0021AF14 /* DeviceDetailVM.swift in Sources */,
 				9468C9B31F8CF75500235002 /* Array+RemoveEquatable.swift in Sources */,
+				37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */,
 				9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */,
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
+				37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */,
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
 				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,
@@ -412,7 +442,9 @@
 				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,
 				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
+				37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */,
 				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,
+				37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */,
 				94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */,
 				942463CA1F8E4C4E0055A7E2 /* Device.swift in Sources */,
 			);

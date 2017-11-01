@@ -35,10 +35,7 @@ class DeviceSelectVM {
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 1", details: "some"),
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 2", details: "some"),
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3 ekfjnsdkjfnsdkjfnsdkjfnsdkfjnsdf", details: "some")
+        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 4", details: "some")
     ]
     
     
@@ -83,6 +80,6 @@ struct DeviceDummy: DeviceSelectItem, DeviceConvertible {
     var details: String
     
     func toDevice() -> Device {
-        return Device.dummy
+        return WiFiLamp(chipId: "fooid", name: name)
     }
 }

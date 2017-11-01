@@ -13,5 +13,15 @@ final class AutomaticSetupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let lamp = WiFiLamp(chipId: "24736e")
+        lamp.isAccessibleOnLocalNetwork(result: { result in
+            print("result: \(result)")
+        }, failure: { error in
+            print("error: \(error)")
+        })
+    }
 }

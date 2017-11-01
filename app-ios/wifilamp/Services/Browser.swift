@@ -121,3 +121,13 @@ struct BrowserRecord {
         return BrowserRecord(name: name, hostName: hostName, url: url, chipId: chipId, service: service)
     }
 }
+
+extension BrowserRecord: DeviceConvertible {
+    func toDevice() -> Device {
+        if hostName.hasPrefix("wifilamp") {
+            return WiFiLamp(chipId: chipId, name: name, baseUrl: url)
+        } else {
+            return UnknownDevice(chipId: chipId, name: name, baseUrl: url)
+        }
+    }
+}
