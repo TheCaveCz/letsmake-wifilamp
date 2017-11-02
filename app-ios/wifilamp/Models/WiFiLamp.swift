@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import NetworkExtension
 
 class WiFiLamp: Device {
     let chipId: String
@@ -20,6 +21,17 @@ class WiFiLamp: Device {
         // swiftlint:disable:next force_https
         self.baseUrl = baseUrl ?? URL(string: "http://wifilamp-\(chipId).local")!
     }
+}
+
+// MARK: - Initial device configuration
+extension WiFiLamp {
+    
+    private var setupNetworkSSID: String {
+        return "WiFi-Lamp-\(chipId)"
+    }
+    private var setupNetworkPassword: String {
+        return "wifilamp"
+    }
     
     func setup(
         success: @escaping (() -> Void),
@@ -27,17 +39,42 @@ class WiFiLamp: Device {
         progressUpdate: ((String, Int, Int) -> Void)?
         ) {
         
-        let totalSteps = 2
+        let totalSteps = 3
         
         progressUpdate?("Checking if device is available on current network", 1, totalSteps)
         
-        self.checkIfAccessibleOnLocalNetwork(result: { isAccessible in
+        self.checkIfAccessibleOnLocalNetwork(result: { [weak self] isAccessible in
             if isAccessible {
                 success()
             } else {
                 progressUpdate?("Connecting to the lamp WiFi network", 2, totalSteps)
+                
+                guard let setupNetworkSSID = self?.setupNetworkSSID, let setupNetworkPassword = self?.setupNetworkPassword else { return }
+                
+                let lampWiFiConfig = NEHotspotConfiguration(ssid: setupNetworkSSID, passphrase: setupNetworkPassword, isWEP: false)
+                lampWiFiConfig.joinOnce = true
+                
+                NEHotspotConfigurationManager.shared.apply(lampWiFiConfig, completionHandler: { error in
+                    if let error = error, error.code != NEHotspotConfigurationError.alreadyAssociated.rawValue {
+                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                        failure(error)
+                        return
+                    }
+                    
+                    progressUpdate?("Contacting WiFi lamp", 3, totalSteps)
+                    
+                    self?.getStatusOnTemporaryNetwork(success: { json in
+                        print("\(json)")
+                        
+                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                    }, failure: { error in
+                        print(error)
+                        
+                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                    })
+                })
             }
-        }, failure: failure)
+            }, failure: failure)
         
     }
 }
@@ -60,7 +97,13 @@ extension WiFiLamp {
         apiCall(path: "/api/status", success: success, failure: failure)
     }
     
+    private func getStatusOnTemporaryNetwork(success: ((Any) -> Void)?, failure: ((Error) -> Void)?) {
+        // swiftlint:disable:next force_https
+        apiCall(deviceUrl: URL(string: "http://192.168.4.1")!, path: "/api/status", success: success, failure: failure)
+    }
+    
     private func apiCall(
+        deviceUrl: URL? = nil,
         path: String,
         method: HTTPMethod = .get,
         parameters: Parameters? = nil,
@@ -75,7 +118,9 @@ extension WiFiLamp {
             headers[authorizationHeader.key] = authorizationHeader.value
         }
         
-        APIManager.shared.request(baseUrl.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+        let url = deviceUrl ?? baseUrl
+        
+        APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
             .validate()
             .responseJSON { response in
                 switch response.result {
