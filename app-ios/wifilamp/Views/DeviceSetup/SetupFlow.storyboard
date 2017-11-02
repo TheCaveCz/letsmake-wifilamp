@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,14 +46,36 @@
                     <view key="view" contentMode="scaleToFill" id="RJY-9O-spE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-RY-tCY">
+                                <rect key="frame" x="16" y="293.5" width="343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yQg-2J-9Gm">
+                                <rect key="frame" x="177" y="252.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yQg-2J-9Gm" firstAttribute="centerX" secondItem="N9S-RY-tCY" secondAttribute="centerX" id="6Sv-pC-Vha"/>
+                            <constraint firstItem="6Lk-f4-oAy" firstAttribute="trailing" secondItem="N9S-RY-tCY" secondAttribute="trailing" constant="16" id="Dnh-2S-f2b"/>
+                            <constraint firstItem="N9S-RY-tCY" firstAttribute="centerY" secondItem="6Lk-f4-oAy" secondAttribute="centerY" id="Zao-HZ-ShK"/>
+                            <constraint firstItem="N9S-RY-tCY" firstAttribute="top" secondItem="yQg-2J-9Gm" secondAttribute="bottom" constant="21" id="dOU-4b-Bps"/>
+                            <constraint firstItem="N9S-RY-tCY" firstAttribute="leading" secondItem="6Lk-f4-oAy" secondAttribute="leading" constant="16" id="hDa-ZW-m4O"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Lk-f4-oAy"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="yQg-2J-9Gm" id="mfq-to-dgP"/>
+                        <outlet property="progressDescriptionLabel" destination="N9S-RY-tCY" id="YAT-HK-p5l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLf-q3-Ctp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="833" y="168"/>
+            <point key="canvasLocation" x="832.79999999999995" y="167.76611694152925"/>
         </scene>
     </scenes>
 </document>

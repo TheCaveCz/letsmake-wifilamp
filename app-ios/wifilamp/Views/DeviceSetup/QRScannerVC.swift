@@ -12,7 +12,7 @@ import QRCodeReader
 
 final class QRScannerVC: UIViewController {
 
-    var actionGotDeviceId: ((QRScannerVC, String) -> Void)?
+    var actionScannedDevice: ((QRScannerVC, Device) -> Void)?
     
     // Create the reader lazily to avoid cpu overload during the
     // initialization and each time we need to scan a QRCode
@@ -52,7 +52,10 @@ final class QRScannerVC: UIViewController {
         
         let deviceId = metadata
         
-        actionGotDeviceId?(self, deviceId)
+        // TODO: parse type of device, not just wifilamps
+        let device = WiFiLamp(chipId: deviceId)
+        
+        actionScannedDevice?(self, device)
     }
     
     private func showInvalidQRCodeError() {

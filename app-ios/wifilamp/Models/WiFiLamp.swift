@@ -20,11 +20,31 @@ class WiFiLamp: Device {
         // swiftlint:disable:next force_https
         self.baseUrl = baseUrl ?? URL(string: "http://wifilamp-\(chipId).local")!
     }
+    
+    func setup(
+        success: @escaping (() -> Void),
+        failure: @escaping ((Error) -> Void),
+        progressUpdate: ((String, Int, Int) -> Void)?
+        ) {
+        
+        let totalSteps = 2
+        
+        progressUpdate?("Checking if device is available on current network", 1, totalSteps)
+        
+        self.checkIfAccessibleOnLocalNetwork(result: { isAccessible in
+            if isAccessible {
+                success()
+            } else {
+                progressUpdate?("Connecting to the lamp WiFi network", 2, totalSteps)
+            }
+        }, failure: failure)
+        
+    }
 }
 
 // MARK: - API
 extension WiFiLamp {
-    func isAccessibleOnLocalNetwork(result: @escaping (Bool) -> Void, failure: ((Error) -> Void)?) {
+    func checkIfAccessibleOnLocalNetwork(result: @escaping (Bool) -> Void, failure: ((Error) -> Void)?) {
         getStatus(success: { _ in
             result(true)
         }, failure: { error in

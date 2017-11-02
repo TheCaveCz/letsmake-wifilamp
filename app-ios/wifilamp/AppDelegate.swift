@@ -98,8 +98,9 @@ class DeviceSelectAssembly: Assembly {
             return vc
         }
         
-        container.register(AutomaticSetupVC.self) { _ in
+        container.register(AutomaticSetupVC.self) { (_, device: Device) in
             let vc = R.storyboard.setupFlow.automaticSetupVC()!
+            vc.viewModel = AutomaticSetupVM(device: device)
             return vc
         }
     }

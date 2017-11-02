@@ -15,6 +15,7 @@
 		37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DA1FAA27B0000BA60D /* Constants.swift */; };
 		37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */; };
 		37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DE1FAA3516000BA60D /* APIManager.swift */; };
+		37DBD2E11FAB43E0000BA60D /* AutomaticSetupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */; };
 		3846BF2B5DE5CC833E9102F7 /* Pods_wifilamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F120E6042B35049D0129BA /* Pods_wifilamp.framework */; };
 		9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */; };
 		9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */; };
@@ -50,6 +51,7 @@
 		37DBD2DA1FAA27B0000BA60D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
 		37DBD2DE1FAA3516000BA60D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSetupVM.swift; sourceTree = "<group>"; };
 		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				378575C31FA8B60B00A45C9E /* SetupFlow.swift */,
 				378575C51FA8B69000A45C9E /* QRScannerVC.swift */,
 				378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */,
+				37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */,
 			);
 			path = DeviceSetup;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */,
 				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
 				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,
+				37DBD2E11FAB43E0000BA60D /* AutomaticSetupVM.swift in Sources */,
 				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
 				37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */,

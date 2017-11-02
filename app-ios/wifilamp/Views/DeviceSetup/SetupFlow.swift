@@ -24,8 +24,8 @@ class SetupFlow: Flow {
     private func createQRScannerVC() -> QRScannerVC {
         let qrScannerVC = resolver.resolve(QRScannerVC.self)!
         
-        qrScannerVC.actionGotDeviceId = { vc, deviceId in
-            let automaticSetupVC = self.resolver.resolve(AutomaticSetupVC.self)!
+        qrScannerVC.actionScannedDevice = { vc, device in
+            let automaticSetupVC = self.resolver.resolve(AutomaticSetupVC.self, argument: device)!
             vc.navigationController?.pushViewController(automaticSetupVC, animated: true)
         }
         
