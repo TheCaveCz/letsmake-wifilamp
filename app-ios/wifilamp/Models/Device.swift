@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import PromiseKit
+
+enum DeviceError: Error {
+    case unknownDevice
+}
 
 protocol DeviceConvertible {
     func toDevice() -> Device
@@ -16,18 +21,14 @@ protocol Device {
     var baseUrl: URL { get }
     var name: String { get }
     var chipId: String { get }
-    func setup(
-        success: @escaping (() -> Void),
-        failure: @escaping ((Error) -> Void),
-        progressUpdate: ((_ description: String, _ stepNumber: Int, _ totalSteps: Int) -> Void)?
-    )
+    func setup(progressUpdate: ((_ description: String, _ stepNumber: Int, _ totalSteps: Int) -> Void)?) -> Promise<Void>
 }
 
 struct UnknownDevice: Device {
     let chipId: String
     let name: String
     let baseUrl: URL
-    func setup(success: @escaping (() -> Void), failure: @escaping ((Error) -> Void), progressUpdate: ((String, Int, Int) -> Void)?) {
-        // TODO: call failure() with an error
+    func setup(progressUpdate: ((String, Int, Int) -> Void)?) -> Promise<Void> {
+        return Promise(error: DeviceError.unknownDevice)
     }
 }

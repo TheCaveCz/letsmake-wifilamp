@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378575C11FA8B56300A45C9E /* SetupFlow.storyboard */; };
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
+		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		378575C11FA8B56300A45C9E /* SetupFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupFlow.storyboard; sourceTree = "<group>"; };
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
 				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
 				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
+				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -355,6 +358,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AwaitKit/AwaitKit.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
@@ -362,6 +367,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwaitKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
@@ -446,6 +453,7 @@
 				37DBD2E11FAB43E0000BA60D /* AutomaticSetupVM.swift in Sources */,
 				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
+				3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */,
 				37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */,
 				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,
 				37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */,

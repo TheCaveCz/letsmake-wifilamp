@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import NetworkExtension
+import AwaitKit
+import PromiseKit
 
 class WiFiLamp: Device {
     let chipId: String
@@ -33,78 +35,75 @@ extension WiFiLamp {
         return "wifilamp"
     }
     
-    func setup(
-        success: @escaping (() -> Void),
-        failure: @escaping ((Error) -> Void),
-        progressUpdate: ((String, Int, Int) -> Void)?
-        ) {
-        
-        let totalSteps = 4
-        
-        progressUpdate?("Checking if device is available on current network", 1, totalSteps)
-        
-        self.checkIfAccessibleOnLocalNetwork(result: { [weak self] isAccessible in
-            if isAccessible {
-                success()
-            } else {
-                progressUpdate?("Connecting to the lamp WiFi network", 2, totalSteps)
-                
-                guard let setupNetworkSSID = self?.setupNetworkSSID, let setupNetworkPassword = self?.setupNetworkPassword else { return }
-                
-                let lampWiFiConfig = NEHotspotConfiguration(ssid: setupNetworkSSID, passphrase: setupNetworkPassword, isWEP: false)
-                lampWiFiConfig.joinOnce = true
-                
-                NEHotspotConfigurationManager.shared.apply(lampWiFiConfig, completionHandler: { error in
-                    if let error = error, error.code != NEHotspotConfigurationError.alreadyAssociated.rawValue {
-                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
-                        failure(error)
-                        return
-                    }
-                    
-                    progressUpdate?("Waiting to get IP address", 3, totalSteps)
-                    
-                    delay(10, closure: {
-                        progressUpdate?("Contacting WiFi lamp", 4, totalSteps)
-                        
-                        self?.getStatusOnTemporaryNetwork(success: { json in
-                            print("\(json)")
-                            
-                            NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
-                        }, failure: { error in
-                            print(error)
-                            
-                            NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
-                        })
-                    })
-                    
-                })
+    func setup(progressUpdate: ((String, Int, Int) -> Void)?) -> Promise<Void> {
+        return async {
+            let totalSteps = 4
+            
+            progressUpdate?("Checking if device is available on current network", 1, totalSteps)
+            
+            let isAccessibleOnCurrentNetwork = try await(self.checkIfAccessibleOnLocalNetwork())
+            
+            if isAccessibleOnCurrentNetwork {
+                // we are done, we don't need to go trough network setup below
+                return
             }
-            }, failure: failure)
-        
+            
+            progressUpdate?("Connecting to the lamp WiFi network", 2, totalSteps)
+            
+            try await(self.connectToTemporaryWiFiNetwork())
+            defer {
+                self.disconnectFromTemporaryWiFiNetwork()
+            }
+            
+            progressUpdate?("Contacting WiFi lamp", 3, totalSteps)
+            
+            let json = try await(retry(times: 3, cooldown: 1) { self.getStatusOnTemporaryNetwork() })
+            print(json)
+        }
     }
+    
+    private func connectToTemporaryWiFiNetwork() -> Promise<Void> {
+        return Promise { resolve, reject in
+            let lampWiFiConfig = NEHotspotConfiguration(ssid: self.setupNetworkSSID, passphrase: self.setupNetworkPassword, isWEP: false)
+            lampWiFiConfig.joinOnce = true
+            
+            NEHotspotConfigurationManager.shared.apply(lampWiFiConfig, completionHandler: { error in
+                if let error = error, error.code != NEHotspotConfigurationError.alreadyAssociated.rawValue {
+                    self.disconnectFromTemporaryWiFiNetwork()
+                    reject(error)
+                } else {
+                    resolve(Void())
+                }
+            })
+        }
+    }
+    
+    private func disconnectFromTemporaryWiFiNetwork() {
+        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+    }
+    
 }
 
 // MARK: - API
 extension WiFiLamp {
-    func checkIfAccessibleOnLocalNetwork(result: @escaping (Bool) -> Void, failure: ((Error) -> Void)?) {
-        getStatus(success: { _ in
-            result(true)
-        }, failure: { error in
-            if error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
-                result(false)
-            } else {
-                failure?(error)
+    func checkIfAccessibleOnLocalNetwork() -> Promise<Bool> {
+        return async {
+            do {
+                try await(self.getStatus())
+                return true
+            } catch where error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                return false
             }
-        })
+        }
     }
     
-    func getStatus(success: ((Any) -> Void)?, failure: ((Error) -> Void)?) {
-        apiCall(path: "/api/status", success: success, failure: failure)
+    func getStatus() -> Promise<Any> {
+        return apiCall(path: "/api/status")
     }
     
-    private func getStatusOnTemporaryNetwork(success: ((Any) -> Void)?, failure: ((Error) -> Void)?) {
+    private func getStatusOnTemporaryNetwork() -> Promise<Any> {
         // swiftlint:disable:next force_https
-        apiCall(deviceUrl: URL(string: "http://192.168.4.1")!, path: "/api/status", success: success, failure: failure)
+        return apiCall(deviceUrl: URL(string: "http://192.168.4.1")!, path: "/api/status")
     }
     
     private func apiCall(
@@ -113,32 +112,28 @@ extension WiFiLamp {
         method: HTTPMethod = .get,
         parameters: Parameters? = nil,
         username: String = Constants.WiFiLamp.defaultUsername,
-        password: String = Constants.WiFiLamp.defaultPassword,
-        success: ((Any) -> Void)?,
-        failure: ((Error) -> Void)?
-        ) {
+        password: String = Constants.WiFiLamp.defaultPassword
+        ) -> Promise<Any> {
         
-        var headers: HTTPHeaders = [:]
-        if let authorizationHeader = Request.authorizationHeader(user: username, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        
-        let url = deviceUrl ?? baseUrl
-        
-        APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
-            .validate()
-            .responseJSON { response in
-                switch response.result {
-                case .success(let jsonResponse):
-                    success?(jsonResponse)
-                case .failure(let error):
-                    failure?(error)
-                }
+        return Promise { resolve, reject in
+            
+            var headers: HTTPHeaders = [:]
+            if let authorizationHeader = Request.authorizationHeader(user: username, password: password) {
+                headers[authorizationHeader.key] = authorizationHeader.value
+            }
+            
+            let url = deviceUrl ?? baseUrl
+            
+            APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+                .validate()
+                .responseJSON { response in
+                    switch response.result {
+                    case .success(let jsonResponse):
+                        resolve(jsonResponse)
+                    case .failure(let error):
+                        reject(error)
+                    }
+            }
         }
     }
-}
-
-func delay(_ delay: Double, closure: @escaping () -> Void) {
-    DispatchQueue.main.asyncAfter(
-        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }

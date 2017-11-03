@@ -37,16 +37,14 @@ final class AutomaticSetupVM {
     func startDeviceSetup() {
         state = .notStarted
         
-        device.setup(
-            success: { [weak self] in
-                self?.state = .finished
-            },
-            failure: { [weak self] error in
-                self?.state = .error(error)
-            },
-            progressUpdate: { [weak self] (taskDescription, stepNumber, totalNumberOfSteps) in
+        device.setup(progressUpdate: { [weak self] (taskDescription, stepNumber, totalNumberOfSteps) in
+            DispatchQueue.main.async {
                 self?.state = .processingTask(desctiption: taskDescription, stepNumber: stepNumber, totalNumberOfSteps: totalNumberOfSteps)
             }
-        )
+        }).then(on: DispatchQueue.main) { [weak self] _ in
+            self?.state = .finished
+        }.catch(on: DispatchQueue.main) { [weak self] error in
+            self?.state = .error(error)
+        }
     }
 }
