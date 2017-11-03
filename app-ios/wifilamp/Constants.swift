@@ -15,6 +15,8 @@ struct Constants {
         static let defaultUsername = "admin"
         static let defaultPassword = "wifilamp"
         
+        // swiftlint:disable:next force_https
+        static let defaultTemporaryNetworkUrl = URL(string: "http://192.168.4.1")!
     }
     
 }

@@ -57,8 +57,13 @@ extension WiFiLamp {
             
             progressUpdate?("Contacting WiFi lamp", 3, totalSteps)
             
-            let json = try await(retry(times: 3, cooldown: 1) { self.getStatusOnTemporaryNetwork() })
-            print(json)
+            _ = try await(retry(times: 3, cooldown: 1) { self.getStatusOnTemporaryNetwork() })
+            
+            progressUpdate?("Scan for available WiFi networks", 4, totalSteps)
+            
+            let networks = try await(self.scanForWiFiNetworksAndWaitForResults())
+            print(networks)
+            
         }
     }
     
@@ -97,43 +102,73 @@ extension WiFiLamp {
         }
     }
     
-    func getStatus() -> Promise<Any> {
+    func getStatus() -> Promise<VoidResponse> {
         return apiCall(path: "/api/status")
     }
     
-    private func getStatusOnTemporaryNetwork() -> Promise<Any> {
-        // swiftlint:disable:next force_https
-        return apiCall(deviceUrl: URL(string: "http://192.168.4.1")!, path: "/api/status")
+    func scanForWiFiNetworksAndWaitForResults() -> Promise<[WiFiNetwork]> {
+        return async {
+            // launch network sitesurvey on device
+            _ = try await(self.performNewWiFiNetworksScan())
+            
+            // try 3 times until network scan ends and returns list of access points
+            let scanResult: NetworkScanResult = try await(retry(times: 3, cooldown: 3) { self.getWiFiNetworksScanResult() })
+            return scanResult.networks
+        }
     }
     
-    private func apiCall(
+    private func getStatusOnTemporaryNetwork() -> Promise<VoidResponse> {
+        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/status")
+    }
+    
+    private func performNewWiFiNetworksScan() -> Promise<VoidResponse> {
+        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/scan", method: .post)
+    }
+    
+    private func getWiFiNetworksScanResult() -> Promise<NetworkScanResult> {
+        return async {
+            let result: NetworkScanResult = try await(self.apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/scan", method: .get))
+            if result.inprogress {
+                throw NetworkScanError.scanStillInProgress
+            }
+            return result
+        }
+    }
+    
+    private func apiCall<T: Codable>(
         deviceUrl: URL? = nil,
         path: String,
         method: HTTPMethod = .get,
         parameters: Parameters? = nil,
         username: String = Constants.WiFiLamp.defaultUsername,
         password: String = Constants.WiFiLamp.defaultPassword
-        ) -> Promise<Any> {
+        ) -> Promise<T> {
         
-        return Promise { resolve, reject in
-            
-            var headers: HTTPHeaders = [:]
-            if let authorizationHeader = Request.authorizationHeader(user: username, password: password) {
-                headers[authorizationHeader.key] = authorizationHeader.value
-            }
-            
-            let url = deviceUrl ?? baseUrl
-            
-            APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
-                .validate()
-                .responseJSON { response in
-                    switch response.result {
-                    case .success(let jsonResponse):
-                        resolve(jsonResponse)
-                    case .failure(let error):
-                        reject(error)
-                    }
-            }
+        var headers: HTTPHeaders = [:]
+        if let authorizationHeader = Request.authorizationHeader(user: username, password: password) {
+            headers[authorizationHeader.key] = authorizationHeader.value
         }
+        
+        let url = deviceUrl ?? baseUrl
+        
+        return APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+            .validate()
+            .responseCodable()
+    }
+    
+    struct NetworkScanResult: Codable {
+        let inprogress: Bool
+        let current: String
+        let networks: [WiFiNetwork]
+    }
+    
+    struct WiFiNetwork: Codable {
+        let ssid: String
+        let rssi: Int
+        let enc: Int
+    }
+    
+    enum NetworkScanError: Error {
+        case scanStillInProgress
     }
 }

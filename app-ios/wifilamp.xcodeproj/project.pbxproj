@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
+		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
 		378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378575C11FA8B56300A45C9E /* SetupFlow.storyboard */; };
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
+		3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Codable.swift"; sourceTree = "<group>"; };
 		378575C11FA8B56300A45C9E /* SetupFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupFlow.storyboard; sourceTree = "<group>"; };
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
 				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
 				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
+				3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
 				3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */,
 				37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */,
+				3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */,
 				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,
 				37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */,
 				94875B8E1F5D4C0400588B03 /* AppDelegate.swift in Sources */,
