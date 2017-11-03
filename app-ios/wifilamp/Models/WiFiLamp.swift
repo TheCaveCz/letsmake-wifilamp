@@ -39,7 +39,7 @@ extension WiFiLamp {
         progressUpdate: ((String, Int, Int) -> Void)?
         ) {
         
-        let totalSteps = 3
+        let totalSteps = 4
         
         progressUpdate?("Checking if device is available on current network", 1, totalSteps)
         
@@ -61,17 +61,22 @@ extension WiFiLamp {
                         return
                     }
                     
-                    progressUpdate?("Contacting WiFi lamp", 3, totalSteps)
+                    progressUpdate?("Waiting to get IP address", 3, totalSteps)
                     
-                    self?.getStatusOnTemporaryNetwork(success: { json in
-                        print("\(json)")
+                    delay(10, closure: {
+                        progressUpdate?("Contacting WiFi lamp", 4, totalSteps)
                         
-                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
-                    }, failure: { error in
-                        print(error)
-                        
-                        NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                        self?.getStatusOnTemporaryNetwork(success: { json in
+                            print("\(json)")
+                            
+                            NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                        }, failure: { error in
+                            print(error)
+                            
+                            NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
+                        })
                     })
+                    
                 })
             }
             }, failure: failure)
@@ -131,4 +136,9 @@ extension WiFiLamp {
                 }
         }
     }
+}
+
+func delay(_ delay: Double, closure: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }
