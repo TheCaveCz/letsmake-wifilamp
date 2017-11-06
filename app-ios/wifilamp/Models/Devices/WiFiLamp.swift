@@ -64,11 +64,11 @@ extension WiFiLamp {
             
             _ = try await(retry(times: 3, cooldown: 1) { self.getStatusOnTemporaryNetwork() })
             
-            progressUpdate?("Scan for available WiFi networks", 4, totalSteps)
+            progressUpdate?("Scanning for available WiFi networks", 4, totalSteps)
             
             let networks = try await(self.scanForWiFiNetworksAndWaitForResults())
             
-            progressUpdate?("Show list of networks to select", 5, totalSteps)
+            progressUpdate?("Showing list of networks to select", 5, totalSteps)
             
             let (selectedNetwork, passphase) = try await(delegate.askUserToSelectWiFiNetwork(from: networks))
             
@@ -115,7 +115,7 @@ extension WiFiLamp {
         return apiCall(path: "/api/status")
     }
     
-    func scanForWiFiNetworksAndWaitForResults() -> Promise<[WiFiNetwork]> {
+    func scanForWiFiNetworksAndWaitForResults() -> Promise<[WiFiLampNetwork]> {
         return async {
             // launch network sitesurvey on device
             _ = try await(self.performNewWiFiNetworksScan())
@@ -168,13 +168,21 @@ extension WiFiLamp {
     struct NetworkScanResult: Codable {
         let inprogress: Bool
         let current: String
-        let networks: [WiFiNetwork]
+        let networks: [WiFiLampNetwork]
     }
     
-    struct WiFiNetwork: Codable {
+    struct WiFiLampNetwork: Codable, WiFiNetwork {
         let ssid: String
         let rssi: Int
         let enc: Int
+        
+        var name: String { return ssid }
+        var signalStrength: Int {
+            return rssi
+        }
+        var isPasswordProtected: Bool {
+            return enc == 0 ? false : true
+        }
     }
     
     enum NetworkScanError: Error {

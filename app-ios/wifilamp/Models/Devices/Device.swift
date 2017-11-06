@@ -22,7 +22,7 @@ protocol DeviceConvertible {
 }
 
 protocol DeviceSetupDelegate: class {
-    func askUserToSelectWiFiNetwork(from: [WiFiLamp.WiFiNetwork]) -> Promise<(selectedNetwork: WiFiLamp.WiFiNetwork, passphase: String?)>
+    func askUserToSelectWiFiNetwork(from: [WiFiNetwork]) -> Promise<(selectedNetwork: WiFiNetwork, passphase: String?)>
 }
 
 protocol Device {
