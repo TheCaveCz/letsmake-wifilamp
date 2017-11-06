@@ -103,5 +103,11 @@ class DeviceSelectAssembly: Assembly {
             vc.viewModel = AutomaticSetupVM(device: device)
             return vc
         }
+        
+        container.register(NetworkSelectionVC.self) { (_, networks: [WiFiNetwork]) in
+            let vc = R.storyboard.setupFlow.networkSelectionVC()!
+            vc.viewModel = NetworkSelectionVM(networks: networks)
+            return vc
+        }
     }
 }

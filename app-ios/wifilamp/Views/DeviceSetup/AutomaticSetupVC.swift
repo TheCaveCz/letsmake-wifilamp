@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import PromiseKit
+import AwaitKit
 
 final class AutomaticSetupVC: UIViewController {
 
+    var actionAskToSelectNetworkToConnect: ((AutomaticSetupVC, _ availableNetworks: [WiFiNetwork]) -> Promise<(selectedNetwork: WiFiNetwork, passphase: String?)>)?
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var progressDescriptionLabel: UILabel!
-    
     
     var viewModel: AutomaticSetupVM! {
         didSet {
@@ -23,7 +26,7 @@ final class AutomaticSetupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.startDeviceSetup()
+        viewModel.startDeviceSetup(delegate: self)
     }
 }
 
@@ -42,6 +45,19 @@ extension AutomaticSetupVC: AutomaticSetupVMDelegate {
         case .error(let error):
             activityIndicator?.stopAnimating()
             progressDescriptionLabel?.text = "Error: \(error.localizedDescription)"
+        }
+    }
+}
+
+extension AutomaticSetupVC: DeviceSetupDelegate {
+    func askUserToSelectWiFiNetwork(from availableNetworks: [WiFiNetwork]) -> Promise<(selectedNetwork: WiFiNetwork, passphase: String?)> {
+        return async {
+            guard let actionAskToSelectNetworkToConnect = self.actionAskToSelectNetworkToConnect else {
+                assert(false, "No action for network selection defined")
+                throw DeviceSetupError.noNetworkSelected
+            }
+            
+            return try await(actionAskToSelectNetworkToConnect(self, availableNetworks))
         }
     }
 }

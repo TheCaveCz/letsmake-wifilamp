@@ -35,9 +35,14 @@ extension WiFiLamp {
         return "wifilamp"
     }
     
-    func setup(progressUpdate: ((String, Int, Int) -> Void)?) -> Promise<Void> {
+    func setup(progressUpdate: ((String, Int, Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void> {
         return async {
-            let totalSteps = 4
+            guard let delegate = delegate else {
+                assert(false, "Setup of this device needs a delegate")
+                return
+            }
+            
+            let totalSteps = 5
             
             progressUpdate?("Checking if device is available on current network", 1, totalSteps)
             
@@ -62,8 +67,12 @@ extension WiFiLamp {
             progressUpdate?("Scan for available WiFi networks", 4, totalSteps)
             
             let networks = try await(self.scanForWiFiNetworksAndWaitForResults())
-            print(networks)
             
+            progressUpdate?("Show list of networks to select", 5, totalSteps)
+            
+            let (selectedNetwork, passphase) = try await(delegate.askUserToSelectWiFiNetwork(from: networks))
+            
+            print((selectedNetwork, passphase))
         }
     }
     

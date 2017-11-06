@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
+		371BB57F1FB0C03B004DD713 /* NetworkSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BB57E1FB0C03B004DD713 /* NetworkSelectionVC.swift */; };
+		371BB5811FB0C66E004DD713 /* NetworkSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BB5801FB0C66E004DD713 /* NetworkSelectionVM.swift */; };
+		371BB5851FB0C8CB004DD713 /* WiFiNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BB5841FB0C8CB004DD713 /* WiFiNetworkProtocol.swift */; };
 		378575C21FA8B56300A45C9E /* SetupFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378575C11FA8B56300A45C9E /* SetupFlow.storyboard */; };
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
@@ -47,6 +50,9 @@
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Codable.swift"; sourceTree = "<group>"; };
+		371BB57E1FB0C03B004DD713 /* NetworkSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionVC.swift; sourceTree = "<group>"; };
+		371BB5801FB0C66E004DD713 /* NetworkSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSelectionVM.swift; sourceTree = "<group>"; };
+		371BB5841FB0C8CB004DD713 /* WiFiNetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetworkProtocol.swift; sourceTree = "<group>"; };
 		378575C11FA8B56300A45C9E /* SetupFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetupFlow.storyboard; sourceTree = "<group>"; };
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
@@ -99,6 +105,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371BB5821FB0C888004DD713 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				942463C91F8E4C4E0055A7E2 /* Device.swift */,
+				37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		371BB5831FB0C896004DD713 /* DeviceSetup */ = {
+			isa = PBXGroup;
+			children = (
+				371BB5841FB0C8CB004DD713 /* WiFiNetworkProtocol.swift */,
+			);
+			path = DeviceSetup;
+			sourceTree = "<group>";
+		};
 		378575C01FA8B4D700A45C9E /* DeviceSetup */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +130,8 @@
 				378575C51FA8B69000A45C9E /* QRScannerVC.swift */,
 				378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */,
 				37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */,
+				371BB57E1FB0C03B004DD713 /* NetworkSelectionVC.swift */,
+				371BB5801FB0C66E004DD713 /* NetworkSelectionVM.swift */,
 			);
 			path = DeviceSetup;
 			sourceTree = "<group>";
@@ -114,8 +139,8 @@
 		37DBD2D61FAA11D2000BA60D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				942463C91F8E4C4E0055A7E2 /* Device.swift */,
-				37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */,
+				371BB5821FB0C888004DD713 /* Devices */,
+				371BB5831FB0C896004DD713 /* DeviceSetup */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -446,10 +471,13 @@
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
 				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,
+				371BB57F1FB0C03B004DD713 /* NetworkSelectionVC.swift in Sources */,
 				9419AF0B1F9007A20021AF14 /* BrightnessView.swift in Sources */,
 				378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */,
 				9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */,
+				371BB5851FB0C8CB004DD713 /* WiFiNetworkProtocol.swift in Sources */,
 				378575C81FA8E26A00A45C9E /* AutomaticSetupVC.swift in Sources */,
+				371BB5811FB0C66E004DD713 /* NetworkSelectionVM.swift in Sources */,
 				942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */,
 				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
 				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,
