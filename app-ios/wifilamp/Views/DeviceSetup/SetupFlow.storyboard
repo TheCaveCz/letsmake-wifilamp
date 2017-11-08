@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,15 +82,85 @@
             <objects>
                 <viewController storyboardIdentifier="NetworkSelectionVC" id="WBL-e1-8Sj" customClass="NetworkSelectionVC" customModule="wifilamp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmE-UE-HP1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MO4-Sr-U0K">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WiFiNetworkCell" id="bSS-ud-ZbA" customClass="WiFiNetworkCell" customModule="wifilamp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bSS-ud-ZbA" id="sMa-Tb-QlC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi network name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="XvK-Mk-MBY">
+                                                    <rect key="frame" x="15" y="11" width="287.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="95g-VI-iJx">
+                                                    <rect key="frame" x="310.5" y="16" width="9" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="GSP-mr-lAK"/>
+                                                        <constraint firstAttribute="width" secondItem="95g-VI-iJx" secondAttribute="height" multiplier="3:4" id="gXl-Mm-i4N"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signalStrengthHigh" translatesAutoresizingMaskIntoConstraints="NO" id="h9R-Li-80S">
+                                                    <rect key="frame" x="334.5" y="15" width="20" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="h9R-Li-80S" secondAttribute="height" multiplier="7:5" id="aKG-by-I1e"/>
+                                                        <constraint firstAttribute="width" constant="20" id="giw-g7-prG"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="h9R-Li-80S" firstAttribute="centerY" secondItem="sMa-Tb-QlC" secondAttribute="centerY" id="IBh-h3-l3Q"/>
+                                                <constraint firstItem="95g-VI-iJx" firstAttribute="leading" secondItem="XvK-Mk-MBY" secondAttribute="trailing" constant="8" id="M3d-2h-cr6"/>
+                                                <constraint firstItem="95g-VI-iJx" firstAttribute="centerY" secondItem="sMa-Tb-QlC" secondAttribute="centerY" id="hMt-vv-j4I"/>
+                                                <constraint firstItem="h9R-Li-80S" firstAttribute="leading" secondItem="95g-VI-iJx" secondAttribute="trailing" constant="15" id="iQc-Uo-XZW"/>
+                                                <constraint firstAttribute="trailing" secondItem="h9R-Li-80S" secondAttribute="trailing" constant="20" id="kh7-BL-b4A"/>
+                                                <constraint firstItem="XvK-Mk-MBY" firstAttribute="centerY" secondItem="sMa-Tb-QlC" secondAttribute="centerY" id="mCT-Uh-muX"/>
+                                                <constraint firstItem="XvK-Mk-MBY" firstAttribute="leading" secondItem="sMa-Tb-QlC" secondAttribute="leading" constant="15" id="ylL-Od-1hS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lockIcon" destination="95g-VI-iJx" id="5k4-Gp-H9G"/>
+                                            <outlet property="networkNameLabel" destination="XvK-Mk-MBY" id="x3j-pL-R81"/>
+                                            <outlet property="signalStrengthIcon" destination="h9R-Li-80S" id="esj-8K-aNx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WBL-e1-8Sj" id="dRU-xc-0DZ"/>
+                                    <outlet property="delegate" destination="WBL-e1-8Sj" id="xEx-ZG-pBj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MO4-Sr-U0K" firstAttribute="bottom" secondItem="4Ml-rK-D49" secondAttribute="bottom" id="Hhv-UJ-w6Y"/>
+                            <constraint firstItem="MO4-Sr-U0K" firstAttribute="top" secondItem="4Ml-rK-D49" secondAttribute="top" id="LjG-hF-nah"/>
+                            <constraint firstItem="MO4-Sr-U0K" firstAttribute="leading" secondItem="4Ml-rK-D49" secondAttribute="leading" id="d0o-7o-LZ4"/>
+                            <constraint firstItem="MO4-Sr-U0K" firstAttribute="trailing" secondItem="4Ml-rK-D49" secondAttribute="trailing" id="pZt-Va-D7C"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Ml-rK-D49"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="MO4-Sr-U0K" id="Arh-jA-ouE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHU-x6-SjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="168"/>
+            <point key="canvasLocation" x="1560.8" y="167.76611694152925"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lock" width="384" height="512"/>
+        <image name="signalStrengthHigh" width="480" height="338"/>
+    </resources>
 </document>

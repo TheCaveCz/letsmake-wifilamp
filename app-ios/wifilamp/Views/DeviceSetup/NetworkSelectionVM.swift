@@ -9,9 +9,11 @@
 import Foundation
 
 final class NetworkSelectionVM {
-    private let allNetworks: [WiFiNetwork]
+    var networks: [WiFiNetwork]
     
     init(networks: [WiFiNetwork]) {
-        self.allNetworks = networks
+        self.networks = networks
+            .sorted { $0.signalStrength > $1.signalStrength }
+            .filterDuplicates { $0.name == $1.name }
     }
 }

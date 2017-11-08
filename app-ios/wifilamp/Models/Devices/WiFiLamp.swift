@@ -181,7 +181,13 @@ extension WiFiLamp {
             return rssi
         }
         var isPasswordProtected: Bool {
-            return enc == 0 ? false : true
+            switch enc {
+            case 5: return true // ENC_TYPE_WEP
+            case 2: return true // ENC_TYPE_TKIP
+            case 4: return true // ENC_TYPE_CCMP
+            case 7: return false // ENC_TYPE_NONE
+            default: return true // unknown, ask for password anyway and try to connect
+            }
         }
     }
     

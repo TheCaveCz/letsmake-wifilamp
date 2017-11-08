@@ -16,6 +16,8 @@
 		378575C41FA8B60B00A45C9E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C31FA8B60B00A45C9E /* SetupFlow.swift */; };
 		378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C51FA8B69000A45C9E /* QRScannerVC.swift */; };
 		378575C81FA8E26A00A45C9E /* AutomaticSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */; };
+		37B726F91FB1EF810001CFAE /* WiFiNetworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B726F81FB1EF810001CFAE /* WiFiNetworkCell.swift */; };
+		37B726FB1FB1FA300001CFAE /* Array+FilterDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B726FA1FB1FA300001CFAE /* Array+FilterDuplicates.swift */; };
 		37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */; };
 		37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DA1FAA27B0000BA60D /* Constants.swift */; };
 		37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */; };
@@ -57,6 +59,8 @@
 		378575C31FA8B60B00A45C9E /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
 		378575C51FA8B69000A45C9E /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
 		378575C71FA8E26A00A45C9E /* AutomaticSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSetupVC.swift; sourceTree = "<group>"; };
+		37B726F81FB1EF810001CFAE /* WiFiNetworkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetworkCell.swift; sourceTree = "<group>"; };
+		37B726FA1FB1FA300001CFAE /* Array+FilterDuplicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+FilterDuplicates.swift"; sourceTree = "<group>"; };
 		37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLamp.swift; sourceTree = "<group>"; };
 		37DBD2DA1FAA27B0000BA60D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */,
 				371BB57E1FB0C03B004DD713 /* NetworkSelectionVC.swift */,
 				371BB5801FB0C66E004DD713 /* NetworkSelectionVM.swift */,
+				37B726F81FB1EF810001CFAE /* WiFiNetworkCell.swift */,
 			);
 			path = DeviceSetup;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
 				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
 				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
+				37B726FA1FB1FA300001CFAE /* Array+FilterDuplicates.swift */,
 				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
 				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 				3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */,
@@ -469,6 +475,7 @@
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
 				37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */,
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
+				37B726F91FB1EF810001CFAE /* WiFiNetworkCell.swift in Sources */,
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
 				9419AF021F8FBBB80021AF14 /* DeviceDetailColorCell.swift in Sources */,
 				371BB57F1FB0C03B004DD713 /* NetworkSelectionVC.swift in Sources */,
@@ -482,6 +489,7 @@
 				9419AEFB1F8FACD90021AF14 /* DeviceDetailVC.swift in Sources */,
 				378575C61FA8B69000A45C9E /* QRScannerVC.swift in Sources */,
 				37DBD2E11FAB43E0000BA60D /* AutomaticSetupVM.swift in Sources */,
+				37B726FB1FB1FA300001CFAE /* Array+FilterDuplicates.swift in Sources */,
 				94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */,
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
 				3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */,

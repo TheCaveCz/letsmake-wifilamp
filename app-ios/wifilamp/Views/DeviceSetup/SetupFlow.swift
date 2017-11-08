@@ -46,7 +46,8 @@ class SetupFlow: Flow {
                     reject(DeviceSetupError.noNetworkSelected)
                 }
                 DispatchQueue.main.async {
-                    vc.navigationController?.present(networkSelectionVC, animated: true, completion: nil)
+                    let navVC = CustomNavigationController(rootViewController: networkSelectionVC)
+                    vc.navigationController?.present(navVC, animated: true, completion: nil)
                 }
             }
         }
