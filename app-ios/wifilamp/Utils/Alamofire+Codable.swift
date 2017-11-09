@@ -11,16 +11,30 @@ import Alamofire
 import PromiseKit
 
 extension Alamofire.DataRequest {
-    // Return a Promise for a Codable
+    
+    public func responseCodable<T: Collection & Codable>() -> Promise<T> where T.Element: Codable {
+        return responseCodable(emptyJSONForTypeOfT: "[]")
+    }
+    
     public func responseCodable<T: Codable>() -> Promise<T> {
-        
+        return responseCodable(emptyJSONForTypeOfT: "{}")
+    }
+    
+    fileprivate func responseCodable<T: Codable>(emptyJSONForTypeOfT: String) -> Promise<T> {
         return Promise { fulfill, reject in
             responseData(queue: nil) { response in
                 switch response.result {
-                case .success(let value):
+                case .success(var data):
+                    
+                    if data.isEmpty {
+                        // Data may be empty (eg. responses with code 204) but it's not valid JSON and we want to try parsing to expected type T anyway.
+                        // So based on type of T (object or array) provide smallest JSON to decoder.
+                        data = emptyJSONForTypeOfT.data(using: .utf8)!
+                    }
+                    
                     let decoder = JSONDecoder()
                     do {
-                        fulfill(try decoder.decode(T.self, from: value))
+                        fulfill(try decoder.decode(T.self, from: data))
                     } catch let e {
                         reject(e)
                     }
@@ -32,4 +46,4 @@ extension Alamofire.DataRequest {
     }
 }
 
-struct VoidResponse: Codable {}
+public struct VoidResponse: Codable {}

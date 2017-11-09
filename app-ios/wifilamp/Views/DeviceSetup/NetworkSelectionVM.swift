@@ -9,7 +9,7 @@
 import Foundation
 
 final class NetworkSelectionVM {
-    var networks: [WiFiNetwork]
+    private(set) var networks: [WiFiNetwork]
     
     init(networks: [WiFiNetwork]) {
         self.networks = networks

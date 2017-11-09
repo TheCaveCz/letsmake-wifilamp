@@ -42,7 +42,7 @@ extension WiFiLamp {
                 return
             }
             
-            let totalSteps = 5
+            let totalSteps = 6
             
             progressUpdate?("Checking if device is available on current network", 1, totalSteps)
             
@@ -72,7 +72,11 @@ extension WiFiLamp {
             
             let (selectedNetwork, passphase) = try await(delegate.askUserToSelectWiFiNetwork(from: networks))
             
-            print((selectedNetwork, passphase))
+            progressUpdate?("Setting up lamp to selected WiFi network", 6, totalSteps)
+            
+            _ = try await(self.saveWiFiNetworkCredentialsOnTemporaryNetwork(network: selectedNetwork, passphase: passphase))
+            
+            
         }
     }
     
@@ -142,6 +146,14 @@ extension WiFiLamp {
             }
             return result
         }
+    }
+    
+    private func saveWiFiNetworkCredentialsOnTemporaryNetwork(network: WiFiNetwork, passphase: String?) -> Promise<VoidResponse> {
+        let parameters: Parameters = [
+            "ssid": network.name,
+            "pass": passphase ?? ""
+        ]
+        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/wifi", method: .post, parameters: parameters)
     }
     
     private func apiCall<T: Codable>(

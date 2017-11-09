@@ -40,9 +40,11 @@ class SetupFlow: Flow {
             return Promise { resolve, reject in
                 let networkSelectionVC = self.createNetworkSelectionVC(for: networks)
                 networkSelectionVC.actionNetworkSelected = { vc, selectedNetwork, passphase in
+                    vc.navigationController?.dismiss(animated: true, completion: nil)
                     resolve((selectedNetwork, passphase))
                 }
                 networkSelectionVC.actionCancelled = { vc in
+                    vc.navigationController?.dismiss(animated: true, completion: nil)
                     reject(DeviceSetupError.noNetworkSelected)
                 }
                 DispatchQueue.main.async {

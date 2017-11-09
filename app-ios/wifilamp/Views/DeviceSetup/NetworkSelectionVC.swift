@@ -10,7 +10,7 @@ import UIKit
 
 final class NetworkSelectionVC: UIViewController {
 
-    var actionNetworkSelected: ((NetworkSelectionVC, WiFiNetwork, String?) -> Void)?
+    var actionNetworkSelected: ((NetworkSelectionVC, _ selectedNetwork: WiFiNetwork, _ passphase: String?) -> Void)?
     var actionCancelled: ((NetworkSelectionVC) -> Void)?
     
     var viewModel: NetworkSelectionVM!
@@ -23,8 +23,37 @@ final class NetworkSelectionVC: UIViewController {
     }
     
     private func setupUI() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped(_:)))
+        
         tableView.tableFooterView = UIView()
     }
+    
+    private func networkSelected(_ network: WiFiNetwork) {
+        // Prompt for password if needed
+        if network.isPasswordProtected {
+            
+            let alert = UIAlertController(title: "Password required", message: "Enter password for \(network.name):", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { passwordField in
+                passwordField.clearButtonMode = .whileEditing
+                passwordField.isSecureTextEntry = true
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            }))
+            alert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
+                let passphase = alert.textFields?.first?.text
+                self.actionNetworkSelected?(self, network, passphase)
+            }))
+            present(alert, animated: true, completion: nil)
+            
+        } else {
+            actionNetworkSelected?(self, network, nil)
+        }
+    }
+    
+    @objc func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        actionCancelled?(self)
+    }
+    
 }
 
 extension NetworkSelectionVC: UITableViewDelegate, UITableViewDataSource {
@@ -43,5 +72,6 @@ extension NetworkSelectionVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        networkSelected(viewModel.networks[indexPath.row])
     }
 }
