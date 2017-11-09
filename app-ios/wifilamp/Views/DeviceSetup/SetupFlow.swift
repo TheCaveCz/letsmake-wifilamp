@@ -11,6 +11,9 @@ import Swinject
 import PromiseKit
 
 class SetupFlow: Flow {
+    
+    var flowCompletion: ((_ isSuccess: Bool) -> Void)?
+    
     private let resolver: Resolver
     
     init(resolver: Resolver) {
@@ -54,8 +57,9 @@ class SetupFlow: Flow {
             }
         }
         
-        automaticSetupVC.actionSetupFinished = { vc, _ in
+        automaticSetupVC.actionSetupFinished = { [weak self] vc, isSuccess in
             vc.navigationController?.dismiss(animated: true, completion: nil)
+            self?.flowCompletion?(isSuccess)
         }
         
         return automaticSetupVC

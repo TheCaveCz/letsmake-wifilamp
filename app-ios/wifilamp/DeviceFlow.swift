@@ -10,6 +10,8 @@ import UIKit
 
 
 class DeviceFlow: Flow {
+    var flowCompletion: ((_ isSuccess: Bool) -> Void)?
+    
     let device: Device
     
     init(device: Device) {

@@ -44,6 +44,10 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
         browser.stop()
     }
     
+    func refresh() {
+        startSearch()
+    }
+    
     private func clearResults() {
         servicesToResolve.removeAll()
         resolvedServices.removeAll()

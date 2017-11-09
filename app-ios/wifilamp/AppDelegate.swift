@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let assembler = Assembler([
             CoreAssembly(),
-            DeviceSelectAssembly()
+            DeviceSelectAssembly(),
+            DeviceSetupAssembly()
         ])
         
         mainFlow = assembler.resolver.resolve(Flow.self, name: Flows.main.rawValue)!
@@ -88,7 +89,11 @@ class DeviceSelectAssembly: Assembly {
         container.register(Flow.self, name: Flows.detail.rawValue) { _, arg1 in
             return DeviceFlow(device: arg1)
         }
-        
+    }
+}
+
+class DeviceSetupAssembly: Assembly {
+    func assemble(container: Container) {
         container.register(Flow.self, name: Flows.setup.rawValue) { res in
             return SetupFlow(resolver: res)
         }

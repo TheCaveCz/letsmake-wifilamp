@@ -11,10 +11,14 @@ import Swinject
 
 protocol Flow {
     func createRootVC() -> UIViewController
+    var flowCompletion: ((_ isSuccess: Bool) -> Void)? { get set }
 }
 
 
 class MainFlow: Flow {
+    
+    var flowCompletion: ((_ isSuccess: Bool) -> Void)?
+    
     let resolver: Resolver
 
     init(resolver: Resolver) {
@@ -25,7 +29,10 @@ class MainFlow: Flow {
         let dc = resolver.resolve(DeviceSelectVC.self)!
         
         dc.actionSetupNewDevice = { vc in
-            let flow = self.resolver.resolve(Flow.self, name: Flows.setup.rawValue)!
+            var flow = self.resolver.resolve(Flow.self, name: Flows.setup.rawValue)!
+            flow.flowCompletion = { _ in
+                self.resolver.resolve(Browser.self)?.refresh()
+            }
             vc.navigationController?.present(flow.createRootVC(), animated: true, completion: nil)
         }
         
