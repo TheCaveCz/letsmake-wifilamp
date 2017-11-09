@@ -13,6 +13,7 @@ import AwaitKit
 final class AutomaticSetupVC: UIViewController {
 
     var actionAskToSelectNetworkToConnect: ((AutomaticSetupVC, _ availableNetworks: [WiFiNetwork]) -> Promise<(selectedNetwork: WiFiNetwork, passphase: String?)>)?
+    var actionSetupFinished: ((AutomaticSetupVC, _ success: Bool) -> Void)?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var progressDescriptionLabel: UILabel!
@@ -42,6 +43,7 @@ extension AutomaticSetupVC: AutomaticSetupVMDelegate {
         case .finished:
             activityIndicator?.stopAnimating()
             progressDescriptionLabel?.text = "Success!"
+            actionSetupFinished?(self, true)
         case .error(let error):
             activityIndicator?.stopAnimating()
             progressDescriptionLabel?.text = "Error: \(error.localizedDescription)"

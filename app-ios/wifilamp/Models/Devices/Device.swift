@@ -26,7 +26,7 @@ protocol DeviceSetupDelegate: class {
 }
 
 protocol Device {
-    var baseUrl: URL { get }
+    var localNetworkUrl: URL { get }
     var name: String { get }
     var chipId: String { get }
     func setup(progressUpdate: ((_ description: String, _ stepNumber: Int, _ totalSteps: Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void>
@@ -35,7 +35,7 @@ protocol Device {
 struct UnknownDevice: Device {
     let chipId: String
     let name: String
-    let baseUrl: URL
+    let localNetworkUrl: URL
     func setup(progressUpdate: ((String, Int, Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void> {
         return Promise(error: DeviceError.unknownDevice)
     }

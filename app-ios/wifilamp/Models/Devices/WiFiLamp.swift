@@ -15,13 +15,13 @@ import PromiseKit
 class WiFiLamp: Device {
     let chipId: String
     var name: String
-    let baseUrl: URL
+    let localNetworkUrl: URL
     
-    init(chipId: String, name: String? = nil, baseUrl: URL? = nil) {
+    init(chipId: String, name: String? = nil, localNetworkUrl: URL? = nil) {
         self.chipId = chipId
         self.name = name ?? "WiFi lamp (\(chipId))"
         // swiftlint:disable:next force_https
-        self.baseUrl = baseUrl ?? URL(string: "http://wifilamp-\(chipId).local")!
+        self.localNetworkUrl = localNetworkUrl ?? URL(string: "http://wifilamp-\(chipId).local")!
     }
 }
 
@@ -42,41 +42,39 @@ extension WiFiLamp {
                 return
             }
             
-            let totalSteps = 6
+            let totalSteps = 8
             
             progressUpdate?("Checking if device is available on current network", 1, totalSteps)
-            
-            let isAccessibleOnCurrentNetwork = try await(self.checkIfAccessibleOnLocalNetwork())
-            
+            let isAccessibleOnCurrentNetwork = try await(self.checkIfAccessible())
             if isAccessibleOnCurrentNetwork {
                 // we are done, we don't need to go trough network setup below
                 return
             }
             
             progressUpdate?("Connecting to the lamp WiFi network", 2, totalSteps)
-            
             try await(self.connectToTemporaryWiFiNetwork())
             defer {
                 self.disconnectFromTemporaryWiFiNetwork()
             }
             
             progressUpdate?("Contacting WiFi lamp", 3, totalSteps)
-            
-            _ = try await(retry(times: 3, cooldown: 1) { self.getStatusOnTemporaryNetwork() })
+            _ = try await(retry(times: 3, cooldown: 3) { self.getStatusOnTemporaryNetwork() })
             
             progressUpdate?("Scanning for available WiFi networks", 4, totalSteps)
-            
-            let networks = try await(self.scanForWiFiNetworksAndWaitForResults())
+            let networks = try await(self.scanForWiFiNetworksAndWaitForResultsOnTemporaryNetwork())
             
             progressUpdate?("Showing list of networks to select", 5, totalSteps)
-            
             let (selectedNetwork, passphase) = try await(delegate.askUserToSelectWiFiNetwork(from: networks))
             
             progressUpdate?("Setting up lamp to selected WiFi network", 6, totalSteps)
-            
             _ = try await(self.saveWiFiNetworkCredentialsOnTemporaryNetwork(network: selectedNetwork, passphase: passphase))
             
+            progressUpdate?("Rebooting the lamp", 7, totalSteps)
+            _ = try await(self.rebootOnTemporaryNetwork())
+            self.disconnectFromTemporaryWiFiNetwork()
             
+            progressUpdate?("Waiting for lamp to reboot", 8, totalSteps)
+            _ = try await(retry(times: 4, cooldown: 4) { self.getStatus() })
         }
     }
     
@@ -104,10 +102,13 @@ extension WiFiLamp {
 
 // MARK: - API
 extension WiFiLamp {
-    func checkIfAccessibleOnLocalNetwork() -> Promise<Bool> {
+    
+    // MARK: Public API
+    
+    func checkIfAccessible(on deviceUrl: URL? = nil) -> Promise<Bool> {
         return async {
             do {
-                try await(self.getStatus())
+                try await(self.getStatus(on: deviceUrl))
                 return true
             } catch where error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
                 return false
@@ -115,45 +116,66 @@ extension WiFiLamp {
         }
     }
     
-    func getStatus() -> Promise<VoidResponse> {
-        return apiCall(path: "/api/status")
+    func getStatus(on deviceUrl: URL? = nil) -> Promise<VoidResponse> {
+        return apiCall(deviceUrl: deviceUrl, path: "/api/status")
     }
     
-    func scanForWiFiNetworksAndWaitForResults() -> Promise<[WiFiLampNetwork]> {
+    func scanForWiFiNetworksAndWaitForResults(on deviceUrl: URL? = nil) -> Promise<[WiFiLampNetwork]> {
         return async {
             // launch network sitesurvey on device
-            _ = try await(self.performNewWiFiNetworksScan())
+            _ = try await(self.performNewWiFiNetworksScan(on: deviceUrl))
             
             // try 3 times until network scan ends and returns list of access points
-            let scanResult: NetworkScanResult = try await(retry(times: 3, cooldown: 3) { self.getWiFiNetworksScanResult() })
+            let scanResult: NetworkScanResult = try await(retry(times: 3, cooldown: 3) { self.getWiFiNetworksScanResult(on: deviceUrl) })
             return scanResult.networks
         }
     }
     
+    func saveWiFiNetworkCredentials(on deviceUrl: URL? = nil, network: WiFiNetwork, passphase: String?) -> Promise<VoidResponse> {
+        let parameters: Parameters = [
+            "ssid": network.name,
+            "pass": passphase ?? ""
+        ]
+        return apiCall(deviceUrl: deviceUrl, path: "/api/wifi", method: .post, parameters: parameters)
+    }
+    
+    func reboot(on deviceUrl: URL? = nil) -> Promise<VoidResponse> {
+        let parameters: Parameters = [
+            "reboot": true
+        ]
+        return apiCall(deviceUrl: deviceUrl, path: "/api/reboot", method: .post, parameters: parameters)
+    }
+    
+    // MARK: Private API
+    
     private func getStatusOnTemporaryNetwork() -> Promise<VoidResponse> {
-        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/status")
+        return getStatus(on: Constants.WiFiLamp.defaultTemporaryNetworkUrl)
     }
     
-    private func performNewWiFiNetworksScan() -> Promise<VoidResponse> {
-        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/scan", method: .post)
+    private func scanForWiFiNetworksAndWaitForResultsOnTemporaryNetwork() -> Promise<[WiFiLampNetwork]> {
+        return scanForWiFiNetworksAndWaitForResults(on: Constants.WiFiLamp.defaultTemporaryNetworkUrl)
     }
     
-    private func getWiFiNetworksScanResult() -> Promise<NetworkScanResult> {
+    private func saveWiFiNetworkCredentialsOnTemporaryNetwork(network: WiFiNetwork, passphase: String?) -> Promise<VoidResponse> {
+        return saveWiFiNetworkCredentials(on: Constants.WiFiLamp.defaultTemporaryNetworkUrl, network: network, passphase: passphase)
+    }
+    
+    private func rebootOnTemporaryNetwork() -> Promise<VoidResponse> {
+        return reboot(on: Constants.WiFiLamp.defaultTemporaryNetworkUrl)
+    }
+    
+    private func performNewWiFiNetworksScan(on deviceUrl: URL?) -> Promise<VoidResponse> {
+        return apiCall(deviceUrl: deviceUrl, path: "/api/scan", method: .post)
+    }
+    
+    private func getWiFiNetworksScanResult(on deviceUrl: URL?) -> Promise<NetworkScanResult> {
         return async {
-            let result: NetworkScanResult = try await(self.apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/scan", method: .get))
+            let result: NetworkScanResult = try await(self.apiCall(deviceUrl: deviceUrl, path: "/api/scan", method: .get))
             if result.inprogress {
                 throw NetworkScanError.scanStillInProgress
             }
             return result
         }
-    }
-    
-    private func saveWiFiNetworkCredentialsOnTemporaryNetwork(network: WiFiNetwork, passphase: String?) -> Promise<VoidResponse> {
-        let parameters: Parameters = [
-            "ssid": network.name,
-            "pass": passphase ?? ""
-        ]
-        return apiCall(deviceUrl: Constants.WiFiLamp.defaultTemporaryNetworkUrl, path: "/api/wifi", method: .post, parameters: parameters)
     }
     
     private func apiCall<T: Codable>(
@@ -170,12 +192,14 @@ extension WiFiLamp {
             headers[authorizationHeader.key] = authorizationHeader.value
         }
         
-        let url = deviceUrl ?? baseUrl
+        let url = deviceUrl ?? localNetworkUrl
         
         return APIManager.shared.request(url.appendingPathComponent(path), method: method, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
             .validate()
             .responseCodable()
     }
+    
+    // MARK: Responses
     
     struct NetworkScanResult: Codable {
         let inprogress: Bool

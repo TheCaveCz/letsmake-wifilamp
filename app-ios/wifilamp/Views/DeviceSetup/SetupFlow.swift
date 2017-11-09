@@ -54,6 +54,10 @@ class SetupFlow: Flow {
             }
         }
         
+        automaticSetupVC.actionSetupFinished = { vc, _ in
+            vc.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        
         return automaticSetupVC
     }
     
