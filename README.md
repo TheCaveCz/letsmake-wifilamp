@@ -1,6 +1,6 @@
 # Let's make: WiFi Lamp
 
-ESP8266 chip on Wemos D1 mini module that is driving WS2812 LED strip, one tactile switch for manual control.
+ESP8266 chip on Wemos D1 mini module that is driving WS2812 LED strip, one tactile switch or touch sensor for manual control.
 Firmware contains React web app for controlling the lamp via HTTP REST API.
 
 More resources:
