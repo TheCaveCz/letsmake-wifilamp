@@ -20,7 +20,7 @@
 #define OTA_REQUIRES_PASSWORD 1
 
 // Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 0
+#define TOUCH_BUTTON 1
 
 
 
