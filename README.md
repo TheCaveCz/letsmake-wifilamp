@@ -12,4 +12,4 @@ More resources:
 
 ## How it looks
 
-![The Device](pictures/15.jpg)
+![The Device](pictures/10.jpg)
