@@ -40,10 +40,12 @@ void logicButtonTask() {
   logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
 
 
-  if (logicButtonCounter == 255) {
-    logicButtonCounter = buttonReadRaw() ? 255 : 0;
+  if (logicButtonCounter >= 10) {
+    logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
     if (logicButtonCounter == 0) {
       logicButtonTaskInterval = LOGIC_BUTTON_LOCKUP_TIME;
+    } else if (logicButtonCounter >= 10 + 160) { // 10 is offset, 160 is 8 seconds (50ms*160 cycles)
+      ESP.restart();
     }
   } else {
     logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
@@ -52,7 +54,7 @@ void logicButtonTask() {
       if (logicConfig.buttonEnabled) {
         logicSetState(!logicOn, logicConfig.defaultTurnOnSpeed);
       }
-      logicButtonCounter = 255;
+      logicButtonCounter = 10;
     }
   }
 }
