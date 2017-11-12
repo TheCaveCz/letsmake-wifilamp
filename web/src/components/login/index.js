@@ -17,7 +17,9 @@ export default class Login extends Component {
     this.setState({ pass: txt.target.value })
   }
 
-  handleLogin = () => {
+  handleLogin = formEvent => {
+    formEvent.preventDefault();
+
     this.setState({ loading: true })
     this.props.device.tryLogin(this.state.user, this.state.pass, result => {
       this.setState({ loading: false })
@@ -37,11 +39,11 @@ export default class Login extends Component {
       <h2>Login</h2>
       { message && <p className={style.error}>{message}</p> }
 
-      <p><input autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" type="text" placeholder="Username" onInput={this.handleUserInput} value={user}/></p>
-      <p><input type="password" placeholder="Password" onInput={this.handlePassInput} value={pass}/></p>
-      <p>
-        <button onClick={this.handleLogin} disabled={loading}>Login</button>
-      </p>
+      <form onSubmit={this.handleLogin}>
+        <p><input autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" type="text" placeholder="Username" onInput={this.handleUserInput} value={user}/></p>
+        <p><input type="password" placeholder="Password" onInput={this.handlePassInput} value={pass}/></p>
+        <p><input type="submit" value="Login" disabled={loading} /></p>
+      </form>
     </div>
   )
 }
