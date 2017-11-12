@@ -1,5 +1,11 @@
+#include <ESP8266WiFi.h>
+#include <ArduinoOTA.h>
+
+#define WIFI_PASS "put password here"
+
+
 // Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 0
+#define TOUCH_BUTTON 1
 
 
 #define PIXELS_PIN D1
@@ -23,6 +29,40 @@ void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
   espShow(PIXELS_PIN, pixelsBuffer, PIXELS_BYTE_COUNT);
 }
 
+void wifiConnect() {
+  Serial.println("Connecting");
+  pixelsSet(0, 0, 255);
+
+  if (WiFi.getMode() != WIFI_STA) WiFi.mode(WIFI_STA);
+  if (WiFi.getAutoConnect()) WiFi.setAutoConnect(false);
+  WiFi.setAutoReconnect(true);
+  WiFi.begin("TheCave", WIFI_PASS);
+
+  int counter = 0;
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    pixelsSet(0, 0, 32);
+    delay(250);
+    pixelsSet(0, 0, 128);
+    delay(250);
+    counter++;
+    if (counter > 15) {
+      Serial.println("\nConnect timed out");
+      break;
+    }
+  }
+
+  Serial.print("\nConnect status: ");
+  Serial.println(WiFi.status());
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.print("Connected successfuly\nIP address: ");
+    Serial.println(WiFi.localIP());
+  } else {
+    pixelsSet(255, 0, 0);
+    while (1) yield();
+  }
+}
+
 void setup() {
 #if TOUCH_BUTTON
   pinMode(BUTTON_PIN, INPUT);
@@ -33,13 +73,23 @@ void setup() {
   pinMode(PIXELS_PIN, OUTPUT);
   digitalWrite(PIXELS_PIN, LOW);
 
+  String chipId = String(ESP.getChipId(), HEX);
 
   Serial.begin(9600);
   Serial.println("WiFi lamp tester");
   Serial.print("Chip id: ");
-  Serial.println(String(ESP.getChipId(), HEX));
+  Serial.println(chipId);
 
-  pixelsSet(0, 0, 0);
+  wifiConnect();
+
+  String ssid = "wifilamp-";
+  ssid += chipId;
+  ArduinoOTA.setHostname(ssid.c_str());
+
+  ArduinoOTA.onStart([]() {
+    pixelsSet(32, 32, 32);
+  });
+  ArduinoOTA.begin();
 }
 
 uint8_t buttonReadRaw() {
@@ -54,7 +104,7 @@ void loop() {
   if (buttonReadRaw()) {
     pixelsSet(0, 255, 0);
   } else {
-    pixelsSet(255, 0, 0);
+    pixelsSet(255, 255, 0);
   }
-  delay(50);
+  ArduinoOTA.handle();
 }
