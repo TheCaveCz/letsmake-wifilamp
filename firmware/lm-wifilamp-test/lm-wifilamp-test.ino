@@ -46,7 +46,7 @@ void wifiConnect() {
     pixelsSet(0, 0, 128);
     delay(250);
     counter++;
-    if (counter > 15) {
+    if (counter > 30) {
       Serial.println("\nConnect timed out");
       break;
     }
@@ -87,7 +87,22 @@ void setup() {
   ArduinoOTA.setHostname(ssid.c_str());
 
   ArduinoOTA.onStart([]() {
+    Serial.println("OTA update start");
     pixelsSet(32, 32, 32);
+  });
+  ArduinoOTA.onEnd([]() {
+    Serial.println("OTA update end");
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u/%u\n", progress, total);
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+    else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
+    else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+    else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+    else if (error == OTA_END_ERROR) Serial.println("End Failed");
   });
   ArduinoOTA.begin();
 }
