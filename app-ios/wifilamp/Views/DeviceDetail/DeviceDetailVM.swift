@@ -68,7 +68,6 @@ class DeviceDetailVM {
     
     func updateColor(color: UIColor) {
         
-        // TODO: Refactor to UIColor Extension
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -78,6 +77,7 @@ class DeviceDetailVM {
         let roundG =  round(g * 255.0)
         let roundB =  round(b * 255.0)
         
+        print("\n[APP] Red:\(roundR) Green: \(roundG) Blue:\(roundB)\n")
         _ = self.device.setColor(on: self.device.localNetworkUrl, roundR, roundG, roundB)
     }
     

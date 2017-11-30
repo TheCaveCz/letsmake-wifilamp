@@ -98,7 +98,6 @@ extension WiFiLamp {
     private func disconnectFromTemporaryWiFiNetwork() {
         NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
     }
-    
 }
 
 // MARK: - API
@@ -273,11 +272,8 @@ struct WiFiLampInitialState: Codable {
         let green = try nestedContainer.decode(CGFloat.self, forKey: .green)
         let blue = try nestedContainer.decode(CGFloat.self, forKey: .blue)
         
-        let roundR =  round(red * 255.0)
-        let roundG =  round(green * 255.0)
-        let roundB =  round(blue * 255.0)
-        
-        self.color = UIColor(red: roundR, green: roundG, blue: roundB, alpha: 1.0)
+        print("\n[LAMP] Red:\(red) Green:\(green) Blue:\(blue)\n")
+        self.color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
         self.isOn = try nestedContainer.decode(Bool.self, forKey: .isOn)
     }
     
