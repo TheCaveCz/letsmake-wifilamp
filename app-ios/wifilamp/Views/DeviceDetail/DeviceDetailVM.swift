@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import AwaitKit
+import PromiseKit
 
+
+protocol DisplayErrorDelegate: class {
+    func displayError(message: String)
+}
+
+protocol DeviceDetailVMDelegate: DisplayErrorDelegate {
+    func didFinishLoadingInitialData(_ color: UIColor, _ isOn: Bool)
+}
 
 class DeviceDetailVM {
     private let device: Device
+    weak var delegate: DeviceDetailVMDelegate?
     
     var title: String {
         return device.name
@@ -33,8 +44,44 @@ class DeviceDetailVM {
     
     init(device: Device) {
         self.device = device
-        
-        
     }
     
+    // To load initial device state when displaying the detail
+    func getInitialState() {
+        
+        guard let lamp = self.device as? WiFiLamp else { return }
+        
+        async {
+            do {
+                let initialState = try await(lamp.getStatus(on: self.device.localNetworkUrl))
+                DispatchQueue.main.async {
+                    self.delegate?.didFinishLoadingInitialData(initialState.color, initialState.isOn)
+                }
+            } catch {
+                // TODO: Handle Specific Error
+                DispatchQueue.main.async {
+                    self.delegate?.displayError(message: "Could not connect to the device.")
+                }
+            }
+        }
+    }
+    
+    func updateColor(color: UIColor) {
+        
+        // TODO: Refactor to UIColor Extension
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        color.getRed(&r, green: &g, blue: &b, alpha: nil)
+        
+        let roundR =  round(r * 255.0)
+        let roundG =  round(g * 255.0)
+        let roundB =  round(b * 255.0)
+        
+        _ = self.device.setColor(on: self.device.localNetworkUrl, roundR, roundG, roundB)
+    }
+    
+    func updateState(isOn: Bool) {
+        _ = self.device.turn(on: isOn, on: self.device.localNetworkUrl)
+    }
 }
