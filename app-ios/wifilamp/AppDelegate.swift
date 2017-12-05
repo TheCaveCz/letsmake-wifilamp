@@ -48,6 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
+        // app general appearance setup
+        Appearance.set()
+        
         return true
     }
 
