@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class DeviceDetailVC: UIViewController {
+class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
     @IBOutlet weak private var colorPicker: SwiftHSVColorPicker!//ChromaColorPicker!
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak var switchButton: UISwitch!
@@ -26,6 +25,8 @@ class DeviceDetailVC: UIViewController {
         
         // load initial state
         self.viewModel.getInitialState()
+        // until initial state loads 
+        self.showLoadingIndicator()
     }
     
     @IBAction func switchValueChanged(_ sender: Any) {
@@ -61,16 +62,22 @@ extension DeviceDetailVC: SwiftHSVColorPickerDelegate {
 
 extension DeviceDetailVC: DeviceDetailVMDelegate {
     
-    func displayError(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     func didFinishLoadingInitialData(_ color: UIColor, _ isOn: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
             self.colorPicker.color = color
             self.switchButton.isOn = isOn
         })
+        
+        self.hideLoadingIndicator()
     }
+    
+    func displayError(message: String) {
+        
+        self.hideLoadingIndicator()
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
