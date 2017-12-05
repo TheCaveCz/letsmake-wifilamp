@@ -17,6 +17,7 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
+  - SVProgressHUD (2.2.2)
   - SwiftLint (0.23.1)
   - Swinject (2.1.1)
 
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - AwaitKit (~> 3.0.1)
   - QRCodeReader.swift
   - R.swift
+  - SVProgressHUD (~> 2.2.2)
   - SwiftLint
   - Swinject
 
@@ -35,9 +37,10 @@ SPEC CHECKSUMS:
   QRCodeReader.swift: 7c98a05c2544a7c8737853845428b4460273d50d
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
   Swinject: afea49fd95f392b41171669f165842879c48fad6
 
-PODFILE CHECKSUM: 8abd4978ead8def8017d127914ba4863b2485fd0
+PODFILE CHECKSUM: acf7d3e3e7482ee3a31323f874c35ee6aa1cd9c9
 
 COCOAPODS: 1.3.1

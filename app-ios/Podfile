@@ -9,4 +9,5 @@ target 'wifilamp' do
     pod 'R.swift'
     pod 'SwiftLint'
     pod 'Swinject'
+    pod 'SVProgressHUD', '~> 2.2.2'
 end
