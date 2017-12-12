@@ -6,6 +6,8 @@
 
 ![PCB assembly](3.jpg)
 
+![PCB assembly](3a.jpg)
+
 ![PCBs on base](4.jpg)
 
 ![PCBs on base](5.jpg)
