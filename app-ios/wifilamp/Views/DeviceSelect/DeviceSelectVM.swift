@@ -23,7 +23,7 @@ class DeviceSelectVM {
     weak var delegate: DeviceSelectVMDelegate?
     
     var nearbyDevices: [DeviceSelectItem] {
-        return []//browser.records
+        return browser.records
     }
     
     var savedDevices: [DeviceSelectItem] = []
@@ -45,6 +45,10 @@ class DeviceSelectVM {
     
     func deleteSaved(index: Int) {
         savedDevices.remove(at: index)
+    }
+
+    func refresh() {
+        browser.refresh()
     }
 }
 

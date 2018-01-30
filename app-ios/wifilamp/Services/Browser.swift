@@ -13,7 +13,6 @@ protocol BrowserDelegate: class {
     func browser(_ browser: Browser, removedRecord record: BrowserRecord)
 }
 
-
 class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     let serviceType: String
     weak var delegate: BrowserDelegate?
@@ -38,7 +37,6 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     
     func startSearch() {
         browser.searchForServices(ofType: serviceType, inDomain: "local.")
-
     }
     
     func stopSearch() {
@@ -46,6 +44,8 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func refresh() {
+        stopSearch()
+        clearResults()
         startSearch()
     }
     
@@ -95,7 +95,6 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
         servicesToResolve.removeFirst(element: sender)
     }
-    
 }
 
 struct BrowserRecord {

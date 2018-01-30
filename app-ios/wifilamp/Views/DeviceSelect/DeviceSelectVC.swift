@@ -28,17 +28,19 @@ class DeviceSelectVC: UIViewController {
     // MARK: - Private Props
     private let sections: [SectionType] = [.saved, .nearby]
 
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl.init()
+        control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        return control
+    }()
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.backgroundView = backgroundView
         tableView.rowHeight = UITableViewAutomaticDimension
-    }
-
-    // MARK: - Actions
-    @IBAction private func addDeviceTap(_ sender: Any) {
-        actionSetupNewDevice?(self)
+        tableView.refreshControl = refreshControl
     }
 }
 
@@ -111,6 +113,8 @@ extension DeviceSelectVC: UITableViewDelegate {
 extension DeviceSelectVC: DeviceSelectVMDelegate {
     
     func nearbyDevicesChanged() {
+        refreshControl.endRefreshing()
+
         if let idx = sections.index(of: .nearby) {
             tableView.reloadSections([idx], with: .automatic)
         }
@@ -123,7 +127,6 @@ private extension DeviceSelectVC {
         case nearby
     }
 
-
     func device(for indexPath: IndexPath) -> DeviceSelectItem? {
         switch sections[indexPath.section] {
         case .saved:
@@ -131,5 +134,14 @@ private extension DeviceSelectVC {
         case .nearby:
             return viewModel.nearbyDevices[safe:indexPath.row]
         }
+    }
+
+    // MARK: - Actions
+    @IBAction private func addDeviceTap(_ sender: Any) {
+        actionSetupNewDevice?(self)
+    }
+
+    @objc private func refresh() {
+        viewModel.refresh()
     }
 }
