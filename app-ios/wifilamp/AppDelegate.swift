@@ -74,15 +74,16 @@ enum Flows: String {
     case setup
 }
 
-
 class DeviceSelectAssembly: Assembly {
     func assemble(container: Container) {
         container.register(Flow.self, name: Flows.main.rawValue) { res in
             return MainFlow(resolver: res)
         }
+
         container.register(DeviceSelectVM.self) { res in
             return DeviceSelectVM(browser: res.resolve(Browser.self)!)
         }
+
         container.register(DeviceSelectVC.self) { res in
             let vc = R.storyboard.main.deviceSelectVC()!
             vc.viewModel = res.resolve(DeviceSelectVM.self)

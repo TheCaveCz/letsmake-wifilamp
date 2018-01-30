@@ -12,7 +12,6 @@ import SVProgressHUD
 struct Appearance {
     
     static func set() {
-        
         // to block UI when showing loading idicator
          SVProgressHUD.setDefaultMaskType(.gradient)
     }

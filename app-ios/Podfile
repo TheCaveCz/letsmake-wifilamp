@@ -1,5 +1,4 @@
-platform :ios, "9.0"
-
+platform :ios, "11.0"
 use_frameworks!
 
 target 'wifilamp' do
@@ -10,4 +9,17 @@ target 'wifilamp' do
     pod 'SwiftLint'
     pod 'Swinject'
     pod 'SVProgressHUD', '~> 2.2.2'
+end
+
+post_install do |installer|
+    # Set optim level to pods targets
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if config.name == 'Release'
+                config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
+                else
+                config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Onone'
+            end
+        end
+    end
 end

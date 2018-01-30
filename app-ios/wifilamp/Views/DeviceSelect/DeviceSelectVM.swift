@@ -8,20 +8,15 @@
 
 import UIKit
 
-
 protocol DeviceSelectItem {
     var icon: UIImage { get }
     var name: String { get }
     var details: String { get }
 }
 
-
 protocol DeviceSelectVMDelegate: class {
-    
     func nearbyDevicesChanged()
-    
 }
-
 
 class DeviceSelectVM {
     private let browser: Browser
@@ -38,7 +33,6 @@ class DeviceSelectVM {
         DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 4", details: "some")
     ]
     
-    
     init(browser: Browser) {
         self.browser = browser
         browser.delegate = self
@@ -48,7 +42,6 @@ class DeviceSelectVM {
         savedDevices.remove(at: index)
     }
 }
-
 
 extension DeviceSelectVM: BrowserDelegate {
     func browser(_ browser: Browser, foundRecord record: BrowserRecord) {
@@ -60,7 +53,6 @@ extension DeviceSelectVM: BrowserDelegate {
     }
 }
 
-
 extension BrowserRecord: DeviceSelectItem {
     var icon: UIImage {
         return R.image.lampOff()!
@@ -69,10 +61,7 @@ extension BrowserRecord: DeviceSelectItem {
     var details: String {
         return chipId
     }
-    
-    
 }
-
 
 struct DeviceDummy: DeviceSelectItem, DeviceConvertible {
     var icon: UIImage

@@ -9,7 +9,8 @@
 import UIKit
 
 class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
-    @IBOutlet weak private var colorPicker: SwiftHSVColorPicker!//ChromaColorPicker!
+
+    @IBOutlet weak private var colorPicker: SwiftHSVColorPicker!
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak var switchButton: UISwitch!
     
@@ -25,7 +26,7 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
         
         // load initial state
         self.viewModel.getInitialState()
-        // until initial state loads 
+        // until initial state loads
         self.showLoadingIndicator()
     }
     
@@ -76,7 +77,9 @@ extension DeviceDetailVC: DeviceDetailVMDelegate {
         self.hideLoadingIndicator()
         
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     

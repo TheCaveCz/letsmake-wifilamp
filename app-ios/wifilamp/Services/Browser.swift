@@ -97,7 +97,6 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     
 }
 
-
 struct BrowserRecord {
     static let removedPrefix = "The Cave "
     

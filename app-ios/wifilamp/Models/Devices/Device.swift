@@ -33,7 +33,6 @@ protocol Device {
     func setup(progressUpdate: ((_ description: String, _ stepNumber: Int, _ totalSteps: Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void>
     func setColor(on deviceUrl: URL, _ red: CGFloat, _ blue: CGFloat, _ green: CGFloat) -> Promise<VoidResponse>
     func turn(on isOn: Bool, on deviceUrl: URL) -> Promise<VoidResponse>
-
 }
 
 struct UnknownDevice: Device {
@@ -44,6 +43,7 @@ struct UnknownDevice: Device {
     func setup(progressUpdate: ((String, Int, Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void> {
         return Promise(error: DeviceError.unknownDevice)
     }
+    
     func setColor(on deviceUrl: URL, _ red: CGFloat, _ blue: CGFloat, _ green: CGFloat) -> Promise<VoidResponse> {
         return Promise(error: DeviceError.unknownDevice)
     }

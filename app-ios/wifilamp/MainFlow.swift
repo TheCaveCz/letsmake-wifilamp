@@ -14,7 +14,6 @@ protocol Flow {
     var flowCompletion: ((_ isSuccess: Bool) -> Void)? { get set }
 }
 
-
 class MainFlow: Flow {
     
     var flowCompletion: ((_ isSuccess: Bool) -> Void)?
@@ -26,27 +25,26 @@ class MainFlow: Flow {
     }
     
     func createRootVC() -> UIViewController {
-        let dc = resolver.resolve(DeviceSelectVC.self)!
+        let deviceController = resolver.resolve(DeviceSelectVC.self)!
         
-        dc.actionSetupNewDevice = { vc in
+        deviceController.actionSetupNewDevice = { controller in
             var flow = self.resolver.resolve(Flow.self, name: Flows.setup.rawValue)!
             flow.flowCompletion = { _ in
                 self.resolver.resolve(Browser.self)?.refresh()
             }
-            vc.navigationController?.present(flow.createRootVC(), animated: true, completion: nil)
+            controller.navigationController?.present(flow.createRootVC(), animated: true, completion: nil)
         }
         
-        dc.actionSelectDevice = { vc, item in
-            guard let dc = item as? DeviceConvertible else {
+        deviceController.actionSelectDevice = { controller, item in
+            guard let device = item as? DeviceConvertible else {
                 print("Selected item \(item) is not DeviceConvertible")
                 return
             }
             
-            let flow = self.resolver.resolve(Flow.self, name: Flows.detail.rawValue, argument: dc.toDevice())! //DeviceFlow(device: dc.toDevice())
-            vc.navigationController?.pushViewController(flow.createRootVC(), animated: true)
+            let flow = self.resolver.resolve(Flow.self, name: Flows.detail.rawValue, argument: device.toDevice())! //DeviceFlow(device: dc.toDevice())
+            controller.navigationController?.pushViewController(flow.createRootVC(), animated: true)
         }
         
-        return CustomNavigationController(rootViewController: dc)
+        return CustomNavigationController(rootViewController: deviceController)
     }
-    
 }
