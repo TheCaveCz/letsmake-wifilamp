@@ -12,7 +12,6 @@ import NetworkExtension
 import AwaitKit
 import PromiseKit
 
-
 class WiFiLamp: Device {
     let chipId: String
     var name: String

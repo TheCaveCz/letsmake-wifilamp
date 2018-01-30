@@ -10,16 +10,12 @@ import UIKit
 import Rswift
 
 class DeviceSelectVC: UIViewController {
-    enum SectionType {
-        case saved
-        case nearby
-    }
 
-    private let sections: [SectionType] = [.saved, .nearby]
-    
+    // MARK: - Public UI
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet private var backgroundView: UIView!
-    
+
+    // MARK: - Public Props
     var viewModel: DeviceSelectVM! {
         didSet {
             viewModel.delegate = self
@@ -28,28 +24,25 @@ class DeviceSelectVC: UIViewController {
 
     var actionSelectDevice: ((DeviceSelectVC, DeviceSelectItem) -> Void)?
     var actionSetupNewDevice: ((DeviceSelectVC) -> Void)?
-    
+
+    // MARK: - Private Props
+    private let sections: [SectionType] = [.saved, .nearby]
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.backgroundView = backgroundView
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
-    private func device(for indexPath: IndexPath) -> DeviceSelectItem? {
-        switch sections[indexPath.section] {
-        case .saved:
-            return viewModel.savedDevices[safe:indexPath.row]
-        case .nearby:
-            return viewModel.nearbyDevices[safe:indexPath.row]
-        }
-    }
 
+    // MARK: - Actions
     @IBAction private func addDeviceTap(_ sender: Any) {
         actionSetupNewDevice?(self)
     }
 }
 
+// MARK: - UITableViewDataSource
 extension DeviceSelectVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,7 +74,9 @@ extension DeviceSelectVC: UITableViewDataSource {
         case (.saved, _, _):
             return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectCell, for: indexPath, data: viewModel.savedDevices[indexPath.row])!
         case (.nearby, 0, _):
-            return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectNearbyEmptyCell, for: indexPath)!
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectNearbyEmptyCell, for: indexPath)!
+            cell.setIsLoading(viewModel.isLookingForNearby)
+            return cell
         case (.nearby, _, _):
             return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectCell, for: indexPath, data: viewModel.nearbyDevices[indexPath.row])!
         }
@@ -92,7 +87,7 @@ extension DeviceSelectVC: UITableViewDataSource {
     }
 }
 
-
+// MARK: - UITableViewDelegate
 extension DeviceSelectVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -113,7 +108,6 @@ extension DeviceSelectVC: UITableViewDelegate {
     }
 }
 
-
 extension DeviceSelectVC: DeviceSelectVMDelegate {
     
     func nearbyDevicesChanged() {
@@ -121,5 +115,21 @@ extension DeviceSelectVC: DeviceSelectVMDelegate {
             tableView.reloadSections([idx], with: .automatic)
         }
     }
-    
+}
+
+private extension DeviceSelectVC {
+    enum SectionType {
+        case saved
+        case nearby
+    }
+
+
+    func device(for indexPath: IndexPath) -> DeviceSelectItem? {
+        switch sections[indexPath.section] {
+        case .saved:
+            return viewModel.savedDevices[safe:indexPath.row]
+        case .nearby:
+            return viewModel.nearbyDevices[safe:indexPath.row]
+        }
+    }
 }

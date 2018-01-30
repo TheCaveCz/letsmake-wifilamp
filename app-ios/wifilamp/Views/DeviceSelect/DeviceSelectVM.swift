@@ -23,15 +23,20 @@ class DeviceSelectVM {
     weak var delegate: DeviceSelectVMDelegate?
     
     var nearbyDevices: [DeviceSelectItem] {
-        return browser.records
+        return []//browser.records
     }
     
-    var savedDevices: [DeviceSelectItem] = [
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 1", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 2", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 4", details: "some")
-    ]
+    var savedDevices: [DeviceSelectItem] = []
+//    [
+//        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 1", details: "some"),
+//        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 2", details: "some"),
+//        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
+//        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 4", details: "some")
+//    ]
+
+    var isLookingForNearby: Bool {
+        return browser.searching
+    }
     
     init(browser: Browser) {
         self.browser = browser

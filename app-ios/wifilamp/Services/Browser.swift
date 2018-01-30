@@ -24,7 +24,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private let browser: NetServiceBrowser
     private var servicesToResolve: [NetService] = []
     private var resolvedServices: [BrowserRecord] = []
-    private var searching: Bool = false
+    private(set) var searching: Bool = false
     
     init(serviceType type: String = "_wifilamp._tcp.") {
         serviceType = type
@@ -38,6 +38,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     
     func startSearch() {
         browser.searchForServices(ofType: serviceType, inDomain: "local.")
+
     }
     
     func stopSearch() {
