@@ -9,12 +9,12 @@
 import UIKit
 import Rswift
 
-
 class DeviceSelectVC: UIViewController {
     enum SectionType {
         case saved
         case nearby
     }
+
     private let sections: [SectionType] = [.saved, .nearby]
     
     @IBOutlet weak private var tableView: UITableView!
@@ -25,9 +25,9 @@ class DeviceSelectVC: UIViewController {
             viewModel.delegate = self
         }
     }
+
     var actionSelectDevice: ((DeviceSelectVC, DeviceSelectItem) -> Void)?
     var actionSetupNewDevice: ((DeviceSelectVC) -> Void)?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,6 @@ class DeviceSelectVC: UIViewController {
         actionSetupNewDevice?(self)
     }
 }
-
 
 extension DeviceSelectVC: UITableViewDataSource {
     
@@ -91,7 +90,6 @@ extension DeviceSelectVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return sections[indexPath.section] == .saved && !viewModel.savedDevices.isEmpty
     }
-    
 }
 
 
@@ -103,7 +101,6 @@ extension DeviceSelectVC: UITableViewDelegate {
         if let device = device(for: indexPath) {
             actionSelectDevice?(self, device)
         }
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -114,7 +111,6 @@ extension DeviceSelectVC: UITableViewDelegate {
             tableView.endUpdates()
         }
     }
-    
 }
 
 

@@ -12,6 +12,7 @@ import NetworkExtension
 import AwaitKit
 import PromiseKit
 
+
 class WiFiLamp: Device {
     let chipId: String
     var name: String
@@ -97,7 +98,6 @@ extension WiFiLamp {
     private func disconnectFromTemporaryWiFiNetwork() {
         NEHotspotConfigurationManager.shared.removeConfiguration(forSSID: setupNetworkSSID)
     }
-    
 }
 
 // MARK: - API
@@ -116,7 +116,8 @@ extension WiFiLamp {
         }
     }
     
-    func getStatus(on deviceUrl: URL? = nil) -> Promise<VoidResponse> {
+    
+    func getStatus(on deviceUrl: URL? = nil) -> Promise<WiFiLampInitialState> {
         return apiCall(deviceUrl: deviceUrl, path: "/api/status")
     }
     
@@ -146,9 +147,25 @@ extension WiFiLamp {
         return apiCall(deviceUrl: deviceUrl, path: "/api/reboot", method: .post, parameters: parameters)
     }
     
+    func setColor(on deviceUrl: URL, _ red: CGFloat, _ green: CGFloat, _ blue: CGFloat) -> Promise<VoidResponse> {
+        let parameters: Parameters = [
+            "r": red,
+            "g": green,
+            "b": blue
+        ]
+        return apiCall(deviceUrl: deviceUrl, path: "/api/color", method: .post, parameters: parameters)
+    }
+    
+    func turn(on isOn: Bool, on deviceUrl: URL) -> Promise<VoidResponse> {
+        let parameters: Parameters = [
+            "on": isOn
+        ]
+        return apiCall(deviceUrl: deviceUrl, path: "/api/on", method: .post, parameters: parameters)
+    }
+    
     // MARK: Private API
     
-    private func getStatusOnTemporaryNetwork() -> Promise<VoidResponse> {
+    private func getStatusOnTemporaryNetwork() -> Promise<WiFiLampInitialState> {
         return getStatus(on: Constants.WiFiLamp.defaultTemporaryNetworkUrl)
     }
     
@@ -229,5 +246,38 @@ extension WiFiLamp {
     
     enum NetworkScanError: Error {
         case scanStillInProgress
+    }
+}
+
+struct WiFiLampInitialState: Codable {
+    
+    let color: UIColor
+    let isOn: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case red = "r"
+        case green = "g"
+        case blue = "b"
+        case isOn = "on"
+        
+        // root key
+        case current
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let nestedContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: WiFiLampInitialState.CodingKeys.current)
+        
+        let red = try nestedContainer.decode(CGFloat.self, forKey: .red)
+        let green = try nestedContainer.decode(CGFloat.self, forKey: .green)
+        let blue = try nestedContainer.decode(CGFloat.self, forKey: .blue)
+        
+        print("\n[LAMP] Red:\(red) Green:\(green) Blue:\(blue)\n")
+        self.color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+        self.isOn = try nestedContainer.decode(Bool.self, forKey: .isOn)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        
     }
 }

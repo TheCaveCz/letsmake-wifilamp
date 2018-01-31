@@ -23,6 +23,10 @@ final class QRScannerVC: UIViewController {
         
         return QRCodeReaderViewController(builder: builder)
     }()
+    private lazy var closeButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(cancelTapped))
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,7 @@ final class QRScannerVC: UIViewController {
     
     private func setupUI() {
         navigationItem.title = "Setup new lamp"
+        navigationItem.leftBarButtonItem = closeButton
     }
     
     @IBAction func scanQRCodeTap(_ sender: UIButton) {
@@ -41,6 +46,10 @@ final class QRScannerVC: UIViewController {
         readerVC.delegate = self
         readerVC.modalPresentationStyle = .formSheet
         present(readerVC, animated: true, completion: nil)
+    }
+
+     @objc private func cancelTapped() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     private func didScanQRCode(metadata: String) {
@@ -78,6 +87,5 @@ extension QRScannerVC: QRCodeReaderViewControllerDelegate {
         reader.dismiss(animated: true, completion: nil)
     }
     
-    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
-    }
+    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {}
 }

@@ -46,6 +46,8 @@
 		94875B951F5D4C0400588B03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94875B941F5D4C0400588B03 /* Assets.xcassets */; };
 		94875B981F5D4C0400588B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94875B961F5D4C0400588B03 /* LaunchScreen.storyboard */; };
 		94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */; };
+		9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9195F1FD53EB2003FABC2 /* Appearance.swift */; };
+		9DC919621FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,8 @@
 		94875B971F5D4C0400588B03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94875B991F5D4C0400588B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectVM.swift; sourceTree = "<group>"; };
+		9DC9195F1FD53EB2003FABC2 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,7 @@
 				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
 				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 				3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */,
+				9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				37DBD2D91FAA18C2000BA60D /* Services */,
 				9442A75E1F8A59AC0045B2D1 /* Resources */,
 				37EDD0601FA75B220017B127 /* Other */,
+				9DC9195F1FD53EB2003FABC2 /* Appearance.swift */,
 			);
 			path = wifilamp;
 			sourceTree = "<group>";
@@ -325,7 +331,7 @@
 				TargetAttributes = {
 					94875B891F5D4C0400588B03 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9W7F66BR5D;
+						DevelopmentTeam = XWQ4Y8CJ93;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -396,6 +402,7 @@
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -405,6 +412,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +447,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" lint --config \"${SRCROOT}/.swiftlint.yml\"";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		C7402FE544E61C860E2CC7A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -471,9 +479,11 @@
 				37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */,
 				9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */,
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
+				9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
 				37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */,
+				9DC919621FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift in Sources */,
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
 				37B726F91FB1EF810001CFAE /* WiFiNetworkCell.swift in Sources */,
 				9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */,
@@ -634,11 +644,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9W7F66BR5D;
+				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -651,11 +661,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9W7F66BR5D;
+				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
