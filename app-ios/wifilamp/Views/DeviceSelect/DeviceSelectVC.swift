@@ -37,10 +37,15 @@ class DeviceSelectVC: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.backgroundView = backgroundView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.refreshControl = refreshControl
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Reload saved devices
+        viewModel.reloadSavedDevices()
     }
 }
 

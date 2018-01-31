@@ -49,6 +49,12 @@ extension WiFiLamp: DeviceSelectItem {
     }
 }
 
+extension WiFiLamp: DeviceConvertible {
+    func toDevice() -> Device {
+        return self
+    }
+}
+
 // MARK: - Initial device configuration
 extension WiFiLamp {
     

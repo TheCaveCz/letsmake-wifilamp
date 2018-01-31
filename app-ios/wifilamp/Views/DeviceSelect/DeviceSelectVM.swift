@@ -23,7 +23,12 @@ class DeviceSelectVM {
     weak var delegate: DeviceSelectVMDelegate?
     
     var nearbyDevices: [DeviceSelectItem] {
-        return browser.records
+        return browser.records.filter({ device -> Bool in
+            return savedDevices.contains(where: { savedDevice -> Bool in
+                guard let saved = savedDevice as? WiFiLamp else { return false }
+                return saved.chipId != device.chipId
+            })
+        })
     }
     
     var savedDevices: [DeviceSelectItem] = {
@@ -45,6 +50,11 @@ class DeviceSelectVM {
 
     func refresh() {
         browser.refresh()
+        reloadSavedDevices()
+    }
+
+    func reloadSavedDevices() {
+        savedDevices = Defaults.savedDevices()
     }
 }
 
