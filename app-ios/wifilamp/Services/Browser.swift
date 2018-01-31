@@ -9,6 +9,7 @@
 import Foundation
 
 protocol BrowserDelegate: class {
+    func browserStartedSearching(_ browser: Browser)
     func browser(_ browser: Browser, foundRecord record: BrowserRecord)
     func browser(_ browser: Browser, removedRecord record: BrowserRecord)
 }
@@ -63,6 +64,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     func netServiceBrowserWillSearch(_ browser: NetServiceBrowser) {
         clearResults()
         searching = true
+        delegate?.browserStartedSearching(self)
     }
     
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {

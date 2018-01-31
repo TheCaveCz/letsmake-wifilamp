@@ -10,7 +10,6 @@ import UIKit
 import AwaitKit
 import PromiseKit
 
-
 protocol DisplayErrorDelegate: class {
     func displayError(message: String)
 }
@@ -83,5 +82,15 @@ class DeviceDetailVM {
     
     func updateState(isOn: Bool) {
         _ = self.device.turn(on: isOn, on: self.device.localNetworkUrl)
+    }
+
+    func saveDevice() {
+        if let device = device as? WiFiLamp {
+            Defaults.saveDevice(device)
+        }
+    }
+
+    func removeDeviceFromSaved() {
+
     }
 }
