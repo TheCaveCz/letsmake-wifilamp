@@ -39,9 +39,17 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
     @IBAction func settingsButtonTapped(_ sender: UIBarButtonItem) {
         let menu = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         menu.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        menu.addAction(UIAlertAction.init(title: "Save device", style: .default, handler: { _ in
-            self.viewModel.saveDevice()
-        }))
+
+        if viewModel.deviceIsSaved() {
+            menu.addAction(UIAlertAction.init(title: "Remove device", style: .default, handler: { [weak self] _ in
+                self?.viewModel.removeDeviceFromSaved()
+            }))
+        } else {
+            menu.addAction(UIAlertAction.init(title: "Save device", style: .default, handler: { [weak self] _ in
+                self?.viewModel.saveDevice()
+            }))
+        }
+
         present(menu, animated: true, completion: nil)
     }
 }

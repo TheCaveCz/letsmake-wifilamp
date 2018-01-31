@@ -31,8 +31,28 @@ class Defaults {
             allDevices.append(device)
         }
 
+        encodeSavedDevices(allDevices)
+    }
+
+    static func removeSavedDevice(_ device: WiFiLamp) {
+        var allDevices = Defaults.savedDevices()
+        if let foundIndex = allDevices.index(where: { $0.chipId == device.chipId }) {
+            allDevices.remove(at: foundIndex)
+        }
+
+        encodeSavedDevices(allDevices)
+    }
+
+    static func deviceIsSaved(_ device: WiFiLamp) -> Bool {
+        let allDevices = Defaults.savedDevices()
+        return allDevices.contains(where: { $0.chipId == device.chipId })
+    }
+}
+
+private extension Defaults {
+    static func encodeSavedDevices(_ devices: [WiFiLamp]) {
         do {
-            let devicesData = try JSONEncoder().encode(allDevices)
+            let devicesData = try JSONEncoder().encode(devices)
             UserDefaults.standard.set(devicesData, forKey: savedDevicesKey)
         } catch let error {
             debugPrint("Encoding all saved devices failed: \(error)")

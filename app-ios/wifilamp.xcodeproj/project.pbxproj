@@ -159,8 +159,8 @@
 		37DBD2D91FAA18C2000BA60D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9468C9B01F8CF6FC00235002 /* Browser.swift */,
 				37DBD2DE1FAA3516000BA60D /* APIManager.swift */,
+				9468C9B01F8CF6FC00235002 /* Browser.swift */,
 				13BA82DA2021D09B00B5FFCB /* Defaults.swift */,
 			);
 			path = Services;

@@ -47,7 +47,6 @@ class DeviceDetailVM {
     
     // To load initial device state when displaying the detail
     func getInitialState() {
-        
         guard let lamp = self.device as? WiFiLamp else { return }
         
         async {
@@ -84,13 +83,19 @@ class DeviceDetailVM {
         _ = self.device.turn(on: isOn, on: self.device.localNetworkUrl)
     }
 
+    // MARK: - Saving device
+    func deviceIsSaved() -> Bool {
+        guard let device = device as? WiFiLamp else { return false }
+        return Defaults.deviceIsSaved(device)
+    }
+
     func saveDevice() {
-        if let device = device as? WiFiLamp {
-            Defaults.saveDevice(device)
-        }
+        guard let device = device as? WiFiLamp else { return }
+        Defaults.saveDevice(device)
     }
 
     func removeDeviceFromSaved() {
-
+        guard let device = device as? WiFiLamp else { return }
+        Defaults.removeSavedDevice(device)
     }
 }
