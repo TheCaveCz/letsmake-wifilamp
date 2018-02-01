@@ -90,7 +90,8 @@ extension DeviceSelectVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return sections[indexPath.section] == .saved && !viewModel.savedDevices.isEmpty
+        return (sections[indexPath.section] == .saved && !viewModel.savedDevices.isEmpty)
+            || (sections[indexPath.section] == .nearby && !viewModel.nearbyDevices.isEmpty)
     }
 }
 
@@ -104,25 +105,30 @@ extension DeviceSelectVC: UITableViewDelegate {
             actionSelectDevice?(self, device)
         }
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if sections[indexPath.section] == .saved && editingStyle == .delete {
-            tableView.beginUpdates()
-            viewModel.deleteSaved(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.endUpdates()
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if sections[indexPath.section] == .saved {
+            return [UITableViewRowAction.init(style: .destructive, title: "Delete", handler: { [weak self] (_, indexPath) in
+                self?.viewModel.deleteSaved(index: indexPath.row)
+                DispatchQueue.main.async {
+                    tableView.reloadSections(IndexSet.init(integer: 0), with: .automatic)
+                }
+            })]
+        } else {
+            return [UITableViewRowAction.init(style: .normal, title: "Save", handler: { [weak self] (_, indexPath) in
+                self?.viewModel.saveNearbyDevice(index: indexPath.row)
+                DispatchQueue.main.async {
+                    tableView.reloadSections(IndexSet.init(integer: 1), with: .automatic)
+                }
+            })]
         }
     }
 }
 
 extension DeviceSelectVC: DeviceSelectVMDelegate {
-    
     func nearbyDevicesChanged() {
         refreshControl.endRefreshing()
-
-        if let idx = sections.index(of: .nearby) {
-            tableView.reloadSections([idx], with: .automatic)
-        }
+        tableView.reloadData()
     }
 }
 

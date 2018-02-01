@@ -43,9 +43,16 @@ class DeviceSelectVM {
         self.browser = browser
         browser.delegate = self
     }
-    
+
+    func saveNearbyDevice(index: Int) {
+        guard index < nearbyDevices.count, let device = nearbyDevices[index] as? WiFiLamp else { return }
+        Defaults.saveDevice(device)
+    }
+
     func deleteSaved(index: Int) {
-        savedDevices.remove(at: index)
+        guard index < savedDevices.count, let device = savedDevices[index] as? WiFiLamp else { return }
+        Defaults.removeSavedDevice(device)
+        savedDevices = Defaults.savedDevices()
     }
 
     func refresh() {
@@ -55,6 +62,7 @@ class DeviceSelectVM {
 
     func reloadSavedDevices() {
         savedDevices = Defaults.savedDevices()
+        delegate?.nearbyDevicesChanged()
     }
 }
 
