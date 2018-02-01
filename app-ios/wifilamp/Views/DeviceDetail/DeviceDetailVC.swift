@@ -41,7 +41,7 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
         menu.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
 
         if viewModel.deviceIsSaved() {
-            menu.addAction(UIAlertAction.init(title: "Remove device", style: .default, handler: { [weak self] _ in
+            menu.addAction(UIAlertAction.init(title: "Remove device", style: .destructive, handler: { [weak self] _ in
                 self?.viewModel.removeDeviceFromSaved()
             }))
         } else {
