@@ -10,11 +10,12 @@ import Foundation
 
 class Defaults {
 
+    private static let groupDefaults: UserDefaults = UserDefaults.init(suiteName: "group.com.strv.theCave.wifiLamp")!
     private static let savedDevicesKey = "savedDevicesKey"
 
     // MARK: - Saved devices
     static func savedDevices() -> [WiFiLamp] {
-        guard let deviceData = UserDefaults.standard.object(forKey: savedDevicesKey) as? Data,
+        guard let deviceData = groupDefaults.object(forKey: savedDevicesKey) as? Data,
             let devices = try? JSONDecoder().decode([WiFiLamp].self, from: deviceData) else { return [] }
         return devices
     }
@@ -53,7 +54,7 @@ private extension Defaults {
     static func encodeSavedDevices(_ devices: [WiFiLamp]) {
         do {
             let devicesData = try JSONEncoder().encode(devices)
-            UserDefaults.standard.set(devicesData, forKey: savedDevicesKey)
+            groupDefaults.set(devicesData, forKey: savedDevicesKey)
         } catch let error {
             debugPrint("Encoding all saved devices failed: \(error)")
         }

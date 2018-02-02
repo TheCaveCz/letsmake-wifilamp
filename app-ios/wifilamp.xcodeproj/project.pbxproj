@@ -11,6 +11,12 @@
 		137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA622024598C00AF4789 /* TodayViewController.swift */; };
 		137CEA662024598C00AF4789 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137CEA642024598C00AF4789 /* MainInterface.storyboard */; };
 		137CEA6A2024598C00AF4789 /* today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 137CEA5E2024598C00AF4789 /* today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		137CEA6F202462BC00AF4789 /* WiFiLamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */; };
+		137CEA70202462D200AF4789 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA82DA2021D09B00B5FFCB /* Defaults.swift */; };
+		137CEA722024648D00AF4789 /* WiFiLamp+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA712024648D00AF4789 /* WiFiLamp+Ext.swift */; };
+		137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA752024729B00AF4789 /* TodayEmptyView.swift */; };
+		137CEA7A20247DBF00AF4789 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA7920247DBF00AF4789 /* DeviceTableViewCell.swift */; };
+		137CEA7B20247EE500AF4789 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94875B941F5D4C0400588B03 /* Assets.xcassets */; };
 		13BA82DB2021D09B00B5FFCB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA82DA2021D09B00B5FFCB /* Defaults.swift */; };
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
@@ -85,6 +91,10 @@
 		137CEA622024598C00AF4789 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		137CEA652024598C00AF4789 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		137CEA672024598C00AF4789 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		137CEA712024648D00AF4789 /* WiFiLamp+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WiFiLamp+Ext.swift"; sourceTree = "<group>"; };
+		137CEA732024682E00AF4789 /* today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = today.entitlements; sourceTree = "<group>"; };
+		137CEA752024729B00AF4789 /* TodayEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayEmptyView.swift; sourceTree = "<group>"; };
+		137CEA7920247DBF00AF4789 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		13BA82DA2021D09B00B5FFCB /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
@@ -159,11 +169,38 @@
 		137CEA612024598C00AF4789 /* today */ = {
 			isa = PBXGroup;
 			children = (
-				137CEA622024598C00AF4789 /* TodayViewController.swift */,
-				137CEA642024598C00AF4789 /* MainInterface.storyboard */,
-				137CEA672024598C00AF4789 /* Info.plist */,
+				137CEA7720247D4900AF4789 /* Controllers */,
+				137CEA7820247D5500AF4789 /* Support */,
+				137CEA742024728800AF4789 /* Views */,
 			);
 			path = today;
+			sourceTree = "<group>";
+		};
+		137CEA742024728800AF4789 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				137CEA752024729B00AF4789 /* TodayEmptyView.swift */,
+				137CEA7920247DBF00AF4789 /* DeviceTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		137CEA7720247D4900AF4789 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				137CEA622024598C00AF4789 /* TodayViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		137CEA7820247D5500AF4789 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				137CEA672024598C00AF4789 /* Info.plist */,
+				137CEA732024682E00AF4789 /* today.entitlements */,
+				137CEA642024598C00AF4789 /* MainInterface.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		371BB5821FB0C888004DD713 /* Devices */ = {
@@ -171,6 +208,7 @@
 			children = (
 				942463C91F8E4C4E0055A7E2 /* Device.swift */,
 				37DBD2D71FAA1235000BA60D /* WiFiLamp.swift */,
+				137CEA712024648D00AF4789 /* WiFiLamp+Ext.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -409,6 +447,11 @@
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = XWQ4Y8CJ93;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					94875B891F5D4C0400588B03 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -416,6 +459,9 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.HotspotConfiguration = {
 								enabled = 1;
 							};
@@ -447,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				137CEA7B20247EE500AF4789 /* Assets.xcassets in Resources */,
 				137CEA662024598C00AF4789 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +611,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				137CEA7A20247DBF00AF4789 /* DeviceTableViewCell.swift in Sources */,
+				137CEA70202462D200AF4789 /* Defaults.swift in Sources */,
+				137CEA6F202462BC00AF4789 /* WiFiLamp.swift in Sources */,
+				137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */,
 				137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +628,7 @@
 				37DBD2DD1FAA2EEC000BA60D /* ErrorExtensions.swift in Sources */,
 				9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */,
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
+				137CEA722024648D00AF4789 /* WiFiLamp+Ext.swift in Sources */,
 				9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
@@ -657,11 +709,12 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = today/Info.plist;
+				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;
@@ -680,11 +733,12 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = today/Info.plist;
+				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;

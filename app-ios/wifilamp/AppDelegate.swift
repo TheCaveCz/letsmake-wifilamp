@@ -17,14 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainFlow: Flow!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//#if DEBUG
-//        do {
-//            try R.validate()
-//        } catch {
-//            fatalError("R validate failed with \(error)")
-//        }
-//#endif
-        
+
         let assembler = Assembler([
             CoreAssembly(),
             DeviceSelectAssembly(),
@@ -35,9 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 128/255, green: 204/255, blue: 40/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [
-            .foregroundColor: UIColor.white
-        ]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
 
@@ -53,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
 }
 
 class CoreAssembly: Assembly {

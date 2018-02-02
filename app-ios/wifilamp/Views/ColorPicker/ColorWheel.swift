@@ -146,7 +146,6 @@ class ColorWheel: UIView {
 
     private func hueSaturationAt(point position: CGPoint) -> (hue: CGFloat, saturation: CGFloat) {
         // Get hue and saturation for a given point (x,y) in the wheel
-        // swiftlint:disable identifier_name
         let c = wheelImage.bounds.width * scale / 2
         let dx = CGFloat(position.x - c) / c
         let dy = CGFloat(position.y - c) / c
