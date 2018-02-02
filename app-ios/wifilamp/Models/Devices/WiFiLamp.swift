@@ -12,8 +12,7 @@ import NetworkExtension
 import AwaitKit
 import PromiseKit
 
-
-class WiFiLamp: Device {
+class WiFiLamp: Device, Codable {
     let chipId: String
     var name: String
     let localNetworkUrl: URL
@@ -23,6 +22,36 @@ class WiFiLamp: Device {
         self.name = name ?? "WiFi lamp (\(chipId))"
         // swiftlint:disable:next force_https
         self.localNetworkUrl = localNetworkUrl ?? URL(string: "http://wifilamp-\(chipId).local")!
+    }
+
+    enum CodingKeys: CodingKey {
+        case chipId
+        case name
+        case localNetworkUrl
+    }
+
+    // MARK: - Codable
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(chipId, forKey: WiFiLamp.CodingKeys.chipId)
+        try container.encode(name, forKey: WiFiLamp.CodingKeys.name)
+        try container.encode(localNetworkUrl, forKey: WiFiLamp.CodingKeys.localNetworkUrl)
+    }
+}
+
+extension WiFiLamp: DeviceSelectItem {
+    var icon: UIImage {
+        return #imageLiteral(resourceName: "lampOff")
+    }
+
+    var details: String {
+        return "ID: \(chipId), URL: \(localNetworkUrl.absoluteString)"
+    }
+}
+
+extension WiFiLamp: DeviceConvertible {
+    func toDevice() -> Device {
+        return self
     }
 }
 

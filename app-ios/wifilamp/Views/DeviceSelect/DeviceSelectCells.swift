@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class DeviceSelectCell: UITableViewCell, DataLoadable {
     @IBOutlet weak var stateImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,12 +20,18 @@ class DeviceSelectCell: UITableViewCell, DataLoadable {
     }
 }
 
-
 class DeviceSelectEmptyCell: UITableViewCell {
     
 }
 
-
 class DeviceSelectNearbyEmptyCell: UITableViewCell {
-    
+
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    // MARK: - Public Interface
+    func setIsLoading(_ isLoading: Bool) {
+        infoLabel.text = isLoading ? "Searching for nearby lamps":"No other nearby lamps detected."
+        isLoading ? activityIndicator.startAnimating():activityIndicator.stopAnimating()
+    }
 }

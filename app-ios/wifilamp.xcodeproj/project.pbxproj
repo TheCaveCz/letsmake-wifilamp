@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13BA82DB2021D09B00B5FFCB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA82DA2021D09B00B5FFCB /* Defaults.swift */; };
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
 		371BB57F1FB0C03B004DD713 /* NetworkSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BB57E1FB0C03B004DD713 /* NetworkSelectionVC.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13BA82DA2021D09B00B5FFCB /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
 		3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Codable.swift"; sourceTree = "<group>"; };
@@ -157,8 +159,9 @@
 		37DBD2D91FAA18C2000BA60D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9468C9B01F8CF6FC00235002 /* Browser.swift */,
 				37DBD2DE1FAA3516000BA60D /* APIManager.swift */,
+				9468C9B01F8CF6FC00235002 /* Browser.swift */,
+				13BA82DA2021D09B00B5FFCB /* Defaults.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -205,14 +208,15 @@
 		9442A75C1F8A51FF0045B2D1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
-				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
-				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
-				37B726FA1FB1FA300001CFAE /* Array+FilterDuplicates.swift */,
-				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
-				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 				3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */,
+				9DC9195F1FD53EB2003FABC2 /* Appearance.swift */,
+				37B726FA1FB1FA300001CFAE /* Array+FilterDuplicates.swift */,
+				9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */,
+				9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */,
+				37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */,
 				9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */,
+				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
+				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -271,7 +275,6 @@
 				37DBD2D91FAA18C2000BA60D /* Services */,
 				9442A75E1F8A59AC0045B2D1 /* Resources */,
 				37EDD0601FA75B220017B127 /* Other */,
-				9DC9195F1FD53EB2003FABC2 /* Appearance.swift */,
 			);
 			path = wifilamp;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
 				37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */,
+				13BA82DB2021D09B00B5FFCB /* Defaults.swift in Sources */,
 				9DC919621FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift in Sources */,
 				9419AF0F1F9007A20021AF14 /* SwiftHSVColorPicker.swift in Sources */,
 				37B726F91FB1EF810001CFAE /* WiFiNetworkCell.swift in Sources */,

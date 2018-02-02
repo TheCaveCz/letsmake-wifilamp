@@ -10,16 +10,12 @@ import UIKit
 import Rswift
 
 class DeviceSelectVC: UIViewController {
-    enum SectionType {
-        case saved
-        case nearby
-    }
 
-    private let sections: [SectionType] = [.saved, .nearby]
-    
+    // MARK: - Public UI
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet private var backgroundView: UIView!
-    
+
+    // MARK: - Public Props
     var viewModel: DeviceSelectVM! {
         didSet {
             viewModel.delegate = self
@@ -28,28 +24,32 @@ class DeviceSelectVC: UIViewController {
 
     var actionSelectDevice: ((DeviceSelectVC, DeviceSelectItem) -> Void)?
     var actionSetupNewDevice: ((DeviceSelectVC) -> Void)?
-    
+
+    // MARK: - Private Props
+    private let sections: [SectionType] = [.saved, .nearby]
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl.init()
+        control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        return control
+    }()
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.backgroundView = backgroundView
         tableView.rowHeight = UITableViewAutomaticDimension
-    }
-    
-    private func device(for indexPath: IndexPath) -> DeviceSelectItem? {
-        switch sections[indexPath.section] {
-        case .saved:
-            return viewModel.savedDevices[safe:indexPath.row]
-        case .nearby:
-            return viewModel.nearbyDevices[safe:indexPath.row]
-        }
+        tableView.refreshControl = refreshControl
     }
 
-    @IBAction private func addDeviceTap(_ sender: Any) {
-        actionSetupNewDevice?(self)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Reload saved devices
+        viewModel.reloadSavedDevices()
     }
 }
 
+// MARK: - UITableViewDataSource
 extension DeviceSelectVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,18 +81,21 @@ extension DeviceSelectVC: UITableViewDataSource {
         case (.saved, _, _):
             return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectCell, for: indexPath, data: viewModel.savedDevices[indexPath.row])!
         case (.nearby, 0, _):
-            return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectNearbyEmptyCell, for: indexPath)!
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectNearbyEmptyCell, for: indexPath)!
+            cell.setIsLoading(viewModel.isLookingForNearby)
+            return cell
         case (.nearby, _, _):
             return tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.deviceSelectCell, for: indexPath, data: viewModel.nearbyDevices[indexPath.row])!
         }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return sections[indexPath.section] == .saved && !viewModel.savedDevices.isEmpty
+        return (sections[indexPath.section] == .saved && !viewModel.savedDevices.isEmpty)
+            || (sections[indexPath.section] == .nearby && !viewModel.nearbyDevices.isEmpty)
     }
 }
 
-
+// MARK: - UITableViewDelegate
 extension DeviceSelectVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -102,24 +105,54 @@ extension DeviceSelectVC: UITableViewDelegate {
             actionSelectDevice?(self, device)
         }
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if sections[indexPath.section] == .saved && editingStyle == .delete {
-            tableView.beginUpdates()
-            viewModel.deleteSaved(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            tableView.endUpdates()
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if sections[indexPath.section] == .saved {
+            return [UITableViewRowAction.init(style: .destructive, title: "Delete", handler: { [weak self] (_, indexPath) in
+                self?.viewModel.deleteSaved(index: indexPath.row)
+                DispatchQueue.main.async {
+                    tableView.reloadSections(IndexSet.init(integer: 0), with: .automatic)
+                }
+            })]
+        } else {
+            return [UITableViewRowAction.init(style: .normal, title: "Save", handler: { [weak self] (_, indexPath) in
+                self?.viewModel.saveNearbyDevice(index: indexPath.row)
+                DispatchQueue.main.async {
+                    tableView.reloadSections(IndexSet.init(integer: 1), with: .automatic)
+                }
+            })]
         }
     }
 }
 
-
 extension DeviceSelectVC: DeviceSelectVMDelegate {
-    
     func nearbyDevicesChanged() {
-        if let idx = sections.index(of: .nearby) {
-            tableView.reloadSections([idx], with: .automatic)
+        refreshControl.endRefreshing()
+        tableView.reloadData()
+    }
+}
+
+private extension DeviceSelectVC {
+    enum SectionType {
+        case saved
+        case nearby
+    }
+
+    func device(for indexPath: IndexPath) -> DeviceSelectItem? {
+        switch sections[indexPath.section] {
+        case .saved:
+            return viewModel.savedDevices[safe:indexPath.row]
+        case .nearby:
+            return viewModel.nearbyDevices[safe:indexPath.row]
         }
     }
-    
+
+    // MARK: - Actions
+    @IBAction private func addDeviceTap(_ sender: Any) {
+        actionSetupNewDevice?(self)
+    }
+
+    @objc private func refresh() {
+        viewModel.refresh()
+    }
 }

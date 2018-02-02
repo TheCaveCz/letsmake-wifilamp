@@ -9,10 +9,10 @@
 import Foundation
 
 protocol BrowserDelegate: class {
+    func browserStartedSearching(_ browser: Browser)
     func browser(_ browser: Browser, foundRecord record: BrowserRecord)
     func browser(_ browser: Browser, removedRecord record: BrowserRecord)
 }
-
 
 class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     let serviceType: String
@@ -24,7 +24,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private let browser: NetServiceBrowser
     private var servicesToResolve: [NetService] = []
     private var resolvedServices: [BrowserRecord] = []
-    private var searching: Bool = false
+    private(set) var searching: Bool = false
     
     init(serviceType type: String = "_wifilamp._tcp.") {
         serviceType = type
@@ -45,6 +45,8 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func refresh() {
+        stopSearch()
+        clearResults()
         startSearch()
     }
     
@@ -62,6 +64,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     func netServiceBrowserWillSearch(_ browser: NetServiceBrowser) {
         clearResults()
         searching = true
+        delegate?.browserStartedSearching(self)
     }
     
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
@@ -94,7 +97,6 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
         servicesToResolve.removeFirst(element: sender)
     }
-    
 }
 
 struct BrowserRecord {

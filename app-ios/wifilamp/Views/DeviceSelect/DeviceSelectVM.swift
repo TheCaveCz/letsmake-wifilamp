@@ -23,27 +23,54 @@ class DeviceSelectVM {
     weak var delegate: DeviceSelectVMDelegate?
     
     var nearbyDevices: [DeviceSelectItem] {
-        return browser.records
+        return browser.records.filter({ device -> Bool in
+            return savedDevices.contains(where: { savedDevice -> Bool in
+                guard let saved = savedDevice as? WiFiLamp else { return false }
+                return saved.chipId != device.chipId
+            })
+        })
     }
     
-    var savedDevices: [DeviceSelectItem] = [
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 1", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 2", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 3", details: "some"),
-        DeviceDummy(icon: #imageLiteral(resourceName: "gear"), name: "Item 4", details: "some")
-    ]
+    var savedDevices: [DeviceSelectItem] = {
+        return Defaults.savedDevices()
+    }()
+
+    var isLookingForNearby: Bool {
+        return browser.searching
+    }
     
     init(browser: Browser) {
         self.browser = browser
         browser.delegate = self
     }
-    
+
+    func saveNearbyDevice(index: Int) {
+        guard index < nearbyDevices.count, let device = nearbyDevices[index] as? WiFiLamp else { return }
+        Defaults.saveDevice(device)
+    }
+
     func deleteSaved(index: Int) {
-        savedDevices.remove(at: index)
+        guard index < savedDevices.count, let device = savedDevices[index] as? WiFiLamp else { return }
+        Defaults.removeSavedDevice(device)
+        savedDevices = Defaults.savedDevices()
+    }
+
+    func refresh() {
+        browser.refresh()
+        reloadSavedDevices()
+    }
+
+    func reloadSavedDevices() {
+        savedDevices = Defaults.savedDevices()
+        delegate?.nearbyDevicesChanged()
     }
 }
 
 extension DeviceSelectVM: BrowserDelegate {
+    func browserStartedSearching(_ browser: Browser) {
+        delegate?.nearbyDevicesChanged()
+    }
+
     func browser(_ browser: Browser, foundRecord record: BrowserRecord) {
         delegate?.nearbyDevicesChanged()
     }
@@ -60,15 +87,5 @@ extension BrowserRecord: DeviceSelectItem {
     
     var details: String {
         return chipId
-    }
-}
-
-struct DeviceDummy: DeviceSelectItem, DeviceConvertible {
-    var icon: UIImage
-    var name: String
-    var details: String
-    
-    func toDevice() -> Device {
-        return WiFiLamp(chipId: "fooid", name: name)
     }
 }
