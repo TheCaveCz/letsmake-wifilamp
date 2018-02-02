@@ -28,9 +28,9 @@ extension Array {
         guard let index = try index(where: predicate) else {
             return nil
         }
-        let e = self[index]
+        let error = self[index]
         remove(at: index)
-        return e
+        return error
     }
     
 }

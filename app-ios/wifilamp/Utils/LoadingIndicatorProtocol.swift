@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 protocol LoadingIndicatorProtocol { }
-extension LoadingIndicatorProtocol where Self:UIViewController {
+extension LoadingIndicatorProtocol where Self: UIViewController {
     
     func showLoadingIndicator() {
         DispatchQueue.main.async {
