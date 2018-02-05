@@ -30,15 +30,14 @@ class TodayViewController: UIViewController {
     
     // MARK: - Private Props
     private lazy var savedDevices: [WiFiLamp] = {
-        debugPrint("--- saved devices")
-//        return Defaults.savedDevices()
+        return Defaults.savedDevices()
         let dev1 = WiFiLamp.init(chipId: "chip1", name: "chip1", localNetworkUrl: nil)
         let dev2 = WiFiLamp.init(chipId: "chip2", name: "chip2", localNetworkUrl: nil)
         let dev3 = WiFiLamp.init(chipId: "chip3", name: "chip3", localNetworkUrl: nil)
         return [dev1, dev2, dev3]
     }()
 
-    private let rowHeight: CGFloat = 70
+    private let rowHeight: CGFloat = 48
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -88,8 +87,9 @@ extension TodayViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeviceTableViewCell.cellId, for: indexPath)
         if let cell = cell as? DeviceTableViewCell, indexPath.row < savedDevices.count {
             let device = savedDevices[indexPath.row]
-
+            cell.updateCell(withDevice: device)
         }
+
         return cell
     }
 }
