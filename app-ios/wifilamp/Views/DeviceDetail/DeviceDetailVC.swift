@@ -42,7 +42,9 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
 
         if viewModel.deviceIsSaved() {
             menu.addAction(UIAlertAction.init(title: "Remove device", style: .destructive, handler: { [weak self] _ in
-                self?.viewModel.removeDeviceFromSaved()
+                DispatchQueue.main.async {
+                    self?.removeDevice()
+                }
             }))
         } else {
             menu.addAction(UIAlertAction.init(title: "Save device", style: .default, handler: { [weak self] _ in
@@ -103,5 +105,15 @@ extension DeviceDetailVC: DeviceDetailVMDelegate {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+}
+
+private extension DeviceDetailVC {
+    func removeDevice() {
+        let controller = UIAlertController.init(title: "Warning", message: "Do you want to remove \(viewModel.title) from saved devices?", preferredStyle: .alert)
+        controller.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction.init(title: "Remove", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel.removeDeviceFromSaved()
+        }))
+        present(controller, animated: true, completion: nil)
+    }
 }
