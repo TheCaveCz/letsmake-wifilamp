@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
 
@@ -49,6 +50,8 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
         } else {
             menu.addAction(UIAlertAction.init(title: "Save device", style: .default, handler: { [weak self] _ in
                 self?.viewModel.saveDevice()
+                SVProgressHUD.showSuccess(withStatus: "Saved")
+                SVProgressHUD.dismiss(withDelay: 0.5)
             }))
         }
 
@@ -113,6 +116,8 @@ private extension DeviceDetailVC {
         controller.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         controller.addAction(UIAlertAction.init(title: "Remove", style: .destructive, handler: { [weak self] _ in
             self?.viewModel.removeDeviceFromSaved()
+            SVProgressHUD.showSuccess(withStatus: "Removed")
+            SVProgressHUD.dismiss(withDelay: 0.5)
         }))
         present(controller, animated: true, completion: nil)
     }

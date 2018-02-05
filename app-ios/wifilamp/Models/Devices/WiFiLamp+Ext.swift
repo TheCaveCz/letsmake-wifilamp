@@ -106,7 +106,6 @@ extension WiFiLamp {
 extension WiFiLamp: Device {
 
     // MARK: Public API
-
     func checkIfAccessible(on deviceUrl: URL? = nil) -> Promise<Bool> {
         return async {
             do {
