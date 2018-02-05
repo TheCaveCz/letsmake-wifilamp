@@ -16,6 +16,7 @@ protocol DeviceSelectItem {
 
 protocol DeviceSelectVMDelegate: class {
     func nearbyDevicesChanged()
+    func allDevicesChanged()
 }
 
 class DeviceSelectVM {
@@ -24,16 +25,16 @@ class DeviceSelectVM {
     
     var nearbyDevices: [DeviceSelectItem] {
         return browser.records.filter({ device -> Bool in
-            return savedDevices.contains(where: { savedDevice -> Bool in
+            return !savedDevices.contains(where: { savedDevice -> Bool in
                 guard let saved = savedDevice as? WiFiLamp else { return false }
-                return saved.chipId != device.chipId
+                return saved.chipId == device.chipId
             })
         })
     }
     
-    var savedDevices: [DeviceSelectItem] = {
+    var savedDevices: [DeviceSelectItem] {
         return Defaults.savedDevices()
-    }()
+    }
 
     var isLookingForNearby: Bool {
         return browser.searching
@@ -45,24 +46,20 @@ class DeviceSelectVM {
     }
 
     func saveNearbyDevice(index: Int) {
-        guard index < nearbyDevices.count, let device = nearbyDevices[index] as? WiFiLamp else { return }
+        guard index < nearbyDevices.count, let record = nearbyDevices[index] as? BrowserRecord,
+        let device = record.toDevice() as? WiFiLamp else { return }
         Defaults.saveDevice(device)
+        delegate?.allDevicesChanged()
     }
 
     func deleteSaved(index: Int) {
         guard index < savedDevices.count, let device = savedDevices[index] as? WiFiLamp else { return }
         Defaults.removeSavedDevice(device)
-        savedDevices = Defaults.savedDevices()
+        delegate?.allDevicesChanged()
     }
 
     func refresh() {
         browser.refresh()
-        reloadSavedDevices()
-    }
-
-    func reloadSavedDevices() {
-        savedDevices = Defaults.savedDevices()
-        delegate?.nearbyDevicesChanged()
     }
 }
 
