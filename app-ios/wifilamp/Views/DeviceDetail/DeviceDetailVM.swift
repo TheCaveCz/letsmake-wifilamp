@@ -98,4 +98,11 @@ class DeviceDetailVM {
         guard let device = device as? WiFiLamp else { return }
         Defaults.removeSavedDevice(device)
     }
+
+    // MARK: - Rename
+    func renameDevice(withNewName name: String) {
+        guard let device = device as? WiFiLamp, !name.isEmpty else { return }
+        device.name = name
+        saveDevice()
+    }
 }
