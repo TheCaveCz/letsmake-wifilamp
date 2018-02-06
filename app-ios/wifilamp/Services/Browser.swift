@@ -24,6 +24,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     private let browser: NetServiceBrowser
     private var servicesToResolve: [NetService] = []
     private var resolvedServices: [BrowserRecord] = []
+    private var shouldRestartSearch: Bool = false
     private(set) var searching: Bool = false
     
     init(serviceType type: String = "_wifilamp._tcp.") {
@@ -37,7 +38,10 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func startSearch() {
-        browser.searchForServices(ofType: serviceType, inDomain: "local.")
+        if !searching {
+            debugPrint("Starting search in local")
+            browser.searchForServices(ofType: serviceType, inDomain: "local.")
+        }
     }
     
     func stopSearch() {
@@ -45,9 +49,8 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func refresh() {
+        shouldRestartSearch = true
         stopSearch()
-        clearResults()
-        startSearch()
     }
     
     private func clearResults() {
@@ -62,23 +65,35 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func netServiceBrowserWillSearch(_ browser: NetServiceBrowser) {
+        debugPrint("Browser will search")
         clearResults()
         searching = true
         delegate?.browserStartedSearching(self)
     }
     
     func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser) {
+        debugPrint("Browser did stop search")
         clearResults()
         searching = false
+        if shouldRestartSearch {
+            shouldRestartSearch = false
+            debugPrint("Browser restarting search")
+            startSearch()
+        }
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool) {
+        debugPrint("Browser did find service \(service.name) ")
+
         service.delegate = self
+        service.stop()
         service.resolve(withTimeout: 10)
         servicesToResolve.append(service)
     }
     
     func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool) {
+        debugPrint("Browser did remove device \(service.name) ")
+
         servicesToResolve.removeFirst(element: service)
         if let record = resolvedServices.removeFirst(where: { $0.service == service }) {
             delegate?.browser(self, removedRecord: record)
@@ -88,6 +103,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     func netServiceDidResolveAddress(_ sender: NetService) {
         servicesToResolve.removeFirst(element: sender)
         if let record = BrowserRecord.from(service: sender) {
+            debugPrint("Browser did resolve address \(record.toDevice().localNetworkUrl)")
             resolvedServices.append(record)
             delegate?.browser(self, foundRecord: record)
         }
@@ -95,6 +111,7 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func netService(_ sender: NetService, didNotResolve errorDict: [String: NSNumber]) {
+        debugPrint("Browser did not resolve address \(errorDict) ")
         servicesToResolve.removeFirst(element: sender)
     }
 }

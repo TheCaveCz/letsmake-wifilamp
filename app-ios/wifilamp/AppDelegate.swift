@@ -17,14 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainFlow: Flow!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//#if DEBUG
-//        do {
-//            try R.validate()
-//        } catch {
-//            fatalError("R validate failed with \(error)")
-//        }
-//#endif
-        
+
         let assembler = Assembler([
             CoreAssembly(),
             DeviceSelectAssembly(),
@@ -35,9 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 128/255, green: 204/255, blue: 40/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [
-            .foregroundColor: UIColor.white
-        ]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
 
@@ -54,6 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.absoluteString.matches(Constants.App.deviceDetailRegext) {
+            guard let components = URLComponents.init(url: url, resolvingAgainstBaseURL: false),
+            let device = components.queryItems?.filter({ $0.name == "device" }).first,
+            let deviceId = device.value,
+            let savedDevice = Defaults.savedDevices().filter({ $0.chipId == deviceId }).first else { return false }
+            debugPrint(savedDevice.name)
+            if let flow = mainFlow as? MainFlow {
+                flow.pushDeviceDetail(forDevice: savedDevice, fromController: flow.rootController.topViewController)
+            }
+            return true
+        }
+
+        return false
+    }
 }
 
 class CoreAssembly: Assembly {

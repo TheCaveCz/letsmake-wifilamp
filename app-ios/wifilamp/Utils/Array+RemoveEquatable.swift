@@ -8,9 +8,7 @@
 
 import Foundation
 
-
 extension Array where Element: Equatable {
-    
     @discardableResult mutating func removeFirst(element: Element) -> Bool {
         guard let index = index(of: element) else {
             return false
@@ -18,21 +16,19 @@ extension Array where Element: Equatable {
         remove(at: index)
         return true
     }
-    
 }
 
 
 extension Array {
-    
     @discardableResult mutating func removeFirst(where predicate: (Element) throws -> Bool) rethrows -> Element? {
         guard let index = try index(where: predicate) else {
             return nil
         }
-        let e = self[index]
+
+        let error = self[index]
         remove(at: index)
-        return e
+        return error
     }
-    
 }
 
 extension Array {

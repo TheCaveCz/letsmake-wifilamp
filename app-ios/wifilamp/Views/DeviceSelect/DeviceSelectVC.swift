@@ -45,7 +45,7 @@ class DeviceSelectVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Reload saved devices
-        viewModel.reloadSavedDevices()
+        allDevicesChanged()
     }
 }
 
@@ -109,17 +109,13 @@ extension DeviceSelectVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if sections[indexPath.section] == .saved {
             return [UITableViewRowAction.init(style: .destructive, title: "Delete", handler: { [weak self] (_, indexPath) in
-                self?.viewModel.deleteSaved(index: indexPath.row)
                 DispatchQueue.main.async {
-                    tableView.reloadSections(IndexSet.init(integer: 0), with: .automatic)
+                    self?.removeDevice(atIndex: indexPath.row)
                 }
             })]
         } else {
             return [UITableViewRowAction.init(style: .normal, title: "Save", handler: { [weak self] (_, indexPath) in
                 self?.viewModel.saveNearbyDevice(index: indexPath.row)
-                DispatchQueue.main.async {
-                    tableView.reloadSections(IndexSet.init(integer: 1), with: .automatic)
-                }
             })]
         }
     }
@@ -127,6 +123,11 @@ extension DeviceSelectVC: UITableViewDelegate {
 
 extension DeviceSelectVC: DeviceSelectVMDelegate {
     func nearbyDevicesChanged() {
+        refreshControl.endRefreshing()
+        tableView.reloadSections(IndexSet.init(integer: sections.index(of: .nearby)!), with: .automatic)
+    }
+
+    func allDevicesChanged() {
         refreshControl.endRefreshing()
         tableView.reloadData()
     }
@@ -145,6 +146,17 @@ private extension DeviceSelectVC {
         case .nearby:
             return viewModel.nearbyDevices[safe:indexPath.row]
         }
+    }
+
+    func removeDevice(atIndex index: Int) {
+        guard index < viewModel.savedDevices.count else { return }
+        let device = viewModel.savedDevices[index]
+        let controller = UIAlertController.init(title: "Warning", message: "Do you want to remove \(device.name) from saved devices?", preferredStyle: .alert)
+        controller.addAction(UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        controller.addAction(UIAlertAction.init(title: "Remove", style: UIAlertActionStyle.destructive, handler: { [weak self] _ in
+            self?.viewModel.deleteSaved(index: index)
+        }))
+        present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Actions

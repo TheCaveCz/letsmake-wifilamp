@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
 
@@ -23,7 +24,7 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = viewModel.title
+        updateTitle()
         
         // load initial state
         self.viewModel.getInitialState()
@@ -40,13 +41,21 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
         let menu = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         menu.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
 
+        menu.addAction(UIAlertAction.init(title: "Rename", style: .default, handler: { [weak self] _ in
+            self?.renameDevice()
+        }))
+
         if viewModel.deviceIsSaved() {
             menu.addAction(UIAlertAction.init(title: "Remove device", style: .destructive, handler: { [weak self] _ in
-                self?.viewModel.removeDeviceFromSaved()
+                DispatchQueue.main.async {
+                    self?.removeDevice()
+                }
             }))
         } else {
             menu.addAction(UIAlertAction.init(title: "Save device", style: .default, handler: { [weak self] _ in
                 self?.viewModel.saveDevice()
+                SVProgressHUD.showSuccess(withStatus: "Saved")
+                SVProgressHUD.dismiss(withDelay: 0.5)
             }))
         }
 
@@ -103,5 +112,40 @@ extension DeviceDetailVC: DeviceDetailVMDelegate {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+}
+
+private extension DeviceDetailVC {
+    func updateTitle() {
+        navigationItem.title = viewModel.title
+    }
+
+    func removeDevice() {
+        let controller = UIAlertController.init(title: "Warning", message: "Do you want to remove \(viewModel.title) from saved devices?", preferredStyle: .alert)
+        controller.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction.init(title: "Remove", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel.removeDeviceFromSaved()
+            SVProgressHUD.showSuccess(withStatus: "Removed")
+            SVProgressHUD.dismiss(withDelay: 0.5)
+        }))
+        present(controller, animated: true, completion: nil)
+    }
+
+    func renameDevice() {
+        let controller = UIAlertController.init(title: "Rename \(viewModel.title)", message: "Please, enter new device name", preferredStyle: .alert)
+        controller.addTextField { [weak self] field in
+            field.placeholder = "New device name"
+            field.text = self?.viewModel.title
+        }
+
+        controller.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction.init(title: "Rename", style: .default, handler: { [weak self] _ in
+            guard let field = controller.textFields?.first, let text = field.text, !text.isEmpty else { return }
+            self?.viewModel.renameDevice(withNewName: text)
+            self?.updateTitle()
+            SVProgressHUD.showSuccess(withStatus: "Renamed")
+            SVProgressHUD.dismiss(withDelay: 0.5)
+        }))
+        
+        present(controller, animated: true, completion: nil)
+    }
 }

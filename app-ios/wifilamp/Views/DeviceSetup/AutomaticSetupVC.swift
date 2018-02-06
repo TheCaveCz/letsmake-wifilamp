@@ -26,7 +26,6 @@ final class AutomaticSetupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel.startDeviceSetup(delegate: self)
     }
 }

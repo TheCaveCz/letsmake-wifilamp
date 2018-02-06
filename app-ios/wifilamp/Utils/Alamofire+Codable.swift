@@ -35,8 +35,8 @@ extension Alamofire.DataRequest {
                     let decoder = JSONDecoder()
                     do {
                         fulfill(try decoder.decode(T.self, from: data))
-                    } catch let e {
-                        reject(e)
+                    } catch let error {
+                        reject(error)
                     }
                 case .failure(let error):
                     reject(error)

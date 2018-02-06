@@ -65,10 +65,10 @@ class DeviceDetailVM {
     }
     
     func updateColor(color: UIColor) {
-        
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
+        // swiftlint:enable identifier_name
         color.getRed(&r, green: &g, blue: &b, alpha: nil)
         
         let roundR =  round(r * 255.0)
@@ -97,5 +97,12 @@ class DeviceDetailVM {
     func removeDeviceFromSaved() {
         guard let device = device as? WiFiLamp else { return }
         Defaults.removeSavedDevice(device)
+    }
+
+    // MARK: - Rename
+    func renameDevice(withNewName name: String) {
+        guard let device = device as? WiFiLamp, !name.isEmpty else { return }
+        device.name = name
+        saveDevice()
     }
 }

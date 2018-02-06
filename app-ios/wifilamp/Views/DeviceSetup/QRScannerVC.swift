@@ -60,7 +60,6 @@ final class QRScannerVC: UIViewController {
         }
         
         let deviceId = metadata
-        
         // TODO: parse type of device, not just wifilamps
         let device = WiFiLamp(chipId: deviceId)
         
