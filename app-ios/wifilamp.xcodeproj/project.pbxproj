@@ -19,6 +19,15 @@
 		137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA752024729B00AF4789 /* TodayEmptyView.swift */; };
 		137CEA7A20247DBF00AF4789 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA7920247DBF00AF4789 /* DeviceTableViewCell.swift */; };
 		137CEA7B20247EE500AF4789 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94875B941F5D4C0400588B03 /* Assets.xcassets */; };
+		1385D39B2029CF5E00E23B5E /* WiFiLamp+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA712024648D00AF4789 /* WiFiLamp+Ext.swift */; };
+		1385D39C2029CF7C00E23B5E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C91F8E4C4E0055A7E2 /* Device.swift */; };
+		1385D39D2029CF8400E23B5E /* WiFiNetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BB5841FB0C8CB004DD713 /* WiFiNetworkProtocol.swift */; };
+		1385D39E2029CF8E00E23B5E /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
+		1385D39F2029CF9900E23B5E /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
+		1385D3A12029CFB100E23B5E /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B01F8CF6FC00235002 /* Browser.swift */; };
+		1385D3A22029CFC200E23B5E /* Array+RemoveEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */; };
+		1385D3A32029CFD800E23B5E /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */; };
+		1385D3A42029D00200E23B5E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DE1FAA3516000BA60D /* APIManager.swift */; };
 		13BA82DB2021D09B00B5FFCB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA82DA2021D09B00B5FFCB /* Defaults.swift */; };
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
@@ -61,6 +70,7 @@
 		94E6A6781F891B75009E3C8F /* DeviceSelectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */; };
 		9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9195F1FD53EB2003FABC2 /* Appearance.swift */; };
 		9DC919621FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */; };
+		AAC577F3EAF2FCEAA54A39AB /* Pods_today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F50F1E2F9806A37E8D0D11 /* Pods_today.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +98,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		10F50F1E2F9806A37E8D0D11 /* Pods_today.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_today.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1321837C2029AF270054AEFF /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		137CEA5E2024598C00AF4789 /* today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		137CEA5F2024598C00AF4789 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -117,8 +128,10 @@
 		37DBD2DE1FAA3516000BA60D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		37DBD2E01FAB43E0000BA60D /* AutomaticSetupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSetupVM.swift; sourceTree = "<group>"; };
 		37EDD0611FA75B9B0017B127 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		59EBB2C4808F6618F2AB93FE /* Pods-today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-today.debug.xcconfig"; path = "Pods/Target Support Files/Pods-today/Pods-today.debug.xcconfig"; sourceTree = "<group>"; };
 		6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.debug.xcconfig"; sourceTree = "<group>"; };
 		68F120E6042B35049D0129BA /* Pods_wifilamp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_wifilamp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		907E3023850EE73FCE27DE63 /* Pods-today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-today.release.xcconfig"; path = "Pods/Target Support Files/Pods-today/Pods-today.release.xcconfig"; sourceTree = "<group>"; };
 		9419AEFA1F8FACD90021AF14 /* DeviceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailVC.swift; sourceTree = "<group>"; };
 		9419AEFD1F8FAEBF0021AF14 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		9419AEFF1F8FB56D0021AF14 /* DeviceDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailVM.swift; sourceTree = "<group>"; };
@@ -154,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				137CEA602024598C00AF4789 /* NotificationCenter.framework in Frameworks */,
+				AAC577F3EAF2FCEAA54A39AB /* Pods_today.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +401,8 @@
 			children = (
 				6621A666F51730F5983BF926 /* Pods-wifilamp.debug.xcconfig */,
 				31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */,
+				59EBB2C4808F6618F2AB93FE /* Pods-today.debug.xcconfig */,
+				907E3023850EE73FCE27DE63 /* Pods-today.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -397,6 +413,7 @@
 				946D9BC01F8989D10058173B /* NetworkExtension.framework */,
 				68F120E6042B35049D0129BA /* Pods_wifilamp.framework */,
 				137CEA5F2024598C00AF4789 /* NotificationCenter.framework */,
+				10F50F1E2F9806A37E8D0D11 /* Pods_today.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,9 +425,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 137CEA6D2024598C00AF4789 /* Build configuration list for PBXNativeTarget "today" */;
 			buildPhases = (
+				DA3C4EF2EDCA4C1442E643A3 /* [CP] Check Pods Manifest.lock */,
 				137CEA5A2024598C00AF4789 /* Sources */,
 				137CEA5B2024598C00AF4789 /* Frameworks */,
 				137CEA5C2024598C00AF4789 /* Resources */,
+				F2264503BC06203DA37505BE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -616,6 +635,39 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DA3C4EF2EDCA4C1442E643A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-today-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2264503BC06203DA37505BE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-today/Pods-today-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -623,12 +675,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1385D3A42029D00200E23B5E /* APIManager.swift in Sources */,
 				137CEA7A20247DBF00AF4789 /* DeviceTableViewCell.swift in Sources */,
+				1385D39E2029CF8E00E23B5E /* Alamofire+Codable.swift in Sources */,
 				137CEA70202462D200AF4789 /* Defaults.swift in Sources */,
 				137CEA6F202462BC00AF4789 /* WiFiLamp.swift in Sources */,
 				137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */,
+				1385D39F2029CF9900E23B5E /* Promise+Retry.swift in Sources */,
 				137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */,
+				1385D3A12029CFB100E23B5E /* Browser.swift in Sources */,
+				1385D39B2029CF5E00E23B5E /* WiFiLamp+Ext.swift in Sources */,
 				1321837B2029AE2D0054AEFF /* Constants.swift in Sources */,
+				1385D3A22029CFC200E23B5E /* Array+RemoveEquatable.swift in Sources */,
+				1385D39D2029CF8400E23B5E /* WiFiNetworkProtocol.swift in Sources */,
+				1385D39C2029CF7C00E23B5E /* Device.swift in Sources */,
+				1385D3A32029CFD800E23B5E /* ErrorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +778,7 @@
 /* Begin XCBuildConfiguration section */
 		137CEA6B2024598C00AF4789 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59EBB2C4808F6618F2AB93FE /* Pods-today.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -741,6 +803,7 @@
 		};
 		137CEA6C2024598C00AF4789 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 907E3023850EE73FCE27DE63 /* Pods-today.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;

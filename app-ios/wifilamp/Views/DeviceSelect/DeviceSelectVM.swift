@@ -8,17 +8,6 @@
 
 import UIKit
 
-protocol DeviceSelectItem {
-    var icon: UIImage { get }
-    var name: String { get }
-    var details: String { get }
-}
-
-protocol DeviceSelectVMDelegate: class {
-    func nearbyDevicesChanged()
-    func allDevicesChanged()
-}
-
 class DeviceSelectVM {
     private let browser: Browser
     weak var delegate: DeviceSelectVMDelegate?

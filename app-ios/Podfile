@@ -1,14 +1,22 @@
 platform :ios, "11.0"
 use_frameworks!
 
-target 'wifilamp' do
-	pod 'Alamofire'
+def shared_pods
+    pod 'Alamofire'
     pod 'AwaitKit', '~> 3.0.1'
-	pod 'QRCodeReader.swift'
     pod 'R.swift'
+end
+
+target 'wifilamp' do
+	shared_pods
+	pod 'QRCodeReader.swift'
     pod 'SwiftLint'
     pod 'Swinject'
     pod 'SVProgressHUD', '~> 2.2.2'
+end
+
+target 'today' do
+    shared_pods
 end
 
 post_install do |installer|

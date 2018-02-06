@@ -17,6 +17,17 @@ enum DeviceSetupError: Error {
     case noNetworkSelected
 }
 
+protocol DeviceSelectItem {
+    var icon: UIImage { get }
+    var name: String { get }
+    var details: String { get }
+}
+
+protocol DeviceSelectVMDelegate: class {
+    func nearbyDevicesChanged()
+    func allDevicesChanged()
+}
+
 protocol DeviceConvertible {
     func toDevice() -> Device
 }
