@@ -44,6 +44,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        if url.absoluteString.matches(Constants.App.deviceDetailRegext) {
+            guard let components = URLComponents.init(url: url, resolvingAgainstBaseURL: false),
+            let device = components.queryItems?.filter({ $0.name == "device" }).first,
+            let deviceId = device.value else { return false }
+            debugPrint(deviceId)
+            return true
+        }
+
+        return false
+    }
 }
 
 class CoreAssembly: Assembly {

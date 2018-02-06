@@ -145,6 +145,7 @@ private extension DeviceDetailVC {
             SVProgressHUD.showSuccess(withStatus: "Renamed")
             SVProgressHUD.dismiss(withDelay: 0.5)
         }))
+        
         present(controller, animated: true, completion: nil)
     }
 }

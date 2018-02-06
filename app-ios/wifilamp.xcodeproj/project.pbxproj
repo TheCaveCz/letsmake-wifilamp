@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1321837B2029AE2D0054AEFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DA1FAA27B0000BA60D /* Constants.swift */; };
+		1321837D2029AF270054AEFF /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1321837C2029AF270054AEFF /* String+Ext.swift */; };
 		137CEA602024598C00AF4789 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137CEA5F2024598C00AF4789 /* NotificationCenter.framework */; };
 		137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137CEA622024598C00AF4789 /* TodayViewController.swift */; };
 		137CEA662024598C00AF4789 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137CEA642024598C00AF4789 /* MainInterface.storyboard */; };
@@ -86,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1321837C2029AF270054AEFF /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		137CEA5E2024598C00AF4789 /* today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		137CEA5F2024598C00AF4789 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		137CEA622024598C00AF4789 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +169,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1321837A2029ADC00054AEFF /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */,
+				942463C71F8E31890055A7E2 /* MainFlow.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
 		137CEA612024598C00AF4789 /* today */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +318,7 @@
 				9DC919611FD53F1B003FABC2 /* LoadingIndicatorProtocol.swift */,
 				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
+				1321837C2029AF270054AEFF /* String+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -358,14 +371,13 @@
 			children = (
 				94875B8D1F5D4C0400588B03 /* AppDelegate.swift */,
 				37DBD2DA1FAA27B0000BA60D /* Constants.swift */,
-				942463C71F8E31890055A7E2 /* MainFlow.swift */,
-				942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */,
+				1321837A2029ADC00054AEFF /* Flows */,
 				37DBD2D61FAA11D2000BA60D /* Models */,
+				37EDD0601FA75B220017B127 /* Other */,
+				9442A75E1F8A59AC0045B2D1 /* Resources */,
+				37DBD2D91FAA18C2000BA60D /* Services */,
 				9442A75C1F8A51FF0045B2D1 /* Utils */,
 				9442A75D1F8A59520045B2D1 /* Views */,
-				37DBD2D91FAA18C2000BA60D /* Services */,
-				9442A75E1F8A59AC0045B2D1 /* Resources */,
-				37EDD0601FA75B220017B127 /* Other */,
 			);
 			path = wifilamp;
 			sourceTree = "<group>";
@@ -616,6 +628,7 @@
 				137CEA6F202462BC00AF4789 /* WiFiLamp.swift in Sources */,
 				137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */,
 				137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */,
+				1321837B2029AE2D0054AEFF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +668,7 @@
 				9419AF0D1F9007A20021AF14 /* ColorWheel.swift in Sources */,
 				3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */,
 				37DBD2D81FAA1235000BA60D /* WiFiLamp.swift in Sources */,
+				1321837D2029AF270054AEFF /* String+Ext.swift in Sources */,
 				3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */,
 				946D9BBE1F891C880058173B /* UITableView+DataLoadable.swift in Sources */,
 				37DBD2DF1FAA3516000BA60D /* APIManager.swift in Sources */,
