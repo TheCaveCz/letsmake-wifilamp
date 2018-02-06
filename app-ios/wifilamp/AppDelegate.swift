@@ -49,8 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if url.absoluteString.matches(Constants.App.deviceDetailRegext) {
             guard let components = URLComponents.init(url: url, resolvingAgainstBaseURL: false),
             let device = components.queryItems?.filter({ $0.name == "device" }).first,
-            let deviceId = device.value else { return false }
-            debugPrint(deviceId)
+            let deviceId = device.value,
+            let savedDevice = Defaults.savedDevices().filter({ $0.chipId == deviceId }).first else { return false }
+            debugPrint(savedDevice.name)
+            if let flow = mainFlow as? MainFlow {
+                flow.pushDeviceDetail(forDevice: savedDevice, fromController: flow.rootController.topViewController)
+            }
             return true
         }
 
