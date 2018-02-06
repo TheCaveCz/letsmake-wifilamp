@@ -265,6 +265,11 @@ struct WiFiLampInitialState: Codable {
         case current
     }
 
+    init(color: UIColor, isOn: Bool) {
+        self.color = color
+        self.isOn = isOn
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let nestedContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: WiFiLampInitialState.CodingKeys.current)
@@ -278,7 +283,5 @@ struct WiFiLampInitialState: Codable {
         self.isOn = try nestedContainer.decode(Bool.self, forKey: .isOn)
     }
 
-    func encode(to encoder: Encoder) throws {
-
-    }
+    func encode(to encoder: Encoder) throws {}
 }
