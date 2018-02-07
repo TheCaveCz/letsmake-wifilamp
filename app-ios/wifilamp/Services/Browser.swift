@@ -49,8 +49,12 @@ class Browser: NSObject, NetServiceBrowserDelegate, NetServiceDelegate {
     }
     
     func refresh() {
-        shouldRestartSearch = true
-        stopSearch()
+        if searching {
+            shouldRestartSearch = true
+            stopSearch()
+        } else {
+            startSearch()
+        }
     }
     
     private func clearResults() {

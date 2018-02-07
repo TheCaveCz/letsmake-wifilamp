@@ -12,6 +12,11 @@ import QRCodeReader
 
 final class QRScannerVC: UIViewController {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var connectWithCodeButton: UIButton!
+    @IBOutlet weak var scanButton: UIButton!
+
     var actionScannedDevice: ((QRScannerVC, Device) -> Void)?
     
     // Create the reader lazily to avoid cpu overload during the
@@ -23,29 +28,35 @@ final class QRScannerVC: UIViewController {
         
         return QRCodeReaderViewController(builder: builder)
     }()
+
     private lazy var closeButton: UIBarButtonItem = {
         let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(cancelTapped))
         return button
     }()
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    
-    private func setupUI() {
-        navigationItem.title = "Setup new lamp"
-        navigationItem.leftBarButtonItem = closeButton
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        codeTextField.becomeFirstResponder()
     }
-    
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    // MARK: - Actions
     @IBAction func scanQRCodeTap(_ sender: UIButton) {
         showQRCodeReader()
     }
     
-    private func showQRCodeReader() {
-        readerVC.delegate = self
-        readerVC.modalPresentationStyle = .formSheet
-        present(readerVC, animated: true, completion: nil)
+    @IBAction func connectWithCodeTapped(_ sender: UIButton) {
+        guard let text = codeTextField.text else { return }
+        didScanQRCode(metadata: text)
     }
 
      @objc private func cancelTapped() {
@@ -87,4 +98,33 @@ extension QRScannerVC: QRCodeReaderViewControllerDelegate {
     }
     
     func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {}
+}
+
+private extension QRScannerVC {
+    func setupUI() {
+        navigationItem.title = "Setup new lamp"
+        navigationItem.leftBarButtonItem = closeButton
+
+        connectWithCodeButton.layer.cornerRadius = 4
+        connectWithCodeButton.backgroundColor = UIColor(red: 128/255, green: 204/255, blue: 40/255, alpha: 1)
+        connectWithCodeButton.tintColor = UIColor.white
+        connectWithCodeButton.isEnabled = false
+
+        scanButton.layer.cornerRadius = 4
+        scanButton.layer.borderWidth = 1
+        scanButton.layer.borderColor = UIColor(red: 128/255, green: 204/255, blue: 40/255, alpha: 1).cgColor
+        scanButton.tintColor = UIColor(red: 128/255, green: 204/255, blue: 40/255, alpha: 1)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldChanged), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
+    }
+
+    func showQRCodeReader() {
+        readerVC.delegate = self
+        readerVC.modalPresentationStyle = .formSheet
+        present(readerVC, animated: true, completion: nil)
+    }
+
+    @objc func textFieldChanged() {
+        connectWithCodeButton.isEnabled = !(codeTextField.text?.isEmpty ?? true)
+    }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,8 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lamp Identifier" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t6U-Fe-tbW">
+                                <rect key="frame" x="24" y="32" width="327" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AdJ-5r-y8S"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pj1-NH-1YR">
+                                <rect key="frame" x="67" y="88" width="240" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="c68-Q2-pF5"/>
+                                    <constraint firstAttribute="height" constant="44" id="qth-eF-nwX"/>
+                                </constraints>
+                                <state key="normal" title="Connect to Lamp"/>
+                                <connections>
+                                    <action selector="connectWithCodeTapped:" destination="WkI-c0-rMY" eventType="touchUpInside" id="IO2-9q-gme"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h3-ZZ-PkV">
-                                <rect key="frame" x="89" y="286" width="196" height="30"/>
+                                <rect key="frame" x="67" y="164" width="240" height="44"/>
                                 <state key="normal" title="Start with scanning QR code"/>
                                 <connections>
                                     <action selector="scanQRCodeTap:" destination="WkI-c0-rMY" eventType="touchUpInside" id="3hH-8f-ZbG"/>
@@ -28,12 +48,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="centerY" secondItem="HDs-3X-Qzc" secondAttribute="centerY" id="27Z-N3-YpM"/>
-                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="centerX" secondItem="HDs-3X-Qzc" secondAttribute="centerX" id="mgi-gS-Xkm"/>
+                            <constraint firstItem="pj1-NH-1YR" firstAttribute="centerX" secondItem="HDs-3X-Qzc" secondAttribute="centerX" id="0ts-fM-9vO"/>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="top" secondItem="pj1-NH-1YR" secondAttribute="bottom" constant="32" id="BOz-tO-Yzh"/>
+                            <constraint firstItem="t6U-Fe-tbW" firstAttribute="trailing" secondItem="HDs-3X-Qzc" secondAttribute="trailing" constant="-24" id="FEs-Gh-mzY"/>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="height" secondItem="pj1-NH-1YR" secondAttribute="height" id="FNn-RI-fgf"/>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="centerX" secondItem="pj1-NH-1YR" secondAttribute="centerX" id="J14-JX-yif"/>
+                            <constraint firstItem="0h3-ZZ-PkV" firstAttribute="width" secondItem="pj1-NH-1YR" secondAttribute="width" id="gS9-mj-xz9"/>
+                            <constraint firstItem="t6U-Fe-tbW" firstAttribute="top" secondItem="HDs-3X-Qzc" secondAttribute="top" constant="32" id="jwu-zk-9Ej"/>
+                            <constraint firstItem="pj1-NH-1YR" firstAttribute="top" secondItem="t6U-Fe-tbW" secondAttribute="bottom" constant="16" id="koJ-xI-Eor"/>
+                            <constraint firstItem="t6U-Fe-tbW" firstAttribute="leading" secondItem="HDs-3X-Qzc" secondAttribute="leading" constant="24" id="rZI-N8-bpI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HDs-3X-Qzc"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="codeTextField" destination="t6U-Fe-tbW" id="CSE-QV-bjQ"/>
+                        <outlet property="connectWithCodeButton" destination="pj1-NH-1YR" id="88m-E8-zdF"/>
+                        <outlet property="scanButton" destination="0h3-ZZ-PkV" id="kOl-qC-UIW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuW-FK-5JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

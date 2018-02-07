@@ -9,6 +9,7 @@
 import UIKit
 import Swinject
 import PromiseKit
+import SVProgressHUD
 
 class SetupFlow: Flow {
     
@@ -58,8 +59,11 @@ class SetupFlow: Flow {
         }
         
         automaticSetupVC.actionSetupFinished = { [weak self] vc, isSuccess in
-            vc.navigationController?.dismiss(animated: true, completion: nil)
-            self?.flowCompletion?(isSuccess)
+            SVProgressHUD.showSuccess(withStatus: "Finished 🎉")
+            SVProgressHUD.dismiss(withDelay: 1, completion: {
+                vc.navigationController?.dismiss(animated: true, completion: nil)
+                self?.flowCompletion?(isSuccess)
+            })
         }
         
         return automaticSetupVC
