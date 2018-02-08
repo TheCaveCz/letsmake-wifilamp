@@ -8,16 +8,14 @@
 #define TOUCH_BUTTON 1
 
 
-#define PIXELS_PIN D1
 #define PIXELS_COUNT 15
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 
 #define BUTTON_PIN D5
 
-#ifdef ESP8266
-// ESP8266 show() is external to enforce ICACHE_RAM_ATTR execution
-extern "C" void ICACHE_RAM_ATTR espShow(uint8_t pin, uint8_t *pixels, uint32_t numBytes);
-#endif
+void uartSetup();
+void uartSend(const uint8_t *pixels, uint32_t bytesCount);
+
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
   uint8_t pixelsBuffer[PIXELS_BYTE_COUNT];
@@ -26,7 +24,8 @@ void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
     pixelsBuffer[i + 1] = r;
     pixelsBuffer[i + 2] = b;
   }
-  espShow(PIXELS_PIN, pixelsBuffer, PIXELS_BYTE_COUNT);
+  uartSend(pixelsBuffer, PIXELS_BYTE_COUNT);
+  delay(2);
 }
 
 void wifiConnect() {
@@ -70,8 +69,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 #endif
 
-  pinMode(PIXELS_PIN, OUTPUT);
-  digitalWrite(PIXELS_PIN, LOW);
+  uartSetup();
 
   String chipId = String(ESP.getChipId(), HEX);
 
@@ -119,7 +117,7 @@ void loop() {
   if (buttonReadRaw()) {
     pixelsSet(0, 255, 0);
   } else {
-    pixelsSet(255, 255, 0);
+    pixelsSet(255, 128, 0);
   }
   ArduinoOTA.handle();
 }

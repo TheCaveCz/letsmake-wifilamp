@@ -17,19 +17,15 @@ uint8_t pixelsBuffer[PIXELS_BYTE_COUNT];
 
 uint32_t pixelsTaskTime;
 
-#ifdef ESP8266
-// ESP8266 show() is external to enforce ICACHE_RAM_ATTR execution
-extern "C" void ICACHE_RAM_ATTR espShow(uint8_t pin, uint8_t *pixels, uint32_t numBytes);
-
-#endif
-
 
 #define bail(msg) logInfo(msg);pixelsSet(255,128,0);while (1) { delay(1); }
 
+void uartSetup();
+void uartSend(const uint8_t *pixels, uint32_t bytesCount);
+
 
 void pixelsSetup() {
-  pinMode(PIXELS_PIN, OUTPUT);
-  digitalWrite(PIXELS_PIN, LOW);
+  uartSetup();
 
   pixelsSet(0, 0, 0);
   pixelsTaskTime = 0;
@@ -110,6 +106,7 @@ void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
     pixelsBuffer[i + 1] = r;
     pixelsBuffer[i + 2] = b;
   }
-  espShow(PIXELS_PIN, pixelsBuffer, PIXELS_BYTE_COUNT);
+
+  uartSend(pixelsBuffer, PIXELS_BYTE_COUNT);
 }
 
