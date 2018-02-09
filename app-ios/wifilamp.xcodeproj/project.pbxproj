@@ -28,6 +28,8 @@
 		1385D3A22029CFC200E23B5E /* Array+RemoveEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B21F8CF75500235002 /* Array+RemoveEquatable.swift */; };
 		1385D3A32029CFD800E23B5E /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DC1FAA2EEC000BA60D /* ErrorExtensions.swift */; };
 		1385D3A42029D00200E23B5E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DBD2DE1FAA3516000BA60D /* APIManager.swift */; };
+		13ADF532202DB92800ED7739 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ADF531202DB92800ED7739 /* UIColor+Ext.swift */; };
+		13ADF533202DBC1000ED7739 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ADF531202DB92800ED7739 /* UIColor+Ext.swift */; };
 		13BA82DB2021D09B00B5FFCB /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA82DA2021D09B00B5FFCB /* Defaults.swift */; };
 		3700D8B91FACAEDA0099C1F7 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */; };
 		3700D8BB1FACC78C0099C1F7 /* Alamofire+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700D8BA1FACC78C0099C1F7 /* Alamofire+Codable.swift */; };
@@ -109,6 +111,7 @@
 		137CEA732024682E00AF4789 /* today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = today.entitlements; sourceTree = "<group>"; };
 		137CEA752024729B00AF4789 /* TodayEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayEmptyView.swift; sourceTree = "<group>"; };
 		137CEA7920247DBF00AF4789 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		13ADF531202DB92800ED7739 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		13BA82DA2021D09B00B5FFCB /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		31EEAB077AB69D7B5B495275 /* Pods-wifilamp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wifilamp.release.xcconfig"; path = "Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp.release.xcconfig"; sourceTree = "<group>"; };
 		3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
@@ -333,6 +336,7 @@
 				3700D8B81FACAEDA0099C1F7 /* Promise+Retry.swift */,
 				946D9BBD1F891C880058173B /* UITableView+DataLoadable.swift */,
 				1321837C2029AF270054AEFF /* String+Ext.swift */,
+				13ADF531202DB92800ED7739 /* UIColor+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -680,6 +684,7 @@
 				1385D39E2029CF8E00E23B5E /* Alamofire+Codable.swift in Sources */,
 				137CEA70202462D200AF4789 /* Defaults.swift in Sources */,
 				137CEA6F202462BC00AF4789 /* WiFiLamp.swift in Sources */,
+				13ADF533202DBC1000ED7739 /* UIColor+Ext.swift in Sources */,
 				137CEA762024729B00AF4789 /* TodayEmptyView.swift in Sources */,
 				1385D39F2029CF9900E23B5E /* Promise+Retry.swift in Sources */,
 				137CEA632024598C00AF4789 /* TodayViewController.swift in Sources */,
@@ -703,6 +708,7 @@
 				9419AEFE1F8FAEC00021AF14 /* R.generated.swift in Sources */,
 				9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */,
 				137CEA722024648D00AF4789 /* WiFiLamp+Ext.swift in Sources */,
+				13ADF532202DB92800ED7739 /* UIColor+Ext.swift in Sources */,
 				9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,

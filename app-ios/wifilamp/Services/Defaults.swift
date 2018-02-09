@@ -6,12 +6,13 @@
 //  Copyright © 2018 The Cave. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Defaults {
 
     private static let groupDefaults: UserDefaults = UserDefaults.init(suiteName: "group.com.strv.theCave.wifiLamp")!
     private static let savedDevicesKey = "savedDevicesKey"
+    private static let savedCustomColorsKey = "savedCustomColorsKey"
 
     // MARK: - Saved devices
     static func savedDevices() -> [WiFiLamp] {
@@ -32,7 +33,7 @@ class Defaults {
             allDevices.append(device)
         }
 
-        encodeSavedDevices(allDevices)
+        encodeAndSaveObject(allDevices, key: savedDevicesKey)
     }
 
     static func removeSavedDevice(_ device: WiFiLamp) {
@@ -41,22 +42,41 @@ class Defaults {
             allDevices.remove(at: foundIndex)
         }
 
-        encodeSavedDevices(allDevices)
+        encodeAndSaveObject(allDevices, key: savedDevicesKey)
     }
 
     static func deviceIsSaved(_ device: WiFiLamp) -> Bool {
         let allDevices = Defaults.savedDevices()
         return allDevices.contains(where: { $0.chipId == device.chipId })
     }
+
+    // MARK: - Colors
+    static func savedColors() -> [UIColor] {
+        guard let colorsData = groupDefaults.object(forKey: savedCustomColorsKey) as? Data,
+            let colorsCodes = try? JSONDecoder().decode([Int].self, from: colorsData) else { return [] }
+        let colors = colorsCodes.map({ UIColor.init(hex: $0) })
+        return colors
+    }
+
+    static func saveColor(_ color: UIColor) {
+        var allColors = Defaults.savedColors()
+        if !allColors.contains(where: { $0.isEqual(color) }) {
+            // Color is not yet stored in all colors
+            allColors.insert(color, at: 0)
+        }
+
+        let colorCodes = allColors.map({ $0.toHex() })
+        encodeAndSaveObject(colorCodes, key: savedCustomColorsKey)
+    }
 }
 
 private extension Defaults {
-    static func encodeSavedDevices(_ devices: [WiFiLamp]) {
+    static func encodeAndSaveObject<T: Encodable>(_ objectToSave: T, key: String) {
         do {
-            let devicesData = try JSONEncoder().encode(devices)
-            groupDefaults.set(devicesData, forKey: savedDevicesKey)
+            let dataToSave = try JSONEncoder().encode(objectToSave)
+            groupDefaults.set(dataToSave, forKey: key)
         } catch let error {
-            debugPrint("Encoding all saved devices failed: \(error)")
+            debugPrint("Encoding object(\(objectToSave) for save failed: \(error)")
         }
     }
 }

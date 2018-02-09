@@ -26,21 +26,9 @@ class DeviceDetailVM {
         return device.name
     }
     
-    let colors: [UIColor] = [
-        UIColor(red: 1, green: 0x69/255, blue: 0, alpha: 1),
-        UIColor(red: 0xff/255, green: 189/255, blue: 0, alpha: 1),
-        UIColor(red: 142/255, green: 255/255, blue: 210/255, alpha: 1),
-        UIColor(red: 0, green: 0xd0/255, blue: 0x84/255, alpha: 1),
-        UIColor(red: 0x8e/255, green: 0xd1/255, blue: 0xfc/255, alpha: 1),
-        UIColor(red: 0x06/255, green: 0x93/255, blue: 0xe3/255, alpha: 1),
-        UIColor(red: 0xab/255, green: 0xb8/255, blue: 0xc3/255, alpha: 1),
-        UIColor(red: 0xeb/255, green: 0x14/255, blue: 0x4c/255, alpha: 1),
-        UIColor(red: 0xf7/255, green: 0x8d/255, blue: 0xa7/255, alpha: 1),
-        UIColor(red: 0x99/255, green: 0, blue: 0xef/255, alpha: 1),
-        UIColor(red: 1, green: 1, blue: 1, alpha: 1),
-        UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-    ]
-    
+    lazy var colors: [UIColor] = loadColors()
+
+    // MARK: - Lifecycle
     init(device: Device) {
         self.device = device
     }
@@ -68,12 +56,13 @@ class DeviceDetailVM {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
+        
         // swiftlint:enable identifier_name
         color.getRed(&r, green: &g, blue: &b, alpha: nil)
         
-        let roundR =  round(r * 255.0)
-        let roundG =  round(g * 255.0)
-        let roundB =  round(b * 255.0)
+        let roundR = round(r * 255.0)
+        let roundG = round(g * 255.0)
+        let roundB = round(b * 255.0)
         
         print("\n[APP] Red:\(roundR) Green: \(roundG) Blue:\(roundB)\n")
         _ = self.device.setColor(on: self.device.localNetworkUrl, roundR, roundG, roundB)
@@ -104,5 +93,43 @@ class DeviceDetailVM {
         guard let device = device as? WiFiLamp, !name.isEmpty else { return }
         device.name = name
         saveDevice()
+    }
+
+    // MARK: - Colors
+    func canSaveColor(_ color: UIColor) -> Bool {
+        let colorHex = color.toHex()
+        return !colors.contains(where: { $0.toHex() == colorHex })
+    }
+
+    func saveColor(_ color: UIColor) {
+        // Don't duplicate colors
+        guard !colors.contains(where: { $0.toHex() == color.toHex() }) else { return }
+        Defaults.saveColor(color)
+        colors = loadColors()
+    }
+
+    func indexOfColor(_ color: UIColor) -> Int? {
+        return colors.index(of: color)
+    }
+}
+
+private extension DeviceDetailVM {
+    func loadColors() -> [UIColor] {
+        var customColors = Defaults.savedColors()
+        customColors.append(contentsOf: [
+            UIColor(red: 1, green: 0x69/255, blue: 0, alpha: 1),
+            UIColor(red: 0xff/255, green: 189/255, blue: 0, alpha: 1),
+            UIColor(red: 142/255, green: 255/255, blue: 210/255, alpha: 1),
+            UIColor(red: 0, green: 0xd0/255, blue: 0x84/255, alpha: 1),
+            UIColor(red: 0x8e/255, green: 0xd1/255, blue: 0xfc/255, alpha: 1),
+            UIColor(red: 0x06/255, green: 0x93/255, blue: 0xe3/255, alpha: 1),
+            UIColor(red: 0xab/255, green: 0xb8/255, blue: 0xc3/255, alpha: 1),
+            UIColor(red: 0xeb/255, green: 0x14/255, blue: 0x4c/255, alpha: 1),
+            UIColor(red: 0xf7/255, green: 0x8d/255, blue: 0xa7/255, alpha: 1),
+            UIColor(red: 0x99/255, green: 0, blue: 0xef/255, alpha: 1),
+            UIColor(red: 1, green: 1, blue: 1, alpha: 1),
+            UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+            ])
+        return customColors
     }
 }

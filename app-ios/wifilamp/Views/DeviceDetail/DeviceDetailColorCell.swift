@@ -19,8 +19,13 @@ class DeviceDetailColorCell: UICollectionViewCell, DataLoadable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         colorView.layer.cornerRadius = self.bounds.width / 2
         colorView.layer.borderWidth = 3
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            colorView.layer.borderColor = isSelected ? UIColor.black.cgColor:UIColor.lightGray.cgColor
+        }
     }
 }

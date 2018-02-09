@@ -41,7 +41,15 @@ class DeviceDetailVC: UIViewController, LoadingIndicatorProtocol {
         let menu = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         menu.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
 
-        menu.addAction(UIAlertAction.init(title: "Rename", style: .default, handler: { [weak self] _ in
+        if viewModel.canSaveColor(colorPicker.color) {
+            menu.addAction(UIAlertAction.init(title: "Save color", style: .default, handler: { [weak self] _ in
+                guard let weakSelf = self else { return }
+                weakSelf.viewModel.saveColor(weakSelf.colorPicker.color)
+                weakSelf.collectionView.reloadData()
+            }))
+        }
+
+        menu.addAction(UIAlertAction.init(title: "Rename device", style: .default, handler: { [weak self] _ in
             self?.renameDevice()
         }))
 
@@ -84,7 +92,17 @@ extension DeviceDetailVC: UICollectionViewDelegate {
 
 extension DeviceDetailVC: SwiftHSVColorPickerDelegate {
     func colorPicker(_ picker: SwiftHSVColorPicker, didChangeColor color: UIColor) {
-        self.viewModel.updateColor(color: color)
+        viewModel.updateColor(color: color)
+
+        if let index = viewModel.indexOfColor(color) {
+            // Select saved color in collection
+            collectionView.selectItem(at: IndexPath.init(row: index, section: 0), animated: true, scrollPosition: .top)
+        } else {
+            guard let selectedPaths = collectionView.indexPathsForSelectedItems else { return }
+            for path in selectedPaths {
+                collectionView.deselectItem(at: path, animated: false)
+            }
+        }
     }
 }
 
@@ -95,7 +113,12 @@ extension DeviceDetailVC: DeviceDetailVMDelegate {
             self.colorPicker.color = color
             self.switchButton.isOn = isOn
         })
-        
+
+        if let index = viewModel.indexOfColor(color) {
+            // Select saved color in collection
+            collectionView.selectItem(at: IndexPath.init(row: index, section: 0), animated: true, scrollPosition: .top)
+        }
+
         self.hideLoadingIndicator()
     }
     
