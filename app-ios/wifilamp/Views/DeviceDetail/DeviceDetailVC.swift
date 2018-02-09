@@ -88,6 +88,28 @@ extension DeviceDetailVC: UICollectionViewDelegate {
         colorPicker.color = color
         viewModel.updateColor(color: color)
     }
+
+    func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        if viewModel.canRemoveColor(atIndex: indexPath.row) {
+            let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction.init(title: "Remove color", style: .destructive, handler: { [weak self] _ in
+                self?.viewModel.removeColor(atIndex: indexPath.row)
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            }))
+            present(alertController, animated: true, completion: nil)
+        }
+        
+        return true
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return false
+    }
+
+    func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {}
 }
 
 extension DeviceDetailVC: SwiftHSVColorPickerDelegate {

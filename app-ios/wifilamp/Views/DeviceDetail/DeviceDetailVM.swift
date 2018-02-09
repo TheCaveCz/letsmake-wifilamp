@@ -101,10 +101,23 @@ class DeviceDetailVM {
         return !colors.contains(where: { $0.toHex() == colorHex })
     }
 
+    func canRemoveColor(atIndex index: Int) -> Bool {
+        let customColors = Defaults.savedColors()
+        return index < customColors.count
+    }
+
     func saveColor(_ color: UIColor) {
         // Don't duplicate colors
         guard !colors.contains(where: { $0.toHex() == color.toHex() }) else { return }
         Defaults.saveColor(color)
+        colors = loadColors()
+    }
+
+    func removeColor(atIndex index: Int) {
+        let savedColors = Defaults.savedColors()
+        guard index < savedColors.count else { return }
+        let colorToRemove = savedColors[index]
+        Defaults.removeSavedColor(colorToRemove)
         colors = loadColors()
     }
 

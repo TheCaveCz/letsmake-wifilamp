@@ -68,6 +68,17 @@ class Defaults {
         let colorCodes = allColors.map({ $0.toHex() })
         encodeAndSaveObject(colorCodes, key: savedCustomColorsKey)
     }
+
+    static func removeSavedColor(_ color: UIColor) {
+        var allColors = Defaults.savedColors()
+        let hexColor = color.toHex()
+        if let foundIndex = allColors.index(where: { $0.toHex() == hexColor }) {
+            allColors.remove(at: foundIndex)
+        }
+
+        let colorCodes = allColors.map({ $0.toHex() })
+        encodeAndSaveObject(colorCodes, key: savedCustomColorsKey)
+    }
 }
 
 private extension Defaults {
