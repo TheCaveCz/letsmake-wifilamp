@@ -1,4 +1,6 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
+#include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
 #define WIFI_PASS "put password here"
@@ -91,8 +93,14 @@ void setup() {
   ArduinoOTA.onEnd([]() {
     Serial.println("OTA update end");
   });
+
+  static uint32_t lastProgress = 0;
   ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-    Serial.printf("Progress: %u/%u\n", progress, total);
+    uint32_t p = map(progress, 0, total, 0, 100);
+    if (p != lastProgress) {
+      Serial.printf("Progress: %u %%\n", p);
+      lastProgress = p;
+    }
   });
   ArduinoOTA.onError([](ota_error_t error) {
     Serial.printf("Error[%u]: ", error);
