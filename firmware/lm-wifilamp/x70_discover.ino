@@ -21,5 +21,6 @@ void discoverSetup() {
 
   MDNS.addService("http", "tcp", 80);
   MDNS.addService("wifilamp", "tcp", 80);
+  MDNS.addServiceTxt("wifilamp", "tcp", "chipid", chipId);
 }
 
