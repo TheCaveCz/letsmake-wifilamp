@@ -480,7 +480,7 @@
 				TargetAttributes = {
 					137CEA5D2024598C00AF4789 = {
 						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = XWQ4Y8CJ93;
+						DevelopmentTeam = 9W7F66BR5D;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -490,7 +490,7 @@
 					};
 					94875B891F5D4C0400588B03 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = XWQ4Y8CJ93;
+						DevelopmentTeam = 9W7F66BR5D;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -794,12 +794,12 @@
 				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -819,12 +819,12 @@
 				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -949,11 +949,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -968,11 +968,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

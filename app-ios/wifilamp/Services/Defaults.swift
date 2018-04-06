@@ -10,7 +10,7 @@ import UIKit
 
 class Defaults {
 
-    private static let groupDefaults: UserDefaults = UserDefaults.init(suiteName: "group.com.strv.theCave.wifiLamp")!
+    private static let groupDefaults: UserDefaults = UserDefaults.init(suiteName: "group.com.dzindra.wifiLamp")!
     private static let savedDevicesKey = "savedDevicesKey"
     private static let savedCustomColorsKey = "savedCustomColorsKey"
 
