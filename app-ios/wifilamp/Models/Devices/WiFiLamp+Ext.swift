@@ -13,7 +13,6 @@ import AwaitKit
 import PromiseKit
 
 
-
 // MARK: - Initial device configuration
 extension WiFiLamp {
 
@@ -134,18 +133,20 @@ extension WiFiLamp: Device {
         return apiCall(deviceUrl: deviceUrl, path: "/api/reboot", method: .post, parameters: parameters)
     }
 
-    func setColor(on deviceUrl: URL, _ red: CGFloat, _ green: CGFloat, _ blue: CGFloat) -> Promise<VoidResponse> {
+    func setColor(on deviceUrl: URL, _ red: Int, _ green: Int, _ blue: Int) -> Promise<VoidResponse> {
         let parameters: Parameters = [
             "r": red,
             "g": green,
-            "b": blue
+            "b": blue,
+            "time": 250
         ]
         return apiCall(deviceUrl: deviceUrl, path: "/api/color", method: .post, parameters: parameters)
     }
 
     func turn(on isOn: Bool, on deviceUrl: URL) -> Promise<VoidResponse> {
         let parameters: Parameters = [
-            "on": isOn
+            "on": isOn,
+            "time": 500
         ]
         return apiCall(deviceUrl: deviceUrl, path: "/api/on", method: .post, parameters: parameters)
     }

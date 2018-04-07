@@ -116,14 +116,14 @@ class ColorWheel: UIView {
         let radius: CGFloat = wheelImage.frame.width / 2
         let wheelLayerCenter: CGPoint = CGPoint(x: radius, y: radius)
 
-        let dx: CGFloat = coord.x - wheelLayerCenter.x
-        let dy: CGFloat = coord.y - wheelLayerCenter.y
-        let distance: CGFloat = sqrt(dx * dx + dy * dy)
+        let deltaX: CGFloat = coord.x - wheelLayerCenter.x
+        let deltaY: CGFloat = coord.y - wheelLayerCenter.y
+        let distance: CGFloat = sqrt(deltaX * deltaX + deltaY * deltaY)
         var outputCoord: CGPoint = coord
 
         // If the touch coordinate is outside the radius of the wheel, transform it to the edge of the wheel with polar coordinates
         if distance > radius {
-            let theta: CGFloat = atan2(dy, dx)
+            let theta: CGFloat = atan2(deltaY, deltaX)
             outputCoord.x = radius * cos(theta) + wheelLayerCenter.x
             outputCoord.y = radius * sin(theta) + wheelLayerCenter.y
         }
@@ -146,19 +146,19 @@ class ColorWheel: UIView {
 
     private func hueSaturationAt(point position: CGPoint) -> (hue: CGFloat, saturation: CGFloat) {
         // Get hue and saturation for a given point (x,y) in the wheel
-        let c = wheelImage.bounds.width * scale / 2
-        let dx = CGFloat(position.x - c) / c
-        let dy = CGFloat(position.y - c) / c
-        let d = sqrt(CGFloat(dx * dx + dy * dy))
+        let center = wheelImage.bounds.width * scale / 2
+        let deltaX = CGFloat(position.x - center) / center
+        let deltaY = CGFloat(position.y - center) / center
+        let distance = sqrt(CGFloat(deltaX * deltaX + deltaY * deltaY))
 
-        let saturation: CGFloat = d
+        let saturation: CGFloat = distance
 
         var hue: CGFloat
-        if d == 0 {
+        if distance == 0 {
             hue = 0
         } else {
-            hue = acos(dx / d) / CGFloat.pi / 2.0
-            if dy < 0 {
+            hue = acos(deltaX / distance) / CGFloat.pi / 2.0
+            if deltaY < 0 {
                 hue = 1.0 - hue
             }
         }
@@ -170,9 +170,9 @@ class ColorWheel: UIView {
 
         let dimension = wheelImage.frame.width
         let radius: CGFloat = saturation * dimension / 2
-        let x = dimension / 2 + radius * cos(hue * CGFloat.pi * 2)
-        let y = dimension / 2 + radius * sin(hue * CGFloat.pi * 2)
-        return CGPoint(x: x, y: y)
+        let pointX = dimension / 2 + radius * cos(hue * CGFloat.pi * 2)
+        let pointY = dimension / 2 + radius * sin(hue * CGFloat.pi * 2)
+        return CGPoint(x: pointX, y: pointY)
     }
 
 }

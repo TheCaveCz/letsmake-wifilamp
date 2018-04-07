@@ -64,7 +64,7 @@ struct WiFiLampBrowserFactory {
             name.removeFirst(removedPrefix.count)
         }
         
-        return WiFiLamp(chipId: chipId, name: name,localNetworkUrl: url)
+        return WiFiLamp(chipId: chipId, name: name, localNetworkUrl: url)
     }
     
     static func browser() -> Browser {

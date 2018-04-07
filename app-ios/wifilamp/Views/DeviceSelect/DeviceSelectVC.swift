@@ -149,8 +149,8 @@ private extension DeviceSelectVC {
     }
 
     func removeDevice(atIndex index: Int) {
-        guard index < viewModel.savedDevices.count else { return }
-        let device = viewModel.savedDevices[index]
+        guard let device = viewModel.savedDevices[safe:index] else { return }
+        
         let controller = UIAlertController.init(title: "Warning", message: "Do you want to remove \(device.name) from saved devices?", preferredStyle: .alert)
         controller.addAction(UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         controller.addAction(UIAlertAction.init(title: "Remove", style: UIAlertActionStyle.destructive, handler: { [weak self] _ in

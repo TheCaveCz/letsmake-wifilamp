@@ -31,10 +31,10 @@ class TodayViewController: UIViewController {
     // MARK: - Private Props
     private lazy var savedDevices: [WiFiLamp] = {
         return Defaults.savedDevices()
-        let dev1 = WiFiLamp.init(chipId: "chip1", name: "chip1", localNetworkUrl: nil)
-        let dev2 = WiFiLamp.init(chipId: "chip2", name: "chip2", localNetworkUrl: nil)
-        let dev3 = WiFiLamp.init(chipId: "chip3", name: "chip3", localNetworkUrl: nil)
-        return [dev1, dev2, dev3]
+//        let dev1 = WiFiLamp.init(chipId: "chip1", name: "chip1", localNetworkUrl: nil)
+//        let dev2 = WiFiLamp.init(chipId: "chip2", name: "chip2", localNetworkUrl: nil)
+//        let dev3 = WiFiLamp.init(chipId: "chip3", name: "chip3", localNetworkUrl: nil)
+//        return [dev1, dev2, dev3]
     }()
 
     private let rowHeight: CGFloat = 48

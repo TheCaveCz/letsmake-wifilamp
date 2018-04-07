@@ -21,8 +21,8 @@ class DeviceSelectVM {
     var nearbyDevices: [DeviceSelectItem] {
         let saved = savedDevices
         
-        return browser.records.compactMap { $0 as? DeviceSelectItem }.filter {
-            device in !saved.contains { $0.identifier == device.identifier }
+        return browser.records.compactMap { $0 as? DeviceSelectItem }.filter { device in
+            !saved.contains { $0.identifier == device.identifier }
         }
     }
     
@@ -41,13 +41,13 @@ class DeviceSelectVM {
 
     // TODO : use some kind of Saveable protocol
     func saveNearbyDevice(index: Int) {
-        guard index < nearbyDevices.count, let device = nearbyDevices[index] as? WiFiLamp else { return }
+        guard let device = nearbyDevices[safe:index] as? WiFiLamp else { return }
         Defaults.saveDevice(device)
         delegate?.allDevicesChanged()
     }
 
     func deleteSaved(index: Int) {
-        guard index < savedDevices.count, let device = savedDevices[index] as? WiFiLamp else { return }
+        guard let device = savedDevices[safe:index] as? WiFiLamp else { return }
         Defaults.removeSavedDevice(device)
         delegate?.allDevicesChanged()
     }
