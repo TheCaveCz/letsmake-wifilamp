@@ -12,21 +12,7 @@ import NetworkExtension
 import AwaitKit
 import PromiseKit
 
-extension WiFiLamp: DeviceSelectItem {
-    var icon: UIImage {
-        return #imageLiteral(resourceName: "lampOff")
-    }
 
-    var details: String {
-        return "ID: \(chipId), URL: \(localNetworkUrl.absoluteString)"
-    }
-}
-
-extension WiFiLamp: DeviceConvertible {
-    func toDevice() -> Device {
-        return self
-    }
-}
 
 // MARK: - Initial device configuration
 extension WiFiLamp {

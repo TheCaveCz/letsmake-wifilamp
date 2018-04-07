@@ -18,7 +18,7 @@ PODS:
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
   - SVProgressHUD (2.2.2)
-  - SwiftLint (0.24.2)
+  - SwiftLint (0.25.0)
   - Swinject (2.1.1)
 
 DEPENDENCIES:
@@ -30,6 +30,18 @@ DEPENDENCIES:
   - SwiftLint
   - Swinject
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AwaitKit
+    - PromiseKit
+    - QRCodeReader.swift
+    - R.swift
+    - R.swift.Library
+    - SVProgressHUD
+    - SwiftLint
+    - Swinject
+
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AwaitKit: daf1af84544413a8dfadb4fc25d8b0f9706e5c83
@@ -38,9 +50,9 @@ SPEC CHECKSUMS:
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
-  SwiftLint: 2aa21b96c8d13396a051bc1cb659d2ce1e0075b0
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
   Swinject: afea49fd95f392b41171669f165842879c48fad6
 
 PODFILE CHECKSUM: b49bf6bb39a5030e7d95936a668fb56624a48936
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
