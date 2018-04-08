@@ -6,9 +6,9 @@ This firmware is using [Blynk](https://blynk.cc) platform.
 
 * Install the Blynk app and Arduino library ([https://www.blynk.cc/getting-started/](https://www.blynk.cc/getting-started/))
 * Create new auth token
-* Paste auth token and wifi credentials into the firmware
 * Compile and upload the firmware
-
+* Connect to the wifilamp AP
+* Enter WiFi credentials and auth token
 
 ## Blynk project
 

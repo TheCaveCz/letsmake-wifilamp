@@ -7,14 +7,10 @@
 #include <BlynkSimpleEsp8266.h>
 #include <ESP8266mDNS.h>
 #include <ArduinoOTA.h>
+#include <WiFiManager.h>
+#include <FS.h>
+#include <Ticker.h>
 #include "ws2812.h"
-
-// Change this to match your WiFi settings
-#define WIFI_SSID "ssid"
-#define WIFI_PASS "pass"
-
-// Put your Blynk token here
-#define BLYNK_TOKEN "Put your Blynk token here"
 
 
 // Enable button debugging - one LED is red when button is pressed.
@@ -44,8 +40,7 @@
 #define BLYNK_RGB_B_PIN V4
 #define BLYNK_SPEED_PIN V5
 
-#define WIFI_CONNECT_DELAY 500
-#define WIFI_CONNECT_COUNTER 30
+#define WIFI_CONF_FILE "/conf/blynk.txt"
 
 #define HOSTNAME_PREFIX "wifilamp-"
 

@@ -1,4 +1,12 @@
 
+void fsSetup() {
+  logInfo("Setup filesystem");
+
+  if (!SPIFFS.begin()) {
+    bail("FATAL: spiffs init");
+    return;
+  }
+}
 
 BLYNK_CONNECTED() {
   Blynk.syncAll();
@@ -37,16 +45,24 @@ void setup() {
 
   buttonSetup();
   pixelsSetup();
+  fsSetup();
+
   logicSetup();
 
   wifiConnect();
   otaSetup();
 
-  pixelsSet(0, 32, 0);
   logInfo("Connecting to Blynk");
-  Blynk.config(BLYNK_TOKEN);
-  while (Blynk.connect() != true) { }
-  
+  Blynk.config(wifiBlynkToken.c_str());
+  while (Blynk.connect() != true) {
+    blinkerSet(BLINKER_STATE_ERROR);
+    if (buttonReadRaw()) {
+      ESP.restart();
+      while (1) {}
+    }
+  }
+  blinkerStop();
+
   logInfo("Ready to go!");
 }
 

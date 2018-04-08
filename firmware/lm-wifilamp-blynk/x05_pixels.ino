@@ -18,6 +18,8 @@ uint8_t pixelsBuffer[PIXELS_BYTE_COUNT];
 uint32_t pixelsTaskTime;
 
 
+#define bail(msg) logInfo(msg);pixelsSet(255,128,0);while (1) { delay(1); }
+
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
 #if BUTTON_DEBUG
