@@ -6,6 +6,7 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 #include <ESP8266SSDP.h>
+#include "ws2812.h"
 
 // Enable /log HTTP endpoint for debug logging
 #define LOG_ENABLED 0
@@ -20,11 +21,10 @@
 #define OTA_REQUIRES_PASSWORD 1
 
 // Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 0
+#define TOUCH_BUTTON 1
 
 
 
-#define PIXELS_PIN D1
 #define PIXELS_COUNT 15
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 #define PIXELS_TASK_INTERVAL 25UL
@@ -47,7 +47,7 @@
 #define LOGIC_CONF_FILE "/conf/logic.txt"
 
 #if TOUCH_BUTTON
-#define LOGIC_BUTTON_TASK_INTERVAL 100UL
+#define LOGIC_BUTTON_TASK_INTERVAL 50UL
 #define LOGIC_BUTTON_LOCKUP_TIME 1000UL
 #else
 #define LOGIC_BUTTON_TASK_INTERVAL 10UL

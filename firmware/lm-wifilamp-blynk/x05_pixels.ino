@@ -21,11 +21,26 @@ uint32_t pixelsTaskTime;
 #define bail(msg) logInfo(msg);pixelsSet(255,128,0);while (1) { delay(1); }
 
 
-void pixelsSetup() {
-  ws2812Setup();
+void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
+#if BUTTON_DEBUG
+  pixelsBuffer[1] = buttonReadRaw() ? 255 : 0;
+  pixelsBuffer[0] = 0;
+  pixelsBuffer[2] = 0;
 
-  pixelsSet(0, 0, 0);
-  pixelsTaskTime = 0;
+  for (int i = 3; i < PIXELS_BYTE_COUNT; i += 3) {
+#else
+  for (int i = 0; i < PIXELS_BYTE_COUNT; i += 3) {
+#endif
+    pixelsBuffer[i] = g;
+    pixelsBuffer[i + 1] = r;
+    pixelsBuffer[i + 2] = b;
+  }
+
+  ws2812Send(pixelsBuffer, PIXELS_BYTE_COUNT);
+}
+
+void pixelsUpdate() {
+  pixelsSet(pixelsCurrentR >> 8, pixelsCurrentG >> 8, pixelsCurrentB >> 8);
 }
 
 void pixelsTask() {
@@ -72,38 +87,12 @@ void pixelsAnimate(uint8_t r, uint8_t g, uint8_t b, uint16_t lenMillis = 0) {
 
     pixelsUpdate();
   }
-
-  logHeader();
-  logRaw("R:");
-  logRaw(pixelsTargetR);
-  logRaw(", G:");
-  logRaw(pixelsTargetG);
-  logRaw(", B:");
-  logRaw(pixelsTargetB);
-  logRaw(", Steps:");
-  logRaw(pixelsDeltaSteps);
-  logLine();
 }
 
-void pixelsUpdate() {
-  pixelsSet(pixelsCurrentR >> 8, pixelsCurrentG >> 8, pixelsCurrentB >> 8);
-}
+void pixelsSetup() {
+  ws2812Setup();
 
-void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
-#if BUTTON_DEBUG
-  pixelsBuffer[1] = buttonReadRaw() ? 255 : 0;
-  pixelsBuffer[0] = 0;
-  pixelsBuffer[2] = 0;
-
-  for (int i = 3; i < PIXELS_BYTE_COUNT; i += 3) {
-#else
-  for (int i = 0; i < PIXELS_BYTE_COUNT; i += 3) {
-#endif
-    pixelsBuffer[i] = g;
-    pixelsBuffer[i + 1] = r;
-    pixelsBuffer[i + 2] = b;
-  }
-
-  ws2812Send(pixelsBuffer, PIXELS_BYTE_COUNT);
+  pixelsSet(0, 0, 0);
+  pixelsTaskTime = 0;
 }
 

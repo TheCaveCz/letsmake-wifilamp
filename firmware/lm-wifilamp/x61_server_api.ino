@@ -14,7 +14,7 @@ void serverApiSetWifi() {
   if (wifiSetSsid(ssid, pass)) {
     server.send(204);
   } else {
-    server.send(500, "text/json", "{\"error\":\"Unable to store ssid\"}n");
+    server.send(500, "text/json", "{\"error\":\"Unable to store ssid\"}\n");
   }
 }
 
@@ -61,7 +61,7 @@ void serverApiSetConfig() {
   if (logicWriteConfig()) {
     server.send(204);
   } else {
-    server.send(500, "text/json", "{\"error\":\"Unable to store new config\"}n");
+    server.send(500, "text/json", "{\"error\":\"Unable to store new config\"}\n");
   }
 }
 
