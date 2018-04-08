@@ -4,21 +4,21 @@
 
 ![LED strip holder](2.jpg)
 
-![LED strip holder](3.jpg)
+![PCB assembly](3.jpg)
 
-![LED strip wire assembly](4.jpg)
+![PCB assembly](3a.jpg)
 
-![LED strip wire assembly](5.jpg)
+![PCBs on base](4.jpg)
 
-![LED strip wire assembly](6.jpg)
+![PCBs on base](5.jpg)
 
-![Touch sensor assembly](7.jpg)
+![Touch sensor wire](6.jpg)
 
-![Installing PCB](8.jpg)
+![LED strip wire](7.jpg)
 
-![Connecting touch pad](9.jpg)
+![M3 nut insertion](8.jpg)
 
-![Detail of touch pad connection](10.jpg)
+![Base attached to lamp](9.jpg)
 
-![Lamp is complete](11.jpg)
+![Lamp is complete](10.jpg)
 

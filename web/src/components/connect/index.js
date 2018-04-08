@@ -13,7 +13,9 @@ export default class Connect extends Component {
   }
 
 
-  handleConnect = () => {
+  handleConnect = formEvent => {
+    formEvent.preventDefault()
+    
     if (!this.state.valid) { return }
 
     this.setState({ loading: true })
@@ -61,10 +63,12 @@ export default class Connect extends Component {
         <div className={style.connect}>
           <h2>Connect to new WiFi</h2>
           <p>You are connecting to network <strong>{ ssid }</strong>. Please enter password.</p>
-          <p><input type="password" placeholder="WiFi password" onInput={this.handlePassword}/></p>
-          <p>
-            <button onClick={this.handleConnect} disabled={loading || !valid}>Connect!</button>
-          </p>
+          <form onSubmit={this.handleConnect}>
+            <p><input type="password" placeholder="WiFi password" onInput={this.handlePassword}/></p>
+            <p>
+              <input type="submit" value="Connect!" disabled={loading || !valid}/>
+            </p>
+          </form>
           <p><Link href="/settings/connect">Back</Link></p>
         </div>
       )
