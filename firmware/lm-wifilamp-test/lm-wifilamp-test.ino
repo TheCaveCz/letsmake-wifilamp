@@ -2,6 +2,7 @@
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include "ws2812.h"
 
 #define WIFI_PASS "put password here"
 
@@ -15,9 +16,6 @@
 
 #define BUTTON_PIN D5
 
-void uartSetup();
-void uartSend(const uint8_t *pixels, uint32_t bytesCount);
-
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
   uint8_t pixelsBuffer[PIXELS_BYTE_COUNT];
@@ -26,7 +24,7 @@ void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
     pixelsBuffer[i + 1] = r;
     pixelsBuffer[i + 2] = b;
   }
-  uartSend(pixelsBuffer, PIXELS_BYTE_COUNT);
+  ws2812Send(pixelsBuffer, PIXELS_BYTE_COUNT);
   delay(2);
 }
 
@@ -71,7 +69,7 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 #endif
 
-  uartSetup();
+  ws2812Setup();
 
   String chipId = String(ESP.getChipId(), HEX);
 

@@ -20,12 +20,9 @@ uint32_t pixelsTaskTime;
 
 #define bail(msg) logInfo(msg);pixelsSet(255,128,0);while (1) { delay(1); }
 
-void uartSetup();
-void uartSend(const uint8_t *pixels, uint32_t bytesCount);
-
 
 void pixelsSetup() {
-  uartSetup();
+  ws2812Setup();
 
   pixelsSet(0, 0, 0);
   pixelsTaskTime = 0;
@@ -107,6 +104,6 @@ void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
     pixelsBuffer[i + 2] = b;
   }
 
-  uartSend(pixelsBuffer, PIXELS_BYTE_COUNT);
+  ws2812Send(pixelsBuffer, PIXELS_BYTE_COUNT);
 }
 

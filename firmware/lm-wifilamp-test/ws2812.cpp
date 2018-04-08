@@ -2,9 +2,8 @@
 // ESP8266 work for the NeoPixelBus library: github.com/Makuna/NeoPixelBus
 // Needs to be a separate .c file to enforce ICACHE_RAM_ATTR execution.
 
-#ifdef ESP8266
+#include "ws2812.h"
 
-#include <Arduino.h>
 extern "C" {
 #include <eagle_soc.h>
 #include <ets_sys.h>
@@ -28,7 +27,7 @@ static inline void enqueue(uint8_t byte) {
 
 #define UART_BAUDRATE 3200000 // 800mhz, 4 serial bytes per NeoByte
 
-void uartSetup() {
+void ws2812Setup() {
   // Configure the serial line with 1 start bit (0), 6 data bits and 1 stop bit (1)
   Serial1.begin(UART_BAUDRATE, SERIAL_6N1, SERIAL_TX_ONLY);
 
@@ -64,7 +63,7 @@ const uint8_t* ICACHE_RAM_ATTR uartFill(const uint8_t* pixels, const uint8_t* en
   return pixels;
 }
 
-void uartSend(const uint8_t *pixels, uint32_t bytesCount) {
+void ws2812Send(const uint8_t *pixels, uint32_t bytesCount) {
   const uint8_t* ptr = pixels;
   const uint8_t* end = ptr + bytesCount;
   while (ptr != end) {
@@ -72,5 +71,3 @@ void uartSend(const uint8_t *pixels, uint32_t bytesCount) {
   }
 }
 
-
-#endif // ESP8266

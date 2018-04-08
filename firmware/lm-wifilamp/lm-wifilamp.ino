@@ -6,6 +6,7 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 #include <ESP8266SSDP.h>
+#include "ws2812.h"
 
 // Enable /log HTTP endpoint for debug logging
 #define LOG_ENABLED 0
