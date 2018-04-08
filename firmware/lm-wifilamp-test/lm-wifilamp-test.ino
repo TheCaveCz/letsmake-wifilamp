@@ -4,6 +4,7 @@
 #include <ArduinoOTA.h>
 #include "ws2812.h"
 
+#define WIFI_SSID "TheCave"
 #define WIFI_PASS "put password here"
 
 
@@ -35,7 +36,7 @@ void wifiConnect() {
   if (WiFi.getMode() != WIFI_STA) WiFi.mode(WIFI_STA);
   if (WiFi.getAutoConnect()) WiFi.setAutoConnect(false);
   WiFi.setAutoReconnect(true);
-  WiFi.begin("TheCave", WIFI_PASS);
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
 
   int counter = 0;
   while (WiFi.status() != WL_CONNECTED) {
