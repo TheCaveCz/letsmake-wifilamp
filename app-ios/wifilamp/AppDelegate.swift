@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 class CoreAssembly: Assembly {
     func assemble(container: Container) {
         container.register(Browser.self) { _ in
-            return Browser()
+            return WiFiLampBrowserFactory.browser()
         }.inObjectScope(.container)
     }
     

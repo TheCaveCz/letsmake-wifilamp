@@ -58,6 +58,7 @@
 		942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C71F8E31890055A7E2 /* MainFlow.swift */; };
 		942463CA1F8E4C4E0055A7E2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463C91F8E4C4E0055A7E2 /* Device.swift */; };
 		942463CE1F8E5C860055A7E2 /* DeviceFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */; };
+		94373FE42078AF5C00E8A24A /* DeviceSelectItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94373FE32078AF5C00E8A24A /* DeviceSelectItem.swift */; };
 		9442A7561F8995670045B2D1 /* DeviceSelectCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */; };
 		9442A7581F89A30D0045B2D1 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */; };
 		9468C9B11F8CF6FC00235002 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9468C9B01F8CF6FC00235002 /* Browser.swift */; };
@@ -145,6 +146,7 @@
 		942463C71F8E31890055A7E2 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		942463C91F8E4C4E0055A7E2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		942463CD1F8E5C860055A7E2 /* DeviceFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFlow.swift; sourceTree = "<group>"; };
+		94373FE32078AF5C00E8A24A /* DeviceSelectItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectItem.swift; sourceTree = "<group>"; };
 		9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSelectCells.swift; sourceTree = "<group>"; };
 		9442A7571F89A30D0045B2D1 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		9468C9B01F8CF6FC00235002 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				94875B8F1F5D4C0400588B03 /* DeviceSelectVC.swift */,
 				94E6A6771F891B75009E3C8F /* DeviceSelectVM.swift */,
 				9442A7551F8995670045B2D1 /* DeviceSelectCells.swift */,
+				94373FE32078AF5C00E8A24A /* DeviceSelectItem.swift */,
 			);
 			path = DeviceSelect;
 			sourceTree = "<group>";
@@ -433,7 +436,6 @@
 				137CEA5A2024598C00AF4789 /* Sources */,
 				137CEA5B2024598C00AF4789 /* Frameworks */,
 				137CEA5C2024598C00AF4789 /* Resources */,
-				F2264503BC06203DA37505BE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -455,7 +457,6 @@
 				94875B871F5D4C0400588B03 /* Frameworks */,
 				94875B881F5D4C0400588B03 /* Resources */,
 				69479FC13B75BBD595102129 /* [CP] Embed Pods Frameworks */,
-				072B21047779185A524654CB /* [CP] Copy Pods Resources */,
 				137CEA6E2024598C00AF4789 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -480,7 +481,7 @@
 				TargetAttributes = {
 					137CEA5D2024598C00AF4789 = {
 						CreatedOnToolsVersion = 9.3;
-						DevelopmentTeam = XWQ4Y8CJ93;
+						DevelopmentTeam = 9W7F66BR5D;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -490,7 +491,7 @@
 					};
 					94875B891F5D4C0400588B03 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = XWQ4Y8CJ93;
+						DevelopmentTeam = 9W7F66BR5D;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -547,21 +548,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		072B21047779185A524654CB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-wifilamp/Pods-wifilamp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		69479FC13B75BBD595102129 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -657,21 +643,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F2264503BC06203DA37505BE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-today/Pods-today-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -710,6 +681,7 @@
 				137CEA722024648D00AF4789 /* WiFiLamp+Ext.swift in Sources */,
 				13ADF532202DB92800ED7739 /* UIColor+Ext.swift in Sources */,
 				9DC919601FD53EB2003FABC2 /* Appearance.swift in Sources */,
+				94373FE42078AF5C00E8A24A /* DeviceSelectItem.swift in Sources */,
 				942463C81F8E31890055A7E2 /* MainFlow.swift in Sources */,
 				94875B901F5D4C0400588B03 /* DeviceSelectVC.swift in Sources */,
 				37DBD2DB1FAA27B0000BA60D /* Constants.swift in Sources */,
@@ -794,12 +766,12 @@
 				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -819,12 +791,12 @@
 				CODE_SIGN_ENTITLEMENTS = today/Support/today.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = today/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp.today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp.today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -949,11 +921,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -968,11 +940,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = wifilamp/Resources/wifilamp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = XWQ4Y8CJ93;
+				DEVELOPMENT_TEAM = 9W7F66BR5D;
 				INFOPLIST_FILE = "$(SRCROOT)/wifilamp/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = temp.wifilamp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzindra.wifilamp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

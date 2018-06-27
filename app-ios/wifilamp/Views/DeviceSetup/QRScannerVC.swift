@@ -64,7 +64,7 @@ final class QRScannerVC: UIViewController {
     }
     
     private func didScanQRCode(metadata: String) {
-        // basic validation for now
+        // TODO: basic validation for now
         guard metadata.count == 6 else {
             showInvalidQRCodeError()
             return

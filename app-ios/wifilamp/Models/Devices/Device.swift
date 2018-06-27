@@ -9,27 +9,9 @@
 import Foundation
 import PromiseKit
 
-enum DeviceError: Error {
-    case unknownDevice
-}
 
 enum DeviceSetupError: Error {
     case noNetworkSelected
-}
-
-protocol DeviceSelectItem {
-    var icon: UIImage { get }
-    var name: String { get }
-    var details: String { get }
-}
-
-protocol DeviceSelectVMDelegate: class {
-    func nearbyDevicesChanged()
-    func allDevicesChanged()
-}
-
-protocol DeviceConvertible {
-    func toDevice() -> Device
 }
 
 protocol DeviceSetupDelegate: class {
@@ -42,25 +24,6 @@ protocol Device {
     var chipId: String { get }
     
     func setup(progressUpdate: ((_ description: String, _ stepNumber: Int, _ totalSteps: Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void>
-    func setColor(on deviceUrl: URL, _ red: CGFloat, _ blue: CGFloat, _ green: CGFloat) -> Promise<VoidResponse>
+    func setColor(on deviceUrl: URL, _ red: Int, _ blue: Int, _ green: Int) -> Promise<VoidResponse>
     func turn(on isOn: Bool, on deviceUrl: URL) -> Promise<VoidResponse>
-}
-
-struct UnknownDevice: Device {
-    let chipId: String
-    let name: String
-    let localNetworkUrl: URL
-    
-    func setup(progressUpdate: ((String, Int, Int) -> Void)?, delegate: DeviceSetupDelegate?) -> Promise<Void> {
-        return Promise(error: DeviceError.unknownDevice)
-    }
-    
-    func setColor(on deviceUrl: URL, _ red: CGFloat, _ blue: CGFloat, _ green: CGFloat) -> Promise<VoidResponse> {
-        return Promise(error: DeviceError.unknownDevice)
-    }
-    
-    func turn(on isOn: Bool, on deviceUrl: URL) -> Promise<VoidResponse> {
-        return Promise(error: DeviceError.unknownDevice)
-    }
-
 }

@@ -52,20 +52,19 @@ class DeviceDetailVM {
         }
     }
     
+    var ready: Bool = true
+    
     func updateColor(color: UIColor) {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
+        let rgb = color.toRgb()
         
-        // swiftlint:enable identifier_name
-        color.getRed(&r, green: &g, blue: &b, alpha: nil)
+        print("\n[APP] Color \(rgb)\n")
         
-        let roundR = round(r * 255.0)
-        let roundG = round(g * 255.0)
-        let roundB = round(b * 255.0)
-        
-        print("\n[APP] Red:\(roundR) Green: \(roundG) Blue:\(roundB)\n")
-        _ = self.device.setColor(on: self.device.localNetworkUrl, roundR, roundG, roundB)
+        if ready {
+            ready = false
+            _ = self.device.setColor(on: self.device.localNetworkUrl, rgb.0, rgb.1, rgb.2).always {
+                self.ready = true
+            }
+        }
     }
     
     func updateState(isOn: Bool) {
@@ -114,9 +113,7 @@ class DeviceDetailVM {
     }
 
     func removeColor(atIndex index: Int) {
-        let savedColors = Defaults.savedColors()
-        guard index < savedColors.count else { return }
-        let colorToRemove = savedColors[index]
+        guard let colorToRemove = Defaults.savedColors()[safe:index] else { return }
         Defaults.removeSavedColor(colorToRemove)
         colors = loadColors()
     }

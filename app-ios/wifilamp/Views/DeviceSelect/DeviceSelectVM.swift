@@ -8,17 +8,22 @@
 
 import UIKit
 
+
+protocol DeviceSelectVMDelegate: class {
+    func nearbyDevicesChanged()
+    func allDevicesChanged()
+}
+
 class DeviceSelectVM {
     private let browser: Browser
     weak var delegate: DeviceSelectVMDelegate?
     
     var nearbyDevices: [DeviceSelectItem] {
-        return browser.records.filter({ device -> Bool in
-            return !savedDevices.contains(where: { savedDevice -> Bool in
-                guard let saved = savedDevice as? WiFiLamp else { return false }
-                return saved.chipId == device.chipId
-            })
-        })
+        let saved = savedDevices
+        
+        return browser.records.compactMap { $0 as? DeviceSelectItem }.filter { device in
+            !saved.contains { $0.identifier == device.identifier }
+        }
     }
     
     var savedDevices: [DeviceSelectItem] {
@@ -34,15 +39,15 @@ class DeviceSelectVM {
         browser.delegate = self
     }
 
+    // TODO : use some kind of Saveable protocol
     func saveNearbyDevice(index: Int) {
-        guard index < nearbyDevices.count, let record = nearbyDevices[index] as? BrowserRecord,
-        let device = record.toDevice() as? WiFiLamp else { return }
+        guard let device = nearbyDevices[safe:index] as? WiFiLamp else { return }
         Defaults.saveDevice(device)
         delegate?.allDevicesChanged()
     }
 
     func deleteSaved(index: Int) {
-        guard index < savedDevices.count, let device = savedDevices[index] as? WiFiLamp else { return }
+        guard let device = savedDevices[safe:index] as? WiFiLamp else { return }
         Defaults.removeSavedDevice(device)
         delegate?.allDevicesChanged()
     }
@@ -63,15 +68,5 @@ extension DeviceSelectVM: BrowserDelegate {
     
     func browser(_ browser: Browser, removedRecord record: BrowserRecord) {
         delegate?.nearbyDevicesChanged()
-    }
-}
-
-extension BrowserRecord: DeviceSelectItem {
-    var icon: UIImage {
-        return R.image.lampOff()!
-    }
-    
-    var details: String {
-        return chipId
     }
 }

@@ -25,13 +25,7 @@ class MainFlow: Flow {
         let deviceController = resolver.resolve(DeviceSelectVC.self)!
 
         deviceController.actionSetupNewDevice = { [weak self] controller in
-            guard let weakSelf = self else { return }
-
-            var flow = weakSelf.resolver.resolve(Flow.self, name: Flows.setup.rawValue)!
-            flow.flowCompletion = { [weak self] _ in
-                weakSelf.resolver.resolve(Browser.self)?.refresh()
-            }
-            controller.navigationController?.present(flow.createRootVC(), animated: true, completion: nil)
+            self?.setupNewDevice(controller: controller)
         }
 
         deviceController.actionSelectDevice = { [weak self] controller, item in
@@ -50,14 +44,23 @@ class MainFlow: Flow {
     func createRootVC() -> UIViewController {
         return rootController
     }
+    
+    func setupNewDevice(controller: UIViewController) {
+        var flow = self.resolver.resolve(Flow.self, name: Flows.setup.rawValue)!
+        flow.flowCompletion = { [weak self] _ in
+            self?.resolver.resolve(Browser.self)?.refresh()
+        }
+        controller.navigationController?.present(flow.createRootVC(), animated: true, completion: nil)
+    }
 
     func pushDeviceDetail(forDevice item: DeviceSelectItem, fromController controller: UIViewController?) {
-        guard let device = item as? DeviceConvertible else {
-            print("Selected item \(item) is not DeviceConvertible")
+        guard let device = item as? Device else {
+            print("Selected item \(item) is not Device")
             return
         }
 
-        let flow = self.resolver.resolve(Flow.self, name: Flows.detail.rawValue, argument: device.toDevice())!
+        // TODO: some kind of dispatcher for different devices
+        let flow = self.resolver.resolve(Flow.self, name: Flows.detail.rawValue, argument: device)!
         controller?.navigationController?.pushViewController(flow.createRootVC(), animated: true)
     }
 }

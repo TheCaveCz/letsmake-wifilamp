@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
 
     convenience init(red: Int, green: Int, blue: Int) {
-        let unpackRed: CGFloat = (red >= 0 && red <= 255) ? CGFloat(red):0
+        let unpackRed = (red >= 0 && red <= 255) ? CGFloat(red):0
         let unpackGreen = (green >= 0 && green <= 255) ? CGFloat(green):0
         let unpackBlue = (blue >= 0 && blue <= 255) ? CGFloat(blue):0
 
@@ -23,15 +23,23 @@ extension UIColor {
     }
 
     func toHex() -> Int {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
 
-        getRed(&r, green: &g, blue: &b, alpha: &a)
+        getRed(&red, green: &green, blue: &blue, alpha: nil)
 
-        let rgb: Int = (Int)(r*255) << 16 | (Int)(g*255) << 8 | (Int)(b*255) << 0
-        let string = NSString.init(format: "%06x", rgb)
-        return Int(string as String, radix: 16)!
+        return (Int)(red*255) << 16 | (Int)(green*255) << 8 | (Int)(blue*255) << 0
+    }
+    
+    // swiftlint:disable:next large_tuple
+    func toRgb() -> (Int, Int, Int) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        
+        getRed(&red, green: &green, blue: &blue, alpha: nil)
+        
+        return ((Int)(red*255), (Int)(green*255), (Int)(blue*255))
     }
 }
