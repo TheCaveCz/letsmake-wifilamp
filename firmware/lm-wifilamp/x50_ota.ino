@@ -1,10 +1,4 @@
 
-void otaUpdatePassword() {
-#if OTA_REQUIRES_PASSWORD
-  ArduinoOTA.setPassword(logicConfig.adminPass.c_str());
-#endif
-}
-
 void otaSetup() {
   String name = "The Cave WiFi lamp (";
   name += chipId;
@@ -16,7 +10,9 @@ void otaSetup() {
   ssid += chipId;
   ArduinoOTA.setHostname(ssid.c_str());
 
-  otaUpdatePassword();
+#ifdef OTA_PASSWORD
+  ArduinoOTA.setPassword(OTA_PASSWORD);
+#endif
   
   ArduinoOTA.onStart([]() {
     pixelsSet(0, 0, 0);

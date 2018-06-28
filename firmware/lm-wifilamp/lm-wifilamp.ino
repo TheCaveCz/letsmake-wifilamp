@@ -1,50 +1,53 @@
-#include <FS.h>
+/*
+ * WifiLamp firmware for Blynk app
+ */
+#define BLYNK_PRINT Serial
+
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h>
-#include <ESP8266WebServer.h>
+#include <BlynkSimpleEsp8266.h>
 #include <ESP8266mDNS.h>
-#include <WiFiUdp.h>
 #include <ArduinoOTA.h>
-#include <ESP8266SSDP.h>
+#include <WiFiManager.h>
+#include <Ticker.h>
+#include <EEPROM.h>
 #include "ws2812.h"
 
-// Enable /log HTTP endpoint for debug logging
-#define LOG_ENABLED 0
 
 // Enable button debugging - one LED is red when button is pressed.
 #define BUTTON_DEBUG 0
 
+// Firmware updates over-the-air will require admin password.
+//#define OTA_PASSWORD "mySecretPassword"
+
 // Enable HTTP OPTIONS method response handler - useful for remote webpage debugging
 #define OPTIONS_ENABLED 1
 
-// Firmware updates over-the-air will require admin password.
-#define OTA_REQUIRES_PASSWORD 1
-
 // Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 1
+#define TOUCH_BUTTON 0
+
+// Serial port logging
+#define LOG_ENABLED 1
+
+#define API_PASSWORD "wifilamp"
 
 
 
-#define PIXELS_COUNT 15
+#define PIXELS_COUNT 17
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 #define PIXELS_TASK_INTERVAL 25UL
 
-#define BUTTON_PIN D5
+#define BUTTON_PIN D2
 
-#define WIFI_CONNECT_DELAY 500
-#define WIFI_CONNECT_COUNTER 30
+#define BLYNK_DEFAULT_TOKEN ""
 
-#define WIFI_ENTER_AP_DELAY 20
-#define WIFI_ENTER_AP_COUNTER 200
-
-#define WIFI_AP_PREFIX "WiFi-Lamp-"
-#define WIFI_AP_PASSWORD "wifilamp"
-
-#define WIFI_CONF_FILE "/conf/wifi.txt"
+#define BLYNK_RGB_PIN V0
+#define BLYNK_BUTTON_PIN V1
+#define BLYNK_RGB_R_PIN V2
+#define BLYNK_RGB_G_PIN V3
+#define BLYNK_RGB_B_PIN V4
+#define BLYNK_SPEED_PIN V5
 
 #define HOSTNAME_PREFIX "wifilamp-"
-
-#define LOGIC_CONF_FILE "/conf/logic.txt"
 
 #if TOUCH_BUTTON
 #define LOGIC_BUTTON_TASK_INTERVAL 50UL
@@ -54,9 +57,7 @@
 #define LOGIC_BUTTON_LOCKUP_TIME 500UL
 #endif
 
-#define FW_VERSION "1"
-
-#define MASTER_RESET_DELAY 20
-#define MASTER_RESET_COUNTER 200
+#define FW_VERSION "3"
 
 String chipId = String(ESP.getChipId(),HEX);
+

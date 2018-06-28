@@ -1,42 +1,32 @@
 
-void fsSetup() {
-  logInfo("Setup filesystem");
-
-  if (!SPIFFS.begin()) {
-    bail("FATAL: spiffs init");
-    return;
-  }
+BLYNK_CONNECTED() {
+  Blynk.syncAll();
 }
 
-void wifiConnectedCb() {
-  pixelsAnimate(0, 0, 128);
-  logicUpdatePixels(logicConfig.defaultTurnOnSpeed);
+BLYNK_WRITE(BLYNK_RGB_PIN) {
+  logicSetColor(param[0].asInt(), param[1].asInt(), param[2].asInt());
 }
 
-void wifiStartedApCb() {
-  logicSetColor(255, 0, 255, 0);
-  logicSetState(true, 0);
+BLYNK_WRITE(BLYNK_RGB_R_PIN) {
+  logicSetColor(param.asInt(), logicColorG, logicColorB);
 }
 
-void attemptMasterReset() {
-  logInfo("Testing button for master reset");
-  pixelsSet(0, 0, 255);
-
-  uint16_t counter = 0;
-  while (counter < MASTER_RESET_COUNTER) {
-    counter = buttonReadRaw() ? counter + 1 : 0;
-    pixelsSet(0, map(counter, 0, MASTER_RESET_COUNTER, 0, 255), 255);
-    if (counter == 0) {
-      logInfo("Button released before master reset");
-      return;
-    }
-    delay(MASTER_RESET_DELAY);
-  }
-
-  logInfo("Master reset");
-  wifiResetConfig();
-  logicResetConfig();
+BLYNK_WRITE(BLYNK_RGB_G_PIN) {
+  logicSetColor(logicColorR, param.asInt(), logicColorB);
 }
+
+BLYNK_WRITE(BLYNK_RGB_B_PIN) {
+  logicSetColor(logicColorR, logicColorG, param.asInt());
+}
+
+BLYNK_WRITE(BLYNK_BUTTON_PIN) {
+  logicSetState(param.asInt());
+}
+
+BLYNK_WRITE(BLYNK_SPEED_PIN) {
+  logicTransitionTime = param.asInt() * 100;
+}
+
 
 void setup() {
   Serial.begin(9600);
@@ -46,26 +36,34 @@ void setup() {
 
   buttonSetup();
   pixelsSetup();
-  fsSetup();
+  EEPROM.begin(512);
 
   logicSetup();
-  wifiReadConfig();
 
-  if (buttonReadRaw()) {
-    attemptMasterReset();
-  }
-
-  wifiConnect(); // this call won't return unless somehow connected
-
+  wifiConnect();
   otaSetup();
   serverSetup();
-  discoverSetup();
+
+  logInfo("Connecting to Blynk");
+  Blynk.config(wifiBlynkToken.c_str());
+  while (Blynk.connect() != true) {
+    blinkerSet(BLINKER_STATE_ERROR);
+    if (buttonReadRaw()) {
+      ESP.restart();
+      while (1) {}
+    }
+  }
+  blinkerStop();
+
+  logInfo("Ready to go!");
 }
 
 void loop() {
+  Blynk.run();
+
   ArduinoOTA.handle();
   server.handleClient();
-
   pixelsTask();
   logicButtonTask();
 }
+
