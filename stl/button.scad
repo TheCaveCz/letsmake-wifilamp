@@ -8,7 +8,7 @@
 //  Licensed under MIT License (see LICENSE file for details)
 //
 
-$dia = 8;
+$dia = 8.25;
 $rimDia = 9.5;
 $holeHeight=0.6;
 $rimHeight = $holeHeight+4.4;
