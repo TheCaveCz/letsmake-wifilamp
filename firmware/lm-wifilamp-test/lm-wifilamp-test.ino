@@ -9,13 +9,13 @@
 
 
 // Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 1
+#define TOUCH_BUTTON 0
 
 
 #define PIXELS_COUNT 15
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 
-#define BUTTON_PIN D5
+#define BUTTON_PIN D2
 
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
