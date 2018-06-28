@@ -32,6 +32,9 @@
 
 ![assembly](2-04.JPG)
 
+![assembly](2-05.JPG)
+
+
 ## Base
 
 ![assembly](3-01.JPG)
