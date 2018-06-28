@@ -5,7 +5,7 @@
 #include "ws2812.h"
 
 #define WIFI_SSID "TheCave"
-#define WIFI_PASS "Jeskyne43"
+#define WIFI_PASS "enter password here"
 
 
 // Enable if you are using touch sensor instead of classic button.

@@ -28,11 +28,12 @@
 // Serial port logging
 #define LOG_ENABLED 1
 
+// Password for http api
 #define API_PASSWORD "wifilamp"
 
 
 
-#define PIXELS_COUNT 17
+#define PIXELS_COUNT 15
 #define PIXELS_BYTE_COUNT (PIXELS_COUNT * 3)
 #define PIXELS_TASK_INTERVAL 25UL
 
