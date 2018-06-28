@@ -1,24 +1,69 @@
-# Images
+# Assembly instructions
 
-![LED strip holder](1.jpg)
+## LED holder
 
-![LED strip holder](2.jpg)
+![assembly](1-01.JPG)
 
-![PCB assembly](3.jpg)
+![assembly](1-02.JPG)
 
-![PCB assembly](3a.jpg)
+![assembly](1-03.JPG)
 
-![PCBs on base](4.jpg)
+![assembly](1-04.JPG)
 
-![PCBs on base](5.jpg)
+![assembly](1-05.JPG)
 
-![Touch sensor wire](6.jpg)
+![assembly](1-06.JPG)
 
-![LED strip wire](7.jpg)
+![assembly](1-07.JPG)
 
-![M3 nut insertion](8.jpg)
+![assembly](1-08.JPG)
 
-![Base attached to lamp](9.jpg)
+![assembly](1-09.JPG)
 
-![Lamp is complete](10.jpg)
+![assembly](1-10.JPG)
 
+## Button box
+
+![assembly](2-01.JPG)
+
+![assembly](2-02.JPG)
+
+![assembly](2-03.JPG)
+
+![assembly](2-04.JPG)
+
+## Base
+
+![assembly](3-01.JPG)
+
+![assembly](3-02.JPG)
+
+![assembly](3-03.JPG)
+
+![assembly](3-04.JPG)
+
+![assembly](3-05.JPG)
+
+![assembly](3-06.JPG)
+
+![assembly](3-07.JPG)
+
+![assembly](3-08.JPG)
+
+![assembly](3-09.JPG)
+
+![assembly](3-10.JPG)
+
+![assembly](3-11.JPG)
+
+![assembly](3-12.JPG)
+
+![assembly](3-13.JPG)
+
+![assembly](3-14.JPG)
+
+![assembly](3-15.JPG)
+
+## Finished
+
+![assembly](final.jpg)
