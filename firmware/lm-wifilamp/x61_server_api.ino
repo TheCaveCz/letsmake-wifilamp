@@ -51,8 +51,7 @@ void serverApiSetOn() {
 void serverApiReboot() {
   SERVER_AUTH_REQUIRED
 
-  server.send(204);
+  server.send(200, "text/json", "{\"reboot\":true}\n");
 
   ESP.restart();
 }
-

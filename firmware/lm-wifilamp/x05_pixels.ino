@@ -22,15 +22,7 @@ uint32_t pixelsTaskTime;
 
 
 void pixelsSet(uint8_t r, uint8_t g, uint8_t b) {
-#if BUTTON_DEBUG
-  pixelsBuffer[1] = buttonReadRaw() ? 255 : 0;
-  pixelsBuffer[0] = 0;
-  pixelsBuffer[2] = 0;
-
-  for (int i = 3; i < PIXELS_BYTE_COUNT; i += 3) {
-#else
   for (int i = 0; i < PIXELS_BYTE_COUNT; i += 3) {
-#endif
     pixelsBuffer[i] = g;
     pixelsBuffer[i + 1] = r;
     pixelsBuffer[i + 2] = b;
@@ -95,4 +87,3 @@ void pixelsSetup() {
   pixelsSet(0, 0, 0);
   pixelsTaskTime = 0;
 }
-

@@ -1,8 +1,6 @@
 
 ESP8266WebServer server(80);
 
-#define SERVER_AUTH_REQUIRED if (!serverAuthenticateUser()) return;
-
 #if OPTIONS_ENABLED
 class OptionsRequestHandler : public RequestHandler {
   public:
@@ -42,13 +40,7 @@ class OptionsRequestHandler : public RequestHandler {
 };
 #endif
 
-void serverApiStatus();
-void serverApiSetColor();
-void serverApiSetOn();
-void serverApiReboot();
-
 void serverSetup() {
-  
 #if OPTIONS_ENABLED
   server.addHandler(new OptionsRequestHandler("/api/"));
 #endif
@@ -63,6 +55,8 @@ void serverSetup() {
   server.begin();
 }
 
+#ifdef API_PASSWORD
+#define SERVER_AUTH_REQUIRED if (!serverAuthenticateUser()) return;
 bool serverAuthenticateUser() {
   if (server.authenticate("admin", API_PASSWORD)) {
     return true;
@@ -71,4 +65,6 @@ bool serverAuthenticateUser() {
     return false;
   }
 }
-
+#else
+#define SERVER_AUTH_REQUIRED
+#endif

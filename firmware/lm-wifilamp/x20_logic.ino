@@ -41,7 +41,9 @@ bool logicSetState(const bool on) {
   logicOn = on;
   logicUpdatePixels();
 
-  Blynk.virtualWrite(BLYNK_BUTTON_PIN, on);
+  if (Blynk.connected()) {
+    Blynk.virtualWrite(BLYNK_BUTTON_PIN, on);
+  }
 
   return true;
 }
@@ -53,10 +55,12 @@ void logicSetColor(const uint8_t r, const uint8_t g, const uint8_t b) {
   logicColorG = g;
   logicColorB = b;
 
-  Blynk.virtualWrite(BLYNK_RGB_PIN, r, g, b);
-  Blynk.virtualWrite(BLYNK_RGB_R_PIN, r);
-  Blynk.virtualWrite(BLYNK_RGB_G_PIN, g);
-  Blynk.virtualWrite(BLYNK_RGB_B_PIN, b);
+  if (Blynk.connected()) {
+    Blynk.virtualWrite(BLYNK_RGB_PIN, r, g, b);
+    Blynk.virtualWrite(BLYNK_RGB_R_PIN, r);
+    Blynk.virtualWrite(BLYNK_RGB_G_PIN, g);
+    Blynk.virtualWrite(BLYNK_RGB_B_PIN, b);
+  }
 
   if (logicOn) {
     logicUpdatePixels();
@@ -75,7 +79,7 @@ void logicButtonTask() {
     if (logicButtonCounter == 0) {
       logicButtonTaskInterval = LOGIC_BUTTON_LOCKUP_TIME;
     } else if (logicButtonCounter >= 10 + 160) { // 10 is offset, 160 is 8 seconds (50ms*160 cycles)
-      ESP.restart();
+      wifiResetAndRestart();
     }
   } else {
     logicButtonCounter = buttonReadRaw() ? logicButtonCounter + 1 : 0;
@@ -86,4 +90,3 @@ void logicButtonTask() {
     }
   }
 }
-

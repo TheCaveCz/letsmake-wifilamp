@@ -29,23 +29,23 @@ BLYNK_WRITE(BLYNK_SPEED_PIN) {
 
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   logInfo("Starting");
   logValue("Chip id: ", chipId);
 
   buttonSetup();
   pixelsSetup();
-  EEPROM.begin(512);
 
   logicSetup();
 
-  wifiConnect();
+  configSetup();
   otaSetup();
+  wifiSetup();
   serverSetup();
 
   logInfo("Connecting to Blynk");
-  Blynk.config(wifiBlynkToken.c_str());
+  Blynk.config(config.blynkToken);
   while (Blynk.connect() != true) {
     blinkerSet(BLINKER_STATE_ERROR);
     if (buttonReadRaw()) {
@@ -66,4 +66,3 @@ void loop() {
   pixelsTask();
   logicButtonTask();
 }
-

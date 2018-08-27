@@ -13,22 +13,16 @@
 #include "ws2812.h"
 
 
-// Enable button debugging - one LED is red when button is pressed.
-#define BUTTON_DEBUG 0
-
 // Firmware updates over-the-air will require admin password.
 //#define OTA_PASSWORD "mySecretPassword"
 
 // Enable HTTP OPTIONS method response handler - useful for remote webpage debugging
-#define OPTIONS_ENABLED 1
-
-// Enable if you are using touch sensor instead of classic button.
-#define TOUCH_BUTTON 0
+#define OPTIONS_ENABLED 0
 
 // Serial port logging
 #define LOG_ENABLED 1
 
-// Password for http api
+// Password for http api, comment out to disable
 #define API_PASSWORD "wifilamp"
 
 
@@ -39,8 +33,6 @@
 
 #define BUTTON_PIN D2
 
-#define BLYNK_DEFAULT_TOKEN ""
-
 #define BLYNK_RGB_PIN V0
 #define BLYNK_BUTTON_PIN V1
 #define BLYNK_RGB_R_PIN V2
@@ -50,15 +42,9 @@
 
 #define HOSTNAME_PREFIX "wifilamp-"
 
-#if TOUCH_BUTTON
-#define LOGIC_BUTTON_TASK_INTERVAL 50UL
-#define LOGIC_BUTTON_LOCKUP_TIME 1000UL
-#else
-#define LOGIC_BUTTON_TASK_INTERVAL 10UL
+#define LOGIC_BUTTON_TASK_INTERVAL 20UL
 #define LOGIC_BUTTON_LOCKUP_TIME 500UL
-#endif
 
-#define FW_VERSION "3"
+#define FW_VERSION "4"
 
 String chipId = String(ESP.getChipId(),HEX);
-
