@@ -45,7 +45,7 @@ void wifiSetup() {
   if (WiFi.getAutoConnect()) WiFi.setAutoConnect(false);
   if (WiFi.getMode() != WIFI_STA) WiFi.mode(WIFI_STA);
 
-  logInfo("Connecting...");
+  logInfo("Connecting to WiFi...");
   blinkerStart(BLINKER_STATE_CONNECTING);
   wifiGotIpFlag = false;
 
@@ -53,7 +53,7 @@ void wifiSetup() {
     // this executes when module reconnects and gets IP from DHCP
     // can be called multiple times
     wifiGotIpFlag = true;
-    logInfo("Connected successfuly");
+    logInfo("WiFi connected successfuly");
     logValue("Got IP: ", evt.ip);
   });
 
