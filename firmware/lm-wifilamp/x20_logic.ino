@@ -37,7 +37,7 @@ void logicUpdatePixels() {
 
 bool logicSetState(const bool on) {
   if (logicOn == on) return false;
-
+  logValue("Logic state ", on);
   logicOn = on;
   logicUpdatePixels();
 

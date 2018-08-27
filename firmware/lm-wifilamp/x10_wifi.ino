@@ -4,7 +4,7 @@
 
 WiFiEventHandler wifiIpHandler;
 bool wifiShouldSaveConfig;
-
+bool wifiGotIpFlag;
 
 void wifiResetAndRestart() {
   logInfo("WiFi reset in progress");
@@ -47,11 +47,12 @@ void wifiSetup() {
 
   logInfo("Connecting...");
   blinkerStart(BLINKER_STATE_CONNECTING);
+  wifiGotIpFlag = false;
 
   wifiIpHandler = WiFi.onStationModeGotIP([](const WiFiEventStationModeGotIP & evt) {
     // this executes when module reconnects and gets IP from DHCP
     // can be called multiple times
-
+    wifiGotIpFlag = true;
     logInfo("Connected successfuly");
     logValue("Got IP: ", evt.ip);
   });
@@ -60,7 +61,6 @@ void wifiSetup() {
     logInfo("No saved credentials");
     blinkerSet(BLINKER_STATE_AP);
     wifiStartAp();
-    blinkerSet(BLINKER_STATE_READY);
   } else if (!WiFi.isConnected()) {
     logValue("Stored SSID: ", WiFi.SSID());
     WiFi.begin();

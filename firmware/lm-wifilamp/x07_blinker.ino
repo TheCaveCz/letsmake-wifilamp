@@ -34,10 +34,12 @@ void blinkerTick() {
 }
 
 void blinkerStop() {
+  logInfo("Blinker stopped");
   blinkerTicker.detach();
 }
 
 void blinkerSet(uint8_t v) {
+  logValue("Blinker set to ", v);
   blinkerState = v;
 }
 
@@ -45,5 +47,3 @@ void blinkerStart(uint8_t v) {
   blinkerSet(v);
   blinkerTicker.attach(0.05, blinkerTick);
 }
-
-

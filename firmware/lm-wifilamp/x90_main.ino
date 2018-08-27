@@ -1,5 +1,8 @@
 
 BLYNK_CONNECTED() {
+  // when connected to Blynk stop pulsing LEDs. No effect on subsequent calls.
+  blinkerStop();
+
   Blynk.syncAll();
 }
 
@@ -44,25 +47,33 @@ void setup() {
   wifiSetup();
   serverSetup();
 
-  logInfo("Connecting to Blynk");
   Blynk.config(config.blynkToken);
-  while (Blynk.connect() != true) {
-    blinkerSet(BLINKER_STATE_ERROR);
-    if (buttonReadRaw()) {
-      ESP.restart();
-      while (1) {}
-    }
-  }
-  blinkerStop();
 
   logInfo("Ready to go!");
 }
 
 void loop() {
-  Blynk.run();
+  if (Blynk.connected()) {
+    Blynk.run();
+  }
 
   ArduinoOTA.handle();
   server.handleClient();
   pixelsTask();
   logicButtonTask();
+
+  if (wifiGotIpFlag) {
+    wifiGotIpFlag = false;
+
+    if (strlen(config.blynkToken)) {
+      // we have blynk token, try to connect there
+      blinkerSet(BLINKER_STATE_READY);
+      Blynk.connect();
+    } else {
+      // if we don't have blynk token set stop pulsing LEDs.
+      blinkerStop();
+    }
+  }
+
+  // TODO : handle reconnect when blynk connection is lost/broken
 }

@@ -2,6 +2,7 @@
  * WifiLamp firmware for Blynk app
  */
 #define BLYNK_PRINT Serial
+#define BLYNK_NO_FANCY_LOGO
 
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
