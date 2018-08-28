@@ -47,3 +47,7 @@ void blinkerStart(uint8_t v) {
   blinkerSet(v);
   blinkerTicker.attach(0.05, blinkerTick);
 }
+
+bool blinkerActive() {
+  return blinkerTicker.active();
+}

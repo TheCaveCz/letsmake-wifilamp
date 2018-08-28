@@ -59,7 +59,9 @@ void loop() {
 
   ArduinoOTA.handle();
   server.handleClient();
-  pixelsTask();
+  if (!blinkerActive()) {
+    pixelsTask();
+  }
   logicButtonTask();
 
   if (wifiGotIpFlag) {
