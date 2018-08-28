@@ -29,9 +29,9 @@ void logicSetup() {
 
 void logicUpdatePixels() {
   if (logicOn) {
-    pixelsAnimate(logicColorR, logicColorG, logicColorB, logicTransitionTime);
+    pixelsStartAnimation(logicColorR, logicColorG, logicColorB, logicTransitionTime);
   } else {
-    pixelsAnimate(0, 0, 0, logicTransitionTime);
+    pixelsStartAnimation(0, 0, 0, logicTransitionTime);
   }
 }
 

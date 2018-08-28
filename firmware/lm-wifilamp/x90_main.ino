@@ -1,36 +1,4 @@
 
-BLYNK_CONNECTED() {
-  // when connected to Blynk stop pulsing LEDs. No effect on subsequent calls.
-  blinkerStop();
-
-  Blynk.syncAll();
-}
-
-BLYNK_WRITE(BLYNK_RGB_PIN) {
-  logicSetColor(param[0].asInt(), param[1].asInt(), param[2].asInt());
-}
-
-BLYNK_WRITE(BLYNK_RGB_R_PIN) {
-  logicSetColor(param.asInt(), logicColorG, logicColorB);
-}
-
-BLYNK_WRITE(BLYNK_RGB_G_PIN) {
-  logicSetColor(logicColorR, param.asInt(), logicColorB);
-}
-
-BLYNK_WRITE(BLYNK_RGB_B_PIN) {
-  logicSetColor(logicColorR, logicColorG, param.asInt());
-}
-
-BLYNK_WRITE(BLYNK_BUTTON_PIN) {
-  logicSetState(param.asInt());
-}
-
-BLYNK_WRITE(BLYNK_SPEED_PIN) {
-  logicTransitionTime = param.asInt() * 100;
-}
-
-
 void setup() {
   Serial.begin(115200);
 
@@ -46,10 +14,9 @@ void setup() {
   otaSetup();
   wifiSetup();
   serverSetup();
-
-  Blynk.config(config.blynkToken);
-
+  blynkSetup();
   logInfo("Ready to go!");
+  timeoutRefresh();
 }
 
 void loop() {
@@ -59,23 +26,22 @@ void loop() {
 
   ArduinoOTA.handle();
   server.handleClient();
-  if (!blinkerActive()) {
-    pixelsTask();
-  }
   logicButtonTask();
 
   if (wifiGotIpFlag) {
     wifiGotIpFlag = false;
 
-    if (strlen(config.blynkToken)) {
+    if (blynkIsConfigured()) {
       // we have blynk token, try to connect there
-      blinkerSet(BLINKER_STATE_READY);
-      Blynk.connect();
+      pixelsSetAnimState(PIXELS_ANIM_GREEN);
+      timeoutRefresh();
+      blynkConnectIfPossible();
     } else {
-      // if we don't have blynk token set stop pulsing LEDs.
-      blinkerStop();
+      // if we don't have blynk token stop pulsing LEDs.
+      timeoutClear();
     }
   }
 
-  // TODO : handle reconnect when blynk connection is lost/broken
+  timeoutCheck();
+  blynkCheck();
 }

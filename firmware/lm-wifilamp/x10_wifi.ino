@@ -46,7 +46,7 @@ void wifiSetup() {
   if (WiFi.getMode() != WIFI_STA) WiFi.mode(WIFI_STA);
 
   logInfo("Connecting to WiFi...");
-  blinkerStart(BLINKER_STATE_CONNECTING);
+  pixelsSetAnimState(PIXELS_ANIM_BLUE);
   wifiGotIpFlag = false;
 
   wifiIpHandler = WiFi.onStationModeGotIP([](const WiFiEventStationModeGotIP & evt) {
@@ -59,7 +59,7 @@ void wifiSetup() {
 
   if (WiFi.SSID() == "") {
     logInfo("No saved credentials");
-    blinkerSet(BLINKER_STATE_AP);
+    pixelsSetAnimState(PIXELS_ANIM_VIOLET);
     wifiStartAp();
   } else if (!WiFi.isConnected()) {
     logValue("Stored SSID: ", WiFi.SSID());
