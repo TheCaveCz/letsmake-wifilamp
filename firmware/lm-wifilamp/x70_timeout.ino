@@ -1,3 +1,8 @@
+//
+// This ensures Lamp will transition from initial blinking animations to normal
+// mode where user can turn it on or off in case of failed wifi/blynk connection.
+//
+
 uint32_t timeoutTime;
 
 

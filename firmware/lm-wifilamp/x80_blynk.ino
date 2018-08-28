@@ -1,10 +1,21 @@
 
+bool blynkFirstConnect;
+uint32_t blynkConnectionCheckTime;
+
+
 BLYNK_CONNECTED() {
   logInfo("Blynk connected");
-  // when connected to Blynk stop pulsing LEDs. No effect on subsequent calls.
-  timeoutClear();
 
-  Blynk.syncAll();
+  if (blynkFirstConnect) {
+    // when connected to Blynk stop pulsing LEDs. No effect on subsequent calls.
+    timeoutClear();
+    blynkFirstConnect = false;
+    Blynk.syncAll();
+  }
+}
+
+BLYNK_DISCONNECTED() {
+  logInfo("Blynk disconnected");
 }
 
 BLYNK_WRITE(BLYNK_RGB_PIN) {
@@ -42,8 +53,6 @@ void blynkConnectIfPossible() {
   }
 }
 
-uint32_t blynkConnectionCheckTime;
-
 void blynkCheck() {
   if (!timeoutIsActive() && blynkConnectionCheckTime && millis() > blynkConnectionCheckTime) {
     logInfo("Blynk connection check");
@@ -53,6 +62,7 @@ void blynkCheck() {
 }
 
 void blynkSetup() {
+  blynkFirstConnect = true;
   Blynk.config(config.blynkToken);
   blynkConnectionCheckTime = blynkIsConfigured() ? millis() + RECONNECT_INTERVAL : 0;
 
