@@ -30,7 +30,8 @@ More resources:
 
 ## Blynk project
 
-![Blynk project](pictures/blynk-app.png)
+<img src="pictures/blynk-app.png" width=320>
+<img src="pictures/blynk-project.png" width=320>
 
 ## How it looks
 
