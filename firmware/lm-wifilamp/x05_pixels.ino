@@ -64,8 +64,8 @@ void pixelsTick() {
   }
 
   uint8_t v = pixelsProgress < (PIXELS_ANIM_MAX_RANGE / 2)
-              ? map(pixelsProgress, 0, (PIXELS_ANIM_MAX_RANGE / 2) - 1, 32, 128)
-              : map(pixelsProgress, PIXELS_ANIM_MAX_RANGE / 2, PIXELS_ANIM_MAX_RANGE - 1, 128, 32);
+              ? map(pixelsProgress, 0, (PIXELS_ANIM_MAX_RANGE / 2) - 1, 4, 128)
+              : map(pixelsProgress, PIXELS_ANIM_MAX_RANGE / 2, PIXELS_ANIM_MAX_RANGE - 1, 128, 4);
 
   switch (pixelsState) {
     case PIXELS_ANIM_BLUE:
