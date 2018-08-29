@@ -1,6 +1,6 @@
 # Assembly instructions
 
-## LED holder
+## Button box
 
 ![assembly](1-01.JPG)
 
@@ -12,17 +12,7 @@
 
 ![assembly](1-05.JPG)
 
-![assembly](1-06.JPG)
-
-![assembly](1-07.JPG)
-
-![assembly](1-08.JPG)
-
-![assembly](1-09.JPG)
-
-![assembly](1-10.JPG)
-
-## Button box
+## LED holder
 
 ![assembly](2-01.JPG)
 
@@ -34,6 +24,11 @@
 
 ![assembly](2-05.JPG)
 
+![assembly](2-06.JPG)
+
+![assembly](2-07.JPG)
+
+![assembly](2-08.JPG)
 
 ## Base
 
@@ -66,6 +61,10 @@
 ![assembly](3-14.JPG)
 
 ![assembly](3-15.JPG)
+
+![assembly](3-16.JPG)
+
+![assembly](3-17.JPG)
 
 ## Finished
 
