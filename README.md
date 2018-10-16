@@ -22,10 +22,18 @@ More resources:
 ### On your mobile phone
 
 * Install [Blynk app](https://www.blynk.cc/getting-started/)
+* Create account or log in
 * Create new empty project in Blynk App
-* Copy auth token
+* Copy auth token from the app or your email
 * Connect to the wifilamp AP
-* Navigate to `http://192.168.4.1`
+* Wait for WiFi login popup (or use browser and navigate to `http://192.168.4.1`)
+* Enter WiFi credentials and auth token
+
+### Reconfiguring or resetting lamp
+
+* Hold button until the lamp lights up with violet color
+* Connect to the wifilamp AP
+* Wait for WiFi login popup (or use browser and navigate to `http://192.168.4.1`)
 * Enter WiFi credentials and auth token
 
 ## Blynk project
