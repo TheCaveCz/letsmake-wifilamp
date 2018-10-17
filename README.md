@@ -17,6 +17,7 @@ More resources:
 
 * Install [Arduino core for ESP8266](https://github.com/esp8266/Arduino#installing-with-boards-manager)
 * Install the [Blynk Arduino library](http://help.blynk.cc/getting-started-library-auth-token-code-examples/how-to-install-blynk-library-for-arduino)
+* Install the [WiFi Manager library](https://github.com/tzapu/WiFiManager)
 * Compile and upload the [firmware](firmware/lm-wifilamp)
 
 ### On your mobile phone
