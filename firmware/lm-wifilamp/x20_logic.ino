@@ -3,6 +3,7 @@
 uint8_t logicColorR;
 uint8_t logicColorG;
 uint8_t logicColorB;
+float logicBrightness;
 bool logicOn;
 
 uint32_t logicButtonTaskTime;
@@ -29,7 +30,7 @@ void logicSetup() {
 
 void logicUpdatePixels() {
   if (logicOn) {
-    pixelsStartAnimation(logicColorR, logicColorG, logicColorB, logicTransitionTime);
+    pixelsStartAnimation(logicColorR * logicBrightness, logicColorG * logicBrightness, logicColorB * logicBrightness, logicTransitionTime);
   } else {
     pixelsStartAnimation(0, 0, 0, logicTransitionTime);
   }
@@ -48,12 +49,13 @@ bool logicSetState(const bool on) {
   return true;
 }
 
-void logicSetColor(const uint8_t r, const uint8_t g, const uint8_t b) {
-  if (logicColorR == r && logicColorG == g && logicColorB == b) return;
+void logicSetColor(const uint8_t r, const uint8_t g, const uint8_t b, const float brightness) {
+  if (logicColorR == r && logicColorG == g && logicColorB == b && logicBrightness == brightness) return;
 
   logicColorR = r;
   logicColorG = g;
   logicColorB = b;
+  logicBrightness = brightness;
 
   if (Blynk.connected()) {
     Blynk.virtualWrite(BLYNK_RGB_PIN, r, g, b);
