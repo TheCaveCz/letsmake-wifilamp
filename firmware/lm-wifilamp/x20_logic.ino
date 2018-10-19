@@ -26,6 +26,7 @@ void logicSetup() {
 
   logicButtonTaskTime = 0;
   logicButtonTaskInterval = LOGIC_BUTTON_TASK_INTERVAL;
+  logicBrightness = 1;
 }
 
 void logicUpdatePixels() {
@@ -62,6 +63,7 @@ void logicSetColor(const uint8_t r, const uint8_t g, const uint8_t b, const floa
     Blynk.virtualWrite(BLYNK_RGB_R_PIN, r);
     Blynk.virtualWrite(BLYNK_RGB_G_PIN, g);
     Blynk.virtualWrite(BLYNK_RGB_B_PIN, b);
+    Blynk.virtualWrite(BLYNK_BRIGHTNESS_PIN, brightness);
   }
 
   if (logicOn) {
