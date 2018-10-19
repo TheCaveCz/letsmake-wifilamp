@@ -12,6 +12,8 @@ void serverApiStatus() {
   response += logicColorG;
   response += ",\"b\":";
   response += logicColorB;
+  response += ",\"brightness\":";
+  response += logicBrightness;
   response += ",\"on\":";
   response += logicOn ? "true" : "false";
   response += ",\"mac\":\"";
@@ -29,11 +31,12 @@ void serverApiSetColor() {
   uint8_t r = server.arg("r").toInt();
   uint8_t g = server.arg("g").toInt();
   uint8_t b = server.arg("b").toInt();
+  float brightness = server.arg("brightness").toFloat();
 
   if (r == 0 && g == 0 && b == 0) {
     logicSetState(false);
   } else {
-    logicSetColor(r, g, b);
+    logicSetColor(r, g, b, brightness);
   }
 
   serverApiStatus();

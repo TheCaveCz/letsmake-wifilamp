@@ -37,6 +37,7 @@
 #define BLYNK_RGB_G_PIN V3
 #define BLYNK_RGB_B_PIN V4
 #define BLYNK_SPEED_PIN V5
+#define BLYNK_BRIGHTNESS_PIN V6
 
 #define HOSTNAME_PREFIX "wifilamp-"
 

@@ -19,19 +19,19 @@ BLYNK_DISCONNECTED() {
 }
 
 BLYNK_WRITE(BLYNK_RGB_PIN) {
-  logicSetColor(param[0].asInt(), param[1].asInt(), param[2].asInt());
+  logicSetColor(param[0].asInt(), param[1].asInt(), param[2].asInt(), logicBrightness);
 }
 
 BLYNK_WRITE(BLYNK_RGB_R_PIN) {
-  logicSetColor(param.asInt(), logicColorG, logicColorB);
+  logicSetColor(param.asInt(), logicColorG, logicColorB, logicBrightness);
 }
 
 BLYNK_WRITE(BLYNK_RGB_G_PIN) {
-  logicSetColor(logicColorR, param.asInt(), logicColorB);
+  logicSetColor(logicColorR, param.asInt(), logicColorB, logicBrightness);
 }
 
 BLYNK_WRITE(BLYNK_RGB_B_PIN) {
-  logicSetColor(logicColorR, logicColorG, param.asInt());
+  logicSetColor(logicColorR, logicColorG, param.asInt(), logicBrightness);
 }
 
 BLYNK_WRITE(BLYNK_BUTTON_PIN) {
@@ -40,6 +40,10 @@ BLYNK_WRITE(BLYNK_BUTTON_PIN) {
 
 BLYNK_WRITE(BLYNK_SPEED_PIN) {
   logicTransitionTime = param.asInt() * 100;
+}
+
+BLYNK_WRITE(BLYNK_BRIGHTNESS_PIN) {
+  logicSetColor(logicColorR, logicColorG, logicColorB, param.asFloat());
 }
 
 bool blynkIsConfigured() {
