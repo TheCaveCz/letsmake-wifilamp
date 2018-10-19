@@ -31,13 +31,26 @@ void serverApiSetColor() {
   uint8_t r = server.arg("r").toInt();
   uint8_t g = server.arg("g").toInt();
   uint8_t b = server.arg("b").toInt();
-  float brightness = server.arg("brightness").toFloat();
+  float brightness = server.hasArg("brightness") ? server.arg("brightness").toFloat() : logicBrightness;
 
-  if (r == 0 && g == 0 && b == 0) {
-    logicSetState(false);
-  } else {
-    logicSetColor(r, g, b, brightness);
+  if ((r == 0 && g == 0 && b == 0) || (brightness <= 0 || brightness > 1)) {
+    server.send(400, "text/json", "{\"error\":\"Invalid value\"}\n");
+    return;
   }
+  
+  logicSetColor(r, g, b, brightness);
+  serverApiStatus();
+}
+
+void serverApiSetBrightness() {
+  SERVER_AUTH_REQUIRED
+
+  float brightness = server.arg("brightness").toFloat();
+  if (brightness <= 0 || brightness > 1) {
+    server.send(400, "text/json", "{\"error\":\"Invalid value\"}\n");
+    return;
+  }
+  logicSetColor(logicColorR, logicColorG, logicColorB, brightness);
 
   serverApiStatus();
 }

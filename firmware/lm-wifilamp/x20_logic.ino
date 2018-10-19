@@ -56,7 +56,7 @@ void logicSetColor(const uint8_t r, const uint8_t g, const uint8_t b, const floa
   logicColorR = r;
   logicColorG = g;
   logicColorB = b;
-  logicBrightness = brightness;
+  logicBrightness = constrain(brightness, 0.01, 1);
 
   if (Blynk.connected()) {
     Blynk.virtualWrite(BLYNK_RGB_PIN, r, g, b);

@@ -49,6 +49,7 @@ void serverSetup() {
 
   server.on("/api/color", HTTP_POST, serverApiSetColor);
   server.on("/api/on", HTTP_POST, serverApiSetOn);
+  server.on("/api/brightness", HTTP_POST, serverApiSetBrightness);
 
   server.on("/api/reboot", HTTP_POST, serverApiReboot);
 
