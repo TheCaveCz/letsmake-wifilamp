@@ -29,6 +29,7 @@ More resources:
 * Connect to the wifilamp AP
 * Wait for WiFi login popup (or use browser and navigate to `http://192.168.4.1`)
 * Enter WiFi credentials and auth token
+* Setup the Blynk project (see next section)
 
 ### Reconfiguring or resetting lamp
 
@@ -40,7 +41,12 @@ More resources:
 ## Blynk project
 
 <img src="pictures/blynk-app.png" width=320>
+
 <img src="pictures/blynk-project.png" width=320>
+
+[Check the video of creating the Blynk project](pictures/blynk-setup.mp4)
+
+<video width="320"><source src="pictures/blynk-setup.mp4" type="video/mp4"></video>
 
 ## How it looks
 
