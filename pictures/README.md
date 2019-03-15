@@ -98,5 +98,5 @@ Put one end of the spring into PCB slot and the other in the hook on the top of 
 
 ## Finished
 
-And you are done!
+Mechanical assembly is now done! Now you need to setup the WiFi and connect the lamp to Blynk server. 
 ![assembly](final.jpg)
